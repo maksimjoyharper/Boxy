@@ -1,0 +1,25 @@
+.falling_objects_container {
+  position: relative;
+  width: 350px;
+  height: 500px;
+
+  background-color: #000; /* Dark background */
+  overflow: hidden;
+}
+
+.falling_object {
+  position: absolute;
+  top: -50px;
+  width: 33px;
+  height: 40px;
+  /* background-color: #fff; */
+  /* border-radius: 50%; */
+  animation: fall linear forwards;
+  animation-duration: 5s;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh); /* Move to the bottom of the viewport */
+  }
+}
