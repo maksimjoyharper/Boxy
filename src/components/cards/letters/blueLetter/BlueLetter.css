@@ -1,0 +1,14 @@
+.falling_letter {
+  position: absolute;
+  top: -50px;
+  width: 33px;
+  height: 40px;
+  animation-name: fall;
+  animation-timing-function: linear;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}

@@ -1,0 +1,22 @@
+.btn {
+  position: absolute;
+  top: -50px;
+  width: 33px;
+  height: 40px;
+  border: none;
+  padding: 0;
+  animation-name: fall;
+  animation-timing-function: linear;
+  background: none;
+}
+
+.falling_letter_white {
+  width: 33px;
+  height: 40px;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
