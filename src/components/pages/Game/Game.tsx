@@ -30,7 +30,7 @@ export default function Game() {
       setWhiteLetter((prev) => [...prev, newLetter]);
     };
 
-    const interval = setInterval(generateLetter, 200);
+    const interval = setInterval(generateLetter, 2000);
     return () => clearInterval(interval);
   }, []);
 
