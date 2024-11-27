@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import style from "./Timer.module.css";
 import { formatTime } from "../../../features/formatTime";
 
 type TimerProps = {
   setIsVision: React.Dispatch<React.SetStateAction<boolean>>;
+  time: number;
+  setTimer: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export default function Timer({ setIsVision }: TimerProps) {
-  const [timer, setTimer] = useState(30);
+export default function Timer({ setIsVision, time, setTimer }: TimerProps) {
+  // const [timer, setTimer] = useState(30);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -15,17 +17,17 @@ export default function Timer({ setIsVision }: TimerProps) {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [timer]);
+  }, [time]);
 
   useEffect(() => {
-    if (timer === 0) {
+    if (time === 0) {
       setIsVision(false);
     }
-  }, [timer]);
+  }, [time]);
 
   return (
     <div className={style.timer_container}>
-      <div className={style.time}>{formatTime(timer)}</div>
+      <div className={style.time}>{formatTime(time)}</div>
     </div>
   );
 }

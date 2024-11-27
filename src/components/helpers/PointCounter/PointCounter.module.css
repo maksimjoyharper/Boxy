@@ -1,7 +1,7 @@
-.timer_container {
+.counter_container {
   position: absolute;
   top: 5%;
-  left: 10%;
+  right: 10%;
   font-size: 24px;
   font-weight: 700;
   line-height: 17.21px;
