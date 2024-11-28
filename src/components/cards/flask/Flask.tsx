@@ -28,7 +28,7 @@ export default function Flask({ setCount }: FlaskProps) {
       setFlask((prev) => [...prev, newBomb]);
     };
 
-    const interval = setInterval(generateBomb, 6000);
+    const interval = setInterval(generateBomb, 4200);
     return () => clearInterval(interval);
   }, []);
 

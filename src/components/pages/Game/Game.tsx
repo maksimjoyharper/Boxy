@@ -1,41 +1,68 @@
 import { useEffect, useState } from "react";
 import style from "./Game.module.css";
 import Letter from "../../cards/letters/whiteLetter/Letter";
-import { randomWhite } from "../../../features/randomWhite";
 import { v4 } from "uuid";
 import Timer from "../../helpers/Timer/Timer";
 import BlueLetter from "../../cards/letters/blueLetter/BlueLetter";
 import PointCounter from "../../helpers/PointCounter/PointCounter";
 import Bomb from "../../cards/bombs/Bomb";
 import Flask from "../../cards/flask/Flask";
+import imgOpenBox from "../../../assets/open-box.png";
+import { whiteLettArr } from "../../../variables/whiteLettArray";
+import { IWhiteLettArr } from "../../../types/types";
 
 export default function Game() {
   const [isVision, setIsVision] = useState(true);
-  const [timer, setTimer] = useState(30);
-  const [whiteLetter, setWhiteLetter] = useState<
-    { x: number; duration: number; id: string }[]
-  >([]);
+  const [timer, setTimer] = useState(15);
+  // const [whiteLetter, setWhiteLetter] = useState<IWhiteLettArr[]>([]);
 
   const [count, setCount] = useState<number>(0);
+
+  const [whiteLetter, setWhiteLetter] = useState<IWhiteLettArr[]>([]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWhiteLetter((prev) => {
+        // Создаем новый массив с элементами, добавляя их в конец
+        const newElements = whiteLettArr.map((item) => ({
+          ...item,
+          id: v4(),
+          duration: Math.random() + 3, // Обновляем продолжительность
+        }));
+        return [...prev, ...newElements];
+      });
+    }, 700); // Добавляем новые элементы каждые 2 секунды
+
+    return () => clearInterval(interval); // Очищаем интервал при размонтировании
+  }, []);
 
   const handleClick = (id: string) => {
     setWhiteLetter((prev) => prev.filter((letter) => letter.id !== id));
     setCount((prev) => prev + 1);
   };
 
-  useEffect(() => {
-    const generateLetter = () => {
-      const newLetter = {
-        x: randomWhite(),
-        duration: Math.random() * 3 + 2,
-        id: v4().toString(),
-      };
-      setWhiteLetter((prev) => [...prev, newLetter]);
-    };
+  // useEffect(() => {
+  //   const generateLetter = () => {
+  //     const newLetter = {
+  //       x: randomWhite(),
+  //       duration: Math.random() * 3 + 2,
+  //       id: v4().toString(),
+  //     };
+  //     setWhiteLetter((prev) => [...prev, newLetter]);
+  //   };
 
-    const interval = setInterval(generateLetter, 200);
-    return () => clearInterval(interval);
-  }, []);
+  //   const interval = setInterval(generateLetter, 200);
+  //   return () => clearInterval(interval);
+  // }, []);
+
+  // useEffect(() => {
+  //   const generateLetter = () => {
+  //     setWhiteLetter(whiteLettArr);
+  //   };
+
+  //   const interval = setTimeout(generateLetter, 100);
+  //   return () => clearTimeout(interval);
+  // }, []);
 
   return (
     <>
@@ -52,9 +79,10 @@ export default function Game() {
               duration={letter.duration}
             />
           ))}
-          <BlueLetter />
+          <BlueLetter setCount={setCount} />
           <Flask setCount={setTimer} />
           <Bomb setCount={setCount} />
+          <img src={imgOpenBox} className={style.img_open_box} />
         </div>
       ) : null}
     </>

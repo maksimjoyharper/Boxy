@@ -1,8 +1,18 @@
 .falling_letters_container {
   position: relative;
-  width: 375px;
-  height: 650px;
-
+  min-width: 375px;
+  height: 100vh;
+  margin: 0 auto;
   background-color: #000000; /* Dark background */
   overflow: hidden;
+  background-image: url("../../../assets/background-game.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.img_open_box {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -10%);
 }
