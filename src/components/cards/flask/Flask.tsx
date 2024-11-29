@@ -1,18 +1,17 @@
 import "./Flask.css";
 import imgFlask from "../../../assets/flask.png";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { randomWhite } from "../../../features/randomWhite";
 import { v4 } from "uuid";
+import { IFlask } from "../../../types/types";
 
 interface FlaskProps {
   setCount: React.Dispatch<React.SetStateAction<number>>;
+  flasks: IFlask[];
+  setFlask: React.Dispatch<React.SetStateAction<IFlask[]>>;
 }
 
-export default function Flask({ setCount }: FlaskProps) {
-  const [flasks, setFlask] = useState<
-    { x: number; duration: number; id: string }[]
-  >([]);
-
+export default function Flask({ setCount, flasks, setFlask }: FlaskProps) {
   const handleClickFlask = (id: string) => {
     setFlask((prev) => prev.filter((bomb) => bomb.id !== id));
     setCount((prev) => prev + 5);

@@ -1,6 +1,6 @@
 .falling_letters_container {
   position: relative;
-  min-width: 375px;
+  width: 100vw;
   height: 100vh;
   margin: 0 auto;
   background-color: #000000; /* Dark background */
