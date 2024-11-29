@@ -3,12 +3,21 @@ import imgBomb from "../../../assets/bomb.png";
 import { useEffect, useState } from "react";
 import { randomWhite } from "../../../features/randomWhite";
 import { v4 } from "uuid";
+import { IBlueLettArr, IFlask, IWhiteLettArr } from "../../../types/types";
 
 interface BombProps {
   setCount: React.Dispatch<React.SetStateAction<number>>;
+  setWhiteLetter: React.Dispatch<React.SetStateAction<IWhiteLettArr[]>>;
+  setBlueLetter: React.Dispatch<React.SetStateAction<IBlueLettArr[]>>;
+  setFlask: React.Dispatch<React.SetStateAction<IFlask[]>>;
 }
 
-export default function Bomb({ setCount }: BombProps) {
+export default function Bomb({
+  setCount,
+  setWhiteLetter,
+  setBlueLetter,
+  setFlask,
+}: BombProps) {
   const [bombs, setBomb] = useState<
     { x: number; duration: number; id: string }[]
   >([]);
@@ -16,6 +25,9 @@ export default function Bomb({ setCount }: BombProps) {
   const handleClickBomb = (id: string) => {
     setBomb((prev) => prev.filter((bomb) => bomb.id !== id));
     setCount((prev) => prev - 5);
+    setWhiteLetter([]);
+    setBlueLetter([]);
+    setFlask([]);
   };
 
   useEffect(() => {

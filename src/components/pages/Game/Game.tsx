@@ -9,16 +9,15 @@ import Bomb from "../../cards/bombs/Bomb";
 import Flask from "../../cards/flask/Flask";
 import imgOpenBox from "../../../assets/open-box.png";
 import { whiteLettArr } from "../../../variables/whiteLettArray";
-import { IWhiteLettArr } from "../../../types/types";
+import { IBlueLettArr, IFlask, IWhiteLettArr } from "../../../types/types";
 
 export default function Game() {
   const [isVision, setIsVision] = useState(true);
   const [timer, setTimer] = useState(15);
-  // const [whiteLetter, setWhiteLetter] = useState<IWhiteLettArr[]>([]);
-
   const [count, setCount] = useState<number>(0);
-
   const [whiteLetter, setWhiteLetter] = useState<IWhiteLettArr[]>([]);
+  const [blueLetter, setBlueLetter] = useState<IBlueLettArr[]>([]);
+  const [flasks, setFlask] = useState<IFlask[]>([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -80,9 +79,18 @@ export default function Game() {
               duration={letter.duration}
             />
           ))}
-          <BlueLetter setCount={setCount} />
-          <Flask setCount={setTimer} />
-          <Bomb setCount={setCount} />
+          <BlueLetter
+            setCount={setCount}
+            blueLetter={blueLetter}
+            setBlueLetter={setBlueLetter}
+          />
+          <Flask setCount={setTimer} flasks={flasks} setFlask={setFlask} />
+          <Bomb
+            setCount={setCount}
+            setWhiteLetter={setWhiteLetter}
+            setBlueLetter={setBlueLetter}
+            setFlask={setFlask}
+          />
           <img src={imgOpenBox} className={style.img_open_box} />
         </div>
       ) : null}

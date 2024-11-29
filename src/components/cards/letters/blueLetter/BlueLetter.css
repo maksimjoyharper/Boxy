@@ -10,14 +10,13 @@
   background: none;
 }
 
-.falling_letter {
+.falling_letter_blue {
   position: absolute;
   top: -50px;
   width: 40px;
   height: 40px;
   animation-name: fall;
   animation-timing-function: linear;
-  animation-duration: 3s;
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
   -moz-user-select: none;

@@ -3,3 +3,15 @@ export interface IWhiteLettArr {
   x: number;
   duration: number;
 }
+
+export interface IBlueLettArr {
+  id: string;
+  x: number;
+  duration: number;
+}
+
+export interface IFlask {
+  id: string;
+  x: number;
+  duration: number;
+}
