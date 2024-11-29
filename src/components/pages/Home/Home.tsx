@@ -1,5 +1,13 @@
-// import style from "./Home.module.css";
+import { Outlet } from "react-router-dom";
 
 export default function Home() {
-  return <div></div>;
+  return (
+    <>
+      <header></header>
+      <main>
+        <Outlet />
+      </main>
+      <footer></footer>
+    </>
+  );
 }

@@ -1,1 +1,6 @@
-
+.home {
+  background-image: url("../../../assets/back.webp");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
