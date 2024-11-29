@@ -2,7 +2,23 @@
   position: absolute;
   top: 5%;
   left: 10%;
-  font-size: 24px;
+  width: 105px;
+  height: 34px;
+  background-image: url("../../../assets/time-window.png");
+  background-position: center;
+  background-size: cover;
+  z-index: 2;
+}
+
+.time {
+  position: absolute;
+  left: 50%;
+  transform: translate(-20%, 45%);
+  width: 42px;
+  height: 18px;
   font-weight: 700;
-  line-height: 17.21px;
+  font-size: 14px;
+  line-height: 123%;
+  letter-spacing: 0.02em;
+  color: #fff;
 }

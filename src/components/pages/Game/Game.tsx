@@ -31,7 +31,7 @@ export default function Game() {
         }));
         return [...prev, ...newElements];
       });
-    }, 700); // Добавляем новые элементы каждые 2 секунды
+    }, 1000); // Добавляем новые элементы каждые 2 секунды
 
     return () => clearInterval(interval); // Очищаем интервал при размонтировании
   }, []);
@@ -69,6 +69,7 @@ export default function Game() {
       {isVision ? (
         <div className={style.falling_letters_container}>
           <Timer time={timer} setTimer={setTimer} setIsVision={setIsVision} />
+          <p className={style.title_logo}>Skillbox</p>
           <PointCounter count={count} />
           {whiteLetter.map((letter) => (
             <Letter

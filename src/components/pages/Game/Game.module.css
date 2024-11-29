@@ -16,3 +16,10 @@
   left: 50%;
   transform: translate(-50%, -10%);
 }
+.title_logo {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  margin: 0;
+}

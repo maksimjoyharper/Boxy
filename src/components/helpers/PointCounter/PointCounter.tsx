@@ -5,5 +5,9 @@ type PointCounterProps = {
 };
 
 export default function PointCounter({ count }: PointCounterProps) {
-  return <div className={style.counter_container}>{count}</div>;
+  return (
+    <div className={style.counter_container}>
+      <div className={style.counter}>{count}</div>
+    </div>
+  );
 }
