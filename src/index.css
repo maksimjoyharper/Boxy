@@ -25,10 +25,6 @@ html {
 body {
   margin: 0;
   width: 100vw;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  max-width: 509px;
 }
 
 h1,
@@ -39,6 +35,10 @@ ul,
 ol {
   margin: 0;
   padding: 0;
+}
+
+ul, ol {
+  list-style: none;
 }
 
 a {

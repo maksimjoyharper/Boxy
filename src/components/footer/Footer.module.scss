@@ -1,0 +1,18 @@
+.footer {
+    width: 100%;
+    background-image: url("../../assets/png/footer__bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.footer__list {
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.footer__home {
+    display: block;
+}

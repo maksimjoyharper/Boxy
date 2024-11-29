@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import style from "./Timer.module.css";
-import { formatTime } from "../../../features/formatTime";
+import { formatTime } from "../../features/formatTime";
 
 type TimerProps = {
   setIsVision: React.Dispatch<React.SetStateAction<boolean>>;

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import style from "./Game.module.css";
-import Letter from "../../cards/letters/whiteLetter/Letter";
+import Letter from "../../components/cards/letters/whiteLetter/Letter";
 import { v4 } from "uuid";
 import Timer from "../../helpers/Timer/Timer";
-import BlueLetter from "../../cards/letters/blueLetter/BlueLetter";
+import BlueLetter from "../../components/cards/letters/blueLetter/BlueLetter";
 import PointCounter from "../../helpers/PointCounter/PointCounter";
-import Bomb from "../../cards/bombs/Bomb";
-import Flask from "../../cards/flask/Flask";
-import imgOpenBox from "../../../assets/open-box.png";
-import { whiteLettArr } from "../../../variables/whiteLettArray";
-import { IBlueLettArr, IFlask, IWhiteLettArr } from "../../../types/types";
+import Bomb from "../../components/cards/bombs/Bomb";
+import Flask from "../../components/cards/flask/Flask";
+import imgOpenBox from "../../assets/open-box.png";
+import { whiteLettArr } from "../../variables/whiteLettArray";
+import { IBlueLettArr, IFlask, IWhiteLettArr } from "../../types/types";
 
 export default function Game() {
   const [isVision, setIsVision] = useState(true);
@@ -64,7 +64,7 @@ export default function Game() {
   // }, []);
 
   return (
-    <>
+    <section>
       {isVision ? (
         <div className={style.falling_letters_container}>
           <Timer time={timer} setTimer={setTimer} setIsVision={setIsVision} />
@@ -94,6 +94,6 @@ export default function Game() {
           <img src={imgOpenBox} className={style.img_open_box} />
         </div>
       ) : null}
-    </>
+    </section>
   );
 }
