@@ -2,7 +2,7 @@
     width: 100%;
     background-image: url("../../assets/png/footer__bg.png");
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: bottom;
     background-size: contain;
 }
 
@@ -15,4 +15,8 @@
 
 .footer__home {
     display: block;
+}
+
+.upper {
+    padding-top: 20px;
 }

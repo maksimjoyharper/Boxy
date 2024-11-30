@@ -9,6 +9,7 @@ interface IFooter {
   id: number;
   path: string;
   icon: ReactNode;
+  className?: boolean;
 }
 
 const footerArr: IFooter[] = [
@@ -16,6 +17,7 @@ const footerArr: IFooter[] = [
     id: 1,
     path: "game",
     icon: <FooterGameSvg />,
+    className: true,
   },
   {
     id: 2,
@@ -26,6 +28,7 @@ const footerArr: IFooter[] = [
     id: 3,
     path: "132",
     icon: <FooterMenuSvg />,
+    className: true,
   },
 ];
 
@@ -35,7 +38,10 @@ export const Footer = () => {
       <nav>
         <ul className={style.footer__list}>
           {footerArr.map((elem) => (
-            <li key={elem.id}>
+            <li
+              className={elem.className ? style.upper : undefined}
+              key={elem.id}
+            >
               <Link to={elem.path}>{elem.icon}</Link>
             </li>
           ))}

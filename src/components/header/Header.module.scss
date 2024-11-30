@@ -1,0 +1,35 @@
+.header__list {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    li {
+        display: flex;
+        align-items: center;
+
+        &:first-child {
+            gap: 7px
+        }
+
+        &:last-child {
+            gap: 11px;
+            background-image: url('../../assets/webp/coin__bg.webp');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+    }
+
+    span {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 17.21px;
+        letter-spacing: 0.02em;
+        color: #fff;
+    }
+}
+
+.reverse {
+    flex-direction: row-reverse;
+}

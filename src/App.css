@@ -5,4 +5,8 @@
   height: 100svh;
   width: 100vw;
   text-align: center;
+  background-image: url('./assets/webp/back.webp');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
