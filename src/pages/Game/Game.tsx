@@ -10,6 +10,7 @@ import Flask from "../../components/cards/flask/Flask";
 import imgOpenBox from "../../assets/open-box.png";
 import { whiteLettArr } from "../../variables/whiteLettArray";
 import { IBlueLettArr, IFlask, IWhiteLettArr } from "../../types/types";
+import ModalRoute from "../../ui/ModalRoute/ModalRoute";
 
 export default function Game() {
   const [isVision, setIsVision] = useState(true);
@@ -64,8 +65,8 @@ export default function Game() {
   // }, []);
 
   return (
-    <section>
-      {isVision ? (
+    <ModalRoute>
+      {isVision && (
         <div className={style.falling_letters_container}>
           <Timer time={timer} setTimer={setTimer} setIsVision={setIsVision} />
           <p className={style.title_logo}>Skillbox</p>
@@ -93,7 +94,7 @@ export default function Game() {
           />
           <img src={imgOpenBox} className={style.img_open_box} />
         </div>
-      ) : null}
-    </section>
+      )}
+    </ModalRoute>
   );
 }

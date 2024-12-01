@@ -1,10 +1,12 @@
 import style from "./Header.module.scss";
 import logo from "../../assets/webp/logo.webp";
 import avatar from "../../assets/webp/avatar.png";
-import coin from "../../assets/webp/coin.webp";
+import { ReactNode } from "react";
+import { HeaderCoinSvg } from "../../assets/svg/HeaderCoinSvg";
 
 interface IHeader {
-  img: string;
+  svg?: ReactNode;
+  img?: string;
   label?: string;
   reverse?: boolean;
 }
@@ -18,7 +20,7 @@ const headerArr: IHeader[] = [
     img: logo,
   },
   {
-    img: coin,
+    svg: <HeaderCoinSvg />,
     label: "12 000",
     reverse: true,
   },
@@ -30,7 +32,7 @@ export const Header = () => {
       <ul className={style.header__list}>
         {headerArr.map((elem) => (
           <li className={elem.reverse ? style.reverse : undefined}>
-            <img src={elem.img} alt="аватарка" />
+            {elem.svg ? elem.svg : <img src={elem.img} alt={elem.label} />}
             <span>{elem.label}</span>
           </li>
         ))}

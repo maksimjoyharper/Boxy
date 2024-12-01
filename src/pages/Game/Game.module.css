@@ -2,9 +2,9 @@
   position: relative;
   height: 100%;
   margin: 0 auto;
-  background-color: #000000; /* Dark background */
+  /* background-color: #000000; Dark background */
   overflow: hidden;
-  background-image: url("../../../assets/background-game.png");
+  background: url("../../assets/background-game.png");
   background-position: center;
   background-size: cover;
 }
