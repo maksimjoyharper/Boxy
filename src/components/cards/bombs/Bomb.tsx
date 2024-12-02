@@ -6,6 +6,7 @@ import { v4 } from "uuid";
 import { IBlueLettArr, IFlask, IWhiteLettArr } from "../../../types/types";
 
 interface BombProps {
+  count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   setWhiteLetter: React.Dispatch<React.SetStateAction<IWhiteLettArr[]>>;
   setBlueLetter: React.Dispatch<React.SetStateAction<IBlueLettArr[]>>;
@@ -17,6 +18,7 @@ export default function Bomb({
   setWhiteLetter,
   setBlueLetter,
   setFlask,
+  count,
 }: BombProps) {
   const [bombs, setBomb] = useState<
     { x: number; duration: number; id: string }[]
@@ -24,10 +26,15 @@ export default function Bomb({
 
   const handleClickBomb = (id: string) => {
     setBomb((prev) => prev.filter((bomb) => bomb.id !== id));
-    setCount((prev) => prev - 5);
+
     setWhiteLetter([]);
     setBlueLetter([]);
     setFlask([]);
+    if (count <= 10) {
+      setCount(0);
+    } else {
+      setCount((prev) => prev - 10);
+    }
   };
 
   useEffect(() => {

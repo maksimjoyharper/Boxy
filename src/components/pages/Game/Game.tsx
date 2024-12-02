@@ -86,6 +86,7 @@ export default function Game() {
           />
           <Flask setCount={setTimer} flasks={flasks} setFlask={setFlask} />
           <Bomb
+            count={count}
             setCount={setCount}
             setWhiteLetter={setWhiteLetter}
             setBlueLetter={setBlueLetter}

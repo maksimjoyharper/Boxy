@@ -12,6 +12,7 @@ interface FlaskProps {
 }
 
 export default function Flask({ setCount, flasks, setFlask }: FlaskProps) {
+  // const [countVis, setCountVis] = useState();
   const handleClickFlask = (id: string) => {
     setFlask((prev) => prev.filter((bomb) => bomb.id !== id));
     setCount((prev) => prev + 5);
@@ -24,7 +25,14 @@ export default function Flask({ setCount, flasks, setFlask }: FlaskProps) {
         duration: Math.random() * 3 + 2,
         id: v4().toString(),
       };
-      setFlask((prev) => [...prev, newBomb]);
+
+      setFlask((prev) => {
+        // Проверяем длину массива и удаляем первый элемент, если длина равна 3
+        if (prev.length === 3) {
+          return [...prev.slice(1), newBomb];
+        }
+        return [...prev, newBomb];
+      });
     };
 
     const interval = setInterval(generateBomb, 4200);
