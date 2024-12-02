@@ -1,0 +1,24 @@
+.footer {
+  width: 100%;
+  background-image: url("../../assets/png/footer__bg.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.footer__list {
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.footer__home {
+  display: block;
+}
+
+.upper {
+  padding-top: 20px;
+}

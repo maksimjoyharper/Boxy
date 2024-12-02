@@ -1,0 +1,24 @@
+.falling_letters_container {
+  position: relative;
+  height: 100%;
+  margin: 0 auto;
+  /* background-color: #000000; Dark background */
+  overflow: hidden;
+  background: url("../../assets/background-game.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.img_open_box {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -10%);
+}
+.title_logo {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  margin: 0;
+}

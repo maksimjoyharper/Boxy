@@ -2,15 +2,23 @@ import { lazy, Suspense } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
-const Home = lazy(() => import("./components/pages/Home/Home"));
-const Game = lazy(() => import("./components/pages/Game/Game"));
+const Layout = lazy(() => import("./pages/Layout/Layout"));
+const Game = lazy(() => import("./pages/Game/Game"));
+const Home = lazy(() => import("./pages/Home/Home"));
+const Leaderboard = lazy(() => import("./pages/Leaderboard/Leaderboard"));
+const Catalog = lazy(() => import("./pages/Catalog/Catalog"));
+
 function App() {
   return (
     <>
       <Suspense fallback={<div>Loading</div>}>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/game" element={<Game />}></Route>
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="game" element={<Game />} />
+            <Route path="leaderboard" element={<Leaderboard />} />
+            <Route path="catalog" element={<Catalog />} />
+          </Route>
         </Routes>
       </Suspense>
     </>

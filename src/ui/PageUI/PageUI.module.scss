@@ -1,0 +1,97 @@
+.page__section {
+  overflow: auto;
+}
+
+.page__title {
+  margin: 0 auto 16px;
+  padding-bottom: 4px;
+  width: max-content;
+  position: relative;
+  font-size: 32px;
+  line-height: 38.4px;
+  letter-spacing: 0.02em;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(89.92deg, #3d3bff -12.95%, #ffffff 186.7%);
+  }
+}
+
+.page__label {
+  margin: 0 auto 30px;
+  font-size: 12px;
+  line-height: 13.2px;
+  text-align: center;
+  color: #ffffff99;
+}
+
+.page__person {
+  margin-bottom: 25px;
+  padding: 22px 15px;
+  min-height: 116px;
+  display: flex;
+  align-items: center;
+  border-radius: 36px;
+  background-color: #3d3bff;
+}
+
+.page__avatar {
+  margin-right: 13px;
+}
+
+.page__info {
+  margin-right: auto;
+}
+
+.page__name {
+  margin-bottom: 20px;
+  font-size: 20px;
+  line-height: 17.21px;
+  letter-spacing: 0.02em;
+}
+
+.page__coins {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+}
+
+.page__place {
+  position: relative;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 64px;
+  text-shadow: 0 4px 4px #00000040;
+
+  &::before {
+    content: "#";
+    position: absolute;
+    font-size: 22.9px;
+    line-height: 22.9px;
+    left: -25px;
+    top: 17px;
+  }
+}
+
+.page__list {
+  padding: 15px;
+  height: 100%;
+  border-radius: 36px;
+  background-color: #000;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    left: -1px;
+    bottom: -1px;
+    border-radius: inherit;
+  }
+}

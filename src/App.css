@@ -1,6 +1,12 @@
 #root {
-  height: 100vh;
   margin: 0 auto;
-
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100svh;
+  max-width: 450px;
+  background-image: url("./assets/webp/back.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
