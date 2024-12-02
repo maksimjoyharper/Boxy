@@ -22,7 +22,7 @@ export const HeaderCoinSvg = () => {
         r="14.1472"
         transform="matrix(-1 0 0 1 29 0.720215)"
         stroke="url(#paint1_linear_125_3521)"
-        stroke-width="0.265542"
+        strokeWidth="0.265542"
       />
       <g filter="url(#filter1_i_125_3521)">
         <circle
@@ -47,9 +47,9 @@ export const HeaderCoinSvg = () => {
           width="28.5601"
           height="29.0911"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -82,9 +82,9 @@ export const HeaderCoinSvg = () => {
           width="21.76"
           height="22.2908"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -117,9 +117,9 @@ export const HeaderCoinSvg = () => {
           width="11.7068"
           height="17.167"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -171,8 +171,8 @@ export const HeaderCoinSvg = () => {
           y2="28.56"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FFEE6F" />
-          <stop offset="1" stop-color="#DAA146" />
+          <stop stopColor="#FFEE6F" />
+          <stop offset="1" stopColor="#DAA146" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_125_3521"
@@ -182,9 +182,9 @@ export const HeaderCoinSvg = () => {
           y2="3.57194"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FFEE6F" stop-opacity="0.2" />
-          <stop offset="0.495" stop-color="#FFEE6F" stop-opacity="0.8" />
-          <stop offset="1" stop-color="#FFEE6F" stop-opacity="0.2" />
+          <stop stopColor="#FFEE6F" stopOpacity="0.2" />
+          <stop offset="0.495" stopColor="#FFEE6F" stopOpacity="0.8" />
+          <stop offset="1" stopColor="#FFEE6F" stopOpacity="0.2" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_125_3521"
@@ -194,8 +194,8 @@ export const HeaderCoinSvg = () => {
           y2="21.76"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" />
-          <stop offset="1" stop-color="#E2E2E2" />
+          <stop stopColor="white" />
+          <stop offset="1" stopColor="#E2E2E2" />
         </linearGradient>
       </defs>
     </svg>
