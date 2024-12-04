@@ -4,11 +4,12 @@ import avatar from "../../assets/webp/avatar.png";
 import { ReactNode } from "react";
 import { HeaderCoinSvg } from "../../assets/svg/HeaderCoinSvg";
 import { useQuery } from "@tanstack/react-query";
+import { queryClient } from "../../api/queryClient";
 import { fetchUser } from "../../api/fetchUser/fetchUser";
 import { useTelegram } from "../../hooks/telegram/telegram";
-import { queryClient } from "../../api/queryClient";
 
 interface IHeader {
+  id: number;
   svg?: ReactNode;
   img?: string;
   label?: string;
@@ -17,13 +18,16 @@ interface IHeader {
 
 const headerArr: IHeader[] = [
   {
+    id: 1,
     img: avatar,
     label: "Name",
   },
   {
+    id: 2,
     img: logo,
   },
   {
+    id: 3,
     svg: <HeaderCoinSvg />,
     label: "12 000",
     reverse: true,
@@ -31,23 +35,21 @@ const headerArr: IHeader[] = [
 ];
 
 export const Header = () => {
-  const { tg_id } = useTelegram();
+  const {tg_id} = useTelegram()
 
-  const { user } = useQuery(
-    {
-      queryFn: () => fetchUser(tg_id),
-      queryKey: ["user"],
-    },
-    queryClient
-  );
+  const {data: user} = useQuery({
+    queryKey: ['user'],
+    queryFn: () => fetchUser(tg_id)
+  }, queryClient)
 
   return (
     <header>
       <ul className={style.header__list}>
         {headerArr.map((elem) => (
-          <li className={elem.reverse ? style.reverse : undefined}>
+          <li key={elem.id} className={elem.reverse ? style.reverse : undefined}>
             {elem.svg ? elem.svg : <img src={elem.img} alt={elem.label} />}
             <span>{elem.label}</span>
+            <p>{user?.id}</p>
           </li>
         ))}
       </ul>
