@@ -1,5 +1,6 @@
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     Telegram: any;
   }
 }
@@ -11,7 +12,7 @@ export const useTelegram = () => {
   // const tg_id = tg?.initDataUnsafe?.user?.id;
 
   const tg_id = "12323";
-  const username = "ed";
+  const userName = "ed";
 
-  return { tg, username, tg_id };
+  return { tg, userName, tg_id };
 };

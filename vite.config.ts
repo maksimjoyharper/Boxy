@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://www.fortunebot.monster",
+        target: "https://boxy.skillbox.by",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },

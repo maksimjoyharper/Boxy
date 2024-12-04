@@ -30,8 +30,8 @@ export const Header = () => {
   return (
     <header>
       <ul className={style.header__list}>
-        {headerArr.map((elem) => (
-          <li className={elem.reverse ? style.reverse : undefined}>
+        {headerArr.map((elem, i) => (
+          <li key={i} className={elem.reverse ? style.reverse : undefined}>
             {elem.svg ? elem.svg : <img src={elem.img} alt={elem.label} />}
             <span>{elem.label}</span>
           </li>

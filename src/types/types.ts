@@ -1,7 +1,9 @@
 export interface IWhiteLettArr {
   id: string;
   x: number;
-  duration: number;
+  y: number;
+  // duration: number;
+  image: HTMLImageElement;
 }
 
 export interface IBlueLettArr {

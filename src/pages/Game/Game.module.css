@@ -2,7 +2,6 @@
   position: relative;
   height: 100%;
   margin: 0 auto;
-  /* background-color: #000000; Dark background */
   overflow: hidden;
   background: url("../../assets/background-game.png");
   background-position: center;
@@ -21,4 +20,8 @@
   left: 50%;
   transform: translate(-50%, -10%);
   margin: 0;
+}
+.canv {
+  width: 100vh;
+  height: 100vh;
 }
