@@ -3,6 +3,10 @@ import logo from "../../assets/webp/logo.webp";
 import avatar from "../../assets/webp/avatar.png";
 import { ReactNode } from "react";
 import { HeaderCoinSvg } from "../../assets/svg/HeaderCoinSvg";
+import { useQuery } from "@tanstack/react-query";
+import { fetchUser } from "../../api/fetchUser/fetchUser";
+import { useTelegram } from "../../hooks/telegram/telegram";
+import { queryClient } from "../../api/queryClient";
 
 interface IHeader {
   svg?: ReactNode;
@@ -27,6 +31,16 @@ const headerArr: IHeader[] = [
 ];
 
 export const Header = () => {
+  const { tg_id } = useTelegram();
+
+  const { user } = useQuery(
+    {
+      queryFn: () => fetchUser(tg_id),
+      queryKey: ["user"],
+    },
+    queryClient
+  );
+
   return (
     <header>
       <ul className={style.header__list}>

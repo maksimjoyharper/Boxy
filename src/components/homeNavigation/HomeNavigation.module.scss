@@ -1,6 +1,7 @@
 .home__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 100px 12px 4px 12px 16px 84px;
   column-gap: 8px;
 
   li {
@@ -21,16 +22,28 @@
 
     &:first-child {
       background-color: #3d3bff;
+      grid-row-start: 1;
+      grid-row-end: 4;
     }
 
     &:nth-child(2) {
       max-height: 98px;
       background-color: #313439;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+
+    &:nth-child(3) {
+      grid-row-start: 1;
+      grid-row-end: 7;
+      background-color: #dbe2ff;
     }
 
     &:nth-child(4) {
       max-height: 98px;
       background-color: #dbe2ff;
+      grid-row-start: 5;
+      grid-row-end: 7;
 
       .home__title {
         color: #191e2699;
@@ -39,6 +52,8 @@
 
     &:nth-child(5) {
       background-color: #fcada9;
+      grid-row-start: 3;
+      grid-row-end: 7;
 
       .home__label {
         color: #191e26;
