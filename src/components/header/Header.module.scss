@@ -23,7 +23,6 @@
 }
 
 .reverse {
-  flex-direction: row-reverse;
   gap: 11px;
   background-image: url("../../assets/webp/coin__bg.webp");
   background-repeat: no-repeat;
@@ -31,6 +30,6 @@
   background-size: contain;
 
   span {
-    padding: 3px 0 0 15px;
+    padding: 2px 0 0 10px;
   }
 }
