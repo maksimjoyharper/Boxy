@@ -5,6 +5,8 @@ import { HomeCatalogSvg } from "../../assets/svg/HomeCatalogSvg";
 import { HomeTaskSvg } from "../../assets/svg/HomeTaskSvg";
 import { HomeFriendsSvg } from "../../assets/svg/HomeFriendsSvg";
 import style from "./homeNavigation.module.scss";
+import { useSelector } from "react-redux";
+import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 
 interface IHome {
   id: number;
@@ -48,6 +50,7 @@ const homeArr: IHome[] = [
 
 export const HomeNavigation = () => {
   const [selectedTicket, setSelectedTicket] = useState("regular");
+  const user = useSelector(getUser);
 
   return (
     <ul className={style.home__grid}>
@@ -71,7 +74,7 @@ export const HomeNavigation = () => {
           }`}
           htmlFor="tickets"
         >
-          5 билетов
+          {user?.tickets}
           <input
             checked={selectedTicket === "regular"}
             onChange={() => setSelectedTicket("regular")}
@@ -88,7 +91,7 @@ export const HomeNavigation = () => {
           }`}
           htmlFor="premium-tickets"
         >
-          5 билетов
+          {user?.premium_tickets}
           <input
             checked={selectedTicket === "premium"}
             onChange={() => setSelectedTicket("premium")}
