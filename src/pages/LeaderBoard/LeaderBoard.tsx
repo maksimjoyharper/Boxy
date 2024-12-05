@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { LeaderboardItem } from "../../components/LeaderboardItem";
+import { LeaderboardItem } from "../../components/leaderboardItem";
 import { PageUI } from "../../ui/PageUI/PageUI";
 import {
   fetchLeaderboard,
-  fetchLeaderProps,
+  fetchLeaderboardProps,
 } from "../../api/fetchLeaderboard/fetchLeaderboard";
 import { queryClient } from "../../api/queryClient";
 import { useTelegram } from "../../hooks/telegram/telegram";
@@ -25,14 +25,14 @@ const Leaderboard = () => {
       title="Leaderboard"
       time="До конца осталось: 12 дней 8 часов"
     >
-      {leader?.map((element: fetchLeaderProps) => (
+      {/* {leader?.map((element: fetchLeaderboardProps) => (
         <LeaderboardItem
           id={element.tg_id}
           name={element.name}
           points={element.points}
           rank={element.rank}
         />
-      ))}
+      ))} */}
     </PageUI>
   );
 };

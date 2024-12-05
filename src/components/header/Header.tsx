@@ -1,55 +1,47 @@
 import style from "./Header.module.scss";
 import logo from "../../assets/webp/logo.webp";
 import avatar from "../../assets/webp/avatar.png";
-import { ReactNode } from "react";
 import { HeaderCoinSvg } from "../../assets/svg/HeaderCoinSvg";
 import { useQuery } from "@tanstack/react-query";
 import { fetchUser } from "../../api/fetchUser/fetchUser";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import { queryClient } from "../../api/queryClient";
-
-interface IHeader {
-  svg?: ReactNode;
-  img?: string;
-  label?: string;
-  reverse?: boolean;
-}
-
-const headerArr: IHeader[] = [
-  {
-    img: avatar,
-    label: "Name",
-  },
-  {
-    img: logo,
-  },
-  {
-    svg: <HeaderCoinSvg />,
-    label: "12 000",
-    reverse: true,
-  },
-];
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../provider/StoreProvider/slice/userSlice";
 
 export const Header = () => {
-  const { tg_id } = useTelegram();
+  const { tg_id, username } = useTelegram();
+  const dispatch = useDispatch();
 
-  const { user } = useQuery(
+  const { data: user } = useQuery(
     {
-      queryFn: () => fetchUser(tg_id),
+      queryFn: () => fetchUser(tg_id, username),
       queryKey: ["user"],
     },
     queryClient
   );
 
+  useEffect(() => {
+    if (user) {
+      dispatch(userActions.addUserStore(user));
+    }
+  }, [dispatch, user]);
+
   return (
     <header>
       <ul className={style.header__list}>
-        {headerArr.map((elem) => (
-          <li className={elem.reverse ? style.reverse : undefined}>
-            {elem.svg ? elem.svg : <img src={elem.img} alt={elem.label} />}
-            <span>{elem.label}</span>
-          </li>
-        ))}
+        <li>
+          <img src={avatar} alt="avatar" />
+          <span>{user?.name}</span>
+        </li>
+        <li>
+          <img src={logo} alt="logo" />
+        </li>
+        <li className={style.reverse}>
+          <span>{user?.points_all}</span>
+          <HeaderCoinSvg />
+        </li>
       </ul>
     </header>
   );
