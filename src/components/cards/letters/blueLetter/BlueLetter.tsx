@@ -18,7 +18,12 @@ const BlueLetter = ({
 }: BlueLetterProps) => {
   const handleClick = (id: string) => {
     setBlueLetter((prev) => prev.filter((letter) => letter.id !== id));
-    setCount((prev) => prev - 3);
+    setCount((prev) => {
+      if (prev <= 3) {
+        prev = 0;
+      } else return prev - 3;
+      return prev;
+    });
   };
 
   // const [isAtBottom, setIsAtBottom] = useState<boolean>(false);

@@ -12,7 +12,7 @@
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translate(-50%, -10%);
+  transform: translate(-50%, 0%);
 }
 .title_logo {
   position: absolute;
