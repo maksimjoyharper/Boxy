@@ -1,23 +1,23 @@
-import { useQuery } from "@tanstack/react-query";
-import { LeaderboardItem } from "../../components/leaderboardItem";
+// import { useQuery } from "@tanstack/react-query";
+// import { LeaderboardItem } from "../../components/leaderboardItem";
 import { PageUI } from "../../ui/PageUI/PageUI";
-import {
-  fetchLeaderboard,
-  fetchLeaderboardProps,
-} from "../../api/fetchLeaderboard/fetchLeaderboard";
-import { queryClient } from "../../api/queryClient";
-import { useTelegram } from "../../hooks/telegram/telegram";
+// import {
+//   fetchLeaderboard,
+//   fetchLeaderboardProps,
+// } from "../../api/fetchLeaderboard/fetchLeaderboard";
+// import { queryClient } from "../../api/queryClient";
+// import { useTelegram } from "../../hooks/telegram/telegram";
 
 const Leaderboard = () => {
-  const { tg_id } = useTelegram();
+  // const { tg_id } = useTelegram();
 
-  const { data: leader } = useQuery(
-    {
-      queryFn: () => fetchLeaderboard(tg_id),
-      queryKey: ["leaderboard"],
-    },
-    queryClient
-  );
+  // const { data: leader } = useQuery(
+  //   {
+  //     queryFn: () => fetchLeaderboard(tg_id),
+  //     queryKey: ["leaderboard"],
+  //   },
+  //   queryClient
+  // );
 
   return (
     <PageUI

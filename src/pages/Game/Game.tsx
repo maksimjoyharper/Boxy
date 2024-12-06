@@ -11,6 +11,8 @@ import imgOpenBox from "../../assets/open-box.png";
 import { whiteLettArr } from "../../variables/whiteLettArray";
 import { IBlueLettArr, IFlask, IWhiteLettArr } from "../../types/types";
 import ModalRoute from "../../ui/ModalRoute/ModalRoute";
+import logo from "../../assets/webp/logo.webp";
+import { useTelegram } from "../../hooks/telegram/telegram";
 // import { randomWhite } from "../../features/randomWhite";
 // import imgL from "../../assets/S-white.png";
 // import useCanvas from "../../hooks/canvas/useCanvas";
@@ -22,6 +24,7 @@ export default function Game() {
   const [whiteLetter, setWhiteLetter] = useState<IWhiteLettArr[]>([]);
   const [blueLetter, setBlueLetter] = useState<IBlueLettArr[]>([]);
   const [flasks, setFlask] = useState<IFlask[]>([]);
+  const { tg } = useTelegram();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,11 +33,11 @@ export default function Game() {
         const newElements = whiteLettArr.map((item) => ({
           ...item,
           id: v4(),
-          duration: Math.random() + 3, // Обновляем продолжительность
+          duration: Math.random() + 1.8, // Обновляем продолжительность
         }));
         return [...prev, ...newElements];
       });
-    }, 1000); // Добавляем новые элементы каждые 2 секунды
+    }, 800); // Добавляем новые элементы каждые 2 секунды
 
     return () => clearInterval(interval); // Очищаем интервал при размонтировании
   }, []);
@@ -42,6 +45,7 @@ export default function Game() {
   const handleClick = (id: string) => {
     setWhiteLetter((prev) => prev.filter((letter) => letter.id !== id));
     setCount((prev) => prev + 1);
+    tg.HapticFeedback.impactOccurred("light");
   };
 
   // const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -137,10 +141,10 @@ export default function Game() {
     //   <canvas className={style.canv} ref={ref}></canvas>
     // </>
     <ModalRoute>
-      {isVision && (
+      {isVision ? (
         <div className={style.falling_letters_container}>
           <Timer time={timer} setTimer={setTimer} setIsVision={setIsVision} />
-          <p className={style.title_logo}>Skillbox</p>
+          <img src={logo} className={style.logo} />
           <PointCounter count={count} />
           {whiteLetter.map((letter) => (
             <Letter
@@ -166,6 +170,8 @@ export default function Game() {
           />
           <img src={imgOpenBox} className={style.img_open_box} />
         </div>
+      ) : (
+        <h1 style={{ color: "white" }}>{count}</h1>
       )}
     </ModalRoute>
   );

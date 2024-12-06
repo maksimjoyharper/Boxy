@@ -1,9 +1,10 @@
 import "./BlueLetter.css";
 import imgBlueLetter from "../../../../assets/S-blue.png";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { v4 } from "uuid";
 import { IBlueLettArr } from "../../../../types/types";
 import { blueLettArr } from "../../../../variables/blueLettArray";
+import { useTelegram } from "../../../../hooks/telegram/telegram";
 
 interface BlueLetterProps {
   setCount: React.Dispatch<React.SetStateAction<number>>;
@@ -16,69 +17,85 @@ const BlueLetter = ({
   blueLetter,
   setBlueLetter,
 }: BlueLetterProps) => {
+  const { tg } = useTelegram();
+  const letterRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [letterCount, setLetterCount] = useState(0);
   const handleClick = (id: string) => {
     setBlueLetter((prev) => prev.filter((letter) => letter.id !== id));
-    setCount((prev) => {
-      if (prev <= 3) {
-        prev = 0;
-      } else return prev - 3;
-      return prev;
-    });
+    setCount((prev) => (prev <= 3 ? 0 : prev - 3));
+    tg.HapticFeedback.impactOccurred("light");
   };
-
-  // const [isAtBottom, setIsAtBottom] = useState<boolean>(false);
-  // const elementRef = useRef<HTMLElement>(null);
-
-  // useEffect(() => {
-  //   if (elementRef.current) {
-  //     const rect = elementRef.current.getBoundingClientRect();
-  //     const isBottom = rect.bottom >= window.innerHeight;
-  //     setIsAtBottom(isBottom);
-  //   }
-  //   if (isAtBottom) {
-  //     setCount((prev) => prev + 3);
-  //   }
-  // }, [isAtBottom, blueLetter]);
-
-  // useEffect(() => {
-  //   const generateLetter = () => {
-  //     const newLetter = {
-  //       x: randomBlue(),
-  //       id: v4().toString(),
-  //       duration: Math.random() * 3 + 2,
-  //     };
-  //     setBlueLetter((prev) => [...prev, newLetter]);
-  //   };
-
-  //   const interval = setInterval(generateLetter, 1500);
-  //   return () => clearInterval(interval);
-  // }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setBlueLetter((prev) => {
-        // Создаем новый массив с элементами, добавляя их в конец
+      if (letterCount < 5) {
         const newElements = blueLettArr.map((item) => ({
           ...item,
           id: v4(),
           duration: Math.random() + 2, // Обновляем продолжительность
         }));
-        return [...prev, ...newElements];
-      });
+        setBlueLetter((prev) => {
+          // Создаем новый массив с элементами, добавляя их в конец
+          return [...prev, ...newElements];
+        });
+        setLetterCount((prev) => prev + 1);
+      }
     }, 2000); // Добавляем новые элементы каждые 2 секунды
 
     return () => clearInterval(interval); // Очищаем интервал при размонтировании
-  }, []);
+  }, [letterCount]);
+
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver((entries) => {
+  //     entries.forEach((entry) => {
+  //       if (entry.isIntersecting) {
+  //         setCount((prev) => prev + 3);
+  //       }
+  //     });
+  //   });
+
+  //   letterRefs.current.forEach((letter) => {
+  //     if (letter) {
+  //       observer.observe(letter);
+  //     }
+  //   });
+
+  //   return () => {
+  //     letterRefs.current.forEach((letter) => {
+  //       if (letter) {
+  //         observer.unobserve(letter);
+  //       }
+  //     });
+  //   };
+  // }, [blueLetter, setCount]);
+  useEffect(() => {
+    const checkPosition = () => {
+      letterRefs.current.forEach((letter, index) => {
+        if (letter) {
+          const rect = letter.getBoundingClientRect();
+          if (rect.bottom >= window.innerHeight) {
+            setCount((prev) => prev + 3);
+            // Удаляем элемент из состояния
+            setBlueLetter((prev) => prev.filter((_, i) => i !== index));
+          }
+        }
+      });
+    };
+
+    const interval = setInterval(checkPosition, 10); // Проверяем положение каждые 100 мс
+
+    return () => clearInterval(interval);
+  }, [blueLetter, setCount, setBlueLetter]);
 
   return (
     <>
-      {blueLetter.map((letter) => (
+      {blueLetter.map((letter, index) => (
         <button
           className="btn_blue"
           onTouchStart={() => handleClick(letter.id)}
           key={letter.id}
           id={letter.id}
-          // ref={elementRef}
+          ref={(el) => (letterRefs.current[index] = el)}
           style={{
             left: `${letter.x}%`,
             animationDuration: `${letter.duration}s`,
