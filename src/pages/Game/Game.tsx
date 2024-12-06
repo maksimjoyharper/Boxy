@@ -35,7 +35,7 @@ export default function Game() {
 
     return () => clearInterval(interval); // Очищаем интервал при размонтировании
   }, []);
-
+  
   const handleClick = (id: string) => {
     setWhiteLetter((prev) => prev.filter((letter) => letter.id !== id));
     setCount((prev) => prev + 1);

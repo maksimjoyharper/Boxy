@@ -12,7 +12,12 @@ export function fetchLeaderboard(
   tg_id: string
 ): Promise<fetchLeaderboardProps[]> {
   return axios
-    .get(`${api_url}/top100/${tg_id}/`)
+    .get(`${api_url}/top100/${tg_id}/`, {
+      headers: {
+        "Cache-Control": "no-cache",
+        "Content-Type": "application/json"
+      },
+    })
     .then((response) => {
       const data = response.data;
       return data;
