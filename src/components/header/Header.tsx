@@ -11,12 +11,12 @@ import { useDispatch } from "react-redux";
 import { userActions } from "../../provider/StoreProvider/slice/userSlice";
 
 export const Header = () => {
-  const { tg_id, username } = useTelegram();
+  const { tg_id, userName } = useTelegram();
   const dispatch = useDispatch();
 
   const { data: user } = useQuery(
     {
-      queryFn: () => fetchUser(tg_id, username),
+      queryFn: () => fetchUser(tg_id, userName),
       queryKey: ["user"],
     },
     queryClient

@@ -1,9 +1,10 @@
 import "./Flask.css";
 import imgFlask from "../../../assets/flask.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { randomWhite } from "../../../features/randomWhite";
 import { v4 } from "uuid";
 import { IFlask } from "../../../types/types";
+import { useTelegram } from "../../../hooks/telegram/telegram";
 
 interface FlaskProps {
   setCount: React.Dispatch<React.SetStateAction<number>>;
@@ -12,24 +13,30 @@ interface FlaskProps {
 }
 
 export default function Flask({ setCount, flasks, setFlask }: FlaskProps) {
+  const { tg } = useTelegram();
   const handleClickFlask = (id: string) => {
     setFlask((prev) => prev.filter((bomb) => bomb.id !== id));
     setCount((prev) => prev + 5);
+    tg.HapticFeedback.impactOccurred("light");
   };
+  const [flaskCount, setFlaskCount] = useState(0);
 
   useEffect(() => {
-    const generateBomb = () => {
-      const newBomb = {
-        x: randomWhite(),
-        duration: Math.random() * 3 + 2,
-        id: v4().toString(),
-      };
-      setFlask((prev) => [...prev, newBomb]);
+    const generateFlask = () => {
+      if (flaskCount < 3) {
+        const newFlask = {
+          x: randomWhite(),
+          duration: Math.random() + 2,
+          id: v4().toString(),
+        };
+        setFlask((prev) => [...prev, newFlask]);
+        setFlaskCount((prev) => prev + 1);
+      }
     };
 
-    const interval = setInterval(generateBomb, 4200);
+    const interval = setInterval(generateFlask, 4200);
     return () => clearInterval(interval);
-  }, []);
+  }, [flaskCount]);
 
   return (
     <>
@@ -42,6 +49,7 @@ export default function Flask({ setCount, flasks, setFlask }: FlaskProps) {
             left: `${flask.x}%`,
             animationDuration: `${flask.duration}s`,
           }}
+          key={flask.id}
         >
           {" "}
           <img src={imgFlask} className="falling_flask" />

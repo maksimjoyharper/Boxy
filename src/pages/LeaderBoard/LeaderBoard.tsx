@@ -3,8 +3,8 @@ import { PageUI } from "../../ui/PageUI/PageUI";
 import { fetchLeaderboard } from "../../api/fetchLeaderboard/fetchLeaderboard";
 import { queryClient } from "../../api/queryClient";
 import { useTelegram } from "../../hooks/telegram/telegram";
-import { LeaderboardItem } from "../../components/leaderboardItem";
 import style from "./Leaderboard.module.scss";
+import { LeaderboardItem } from "../../components/LeaderboardItem";
 
 const Leaderboard = () => {
   const { tg_id } = useTelegram();

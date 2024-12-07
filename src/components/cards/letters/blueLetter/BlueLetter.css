@@ -1,27 +1,23 @@
 .btn_blue {
   position: absolute;
   top: -50px;
-  width: 33px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border: none;
   padding: 0;
   animation-name: fall;
   animation-timing-function: linear;
   background: none;
-}
-
-.falling_letter_blue {
-  position: absolute;
-  top: -50px;
-  width: 40px;
-  height: 40px;
-  animation-name: fall;
-  animation-timing-function: linear;
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.falling_letter_blue {
+  width: 40px;
+  height: 40px;
 }
 
 @keyframes fall {

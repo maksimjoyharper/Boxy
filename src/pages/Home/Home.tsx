@@ -1,6 +1,6 @@
 import style from "./Home.module.scss";
 import skillbox from "../../assets/webp/skillbox__bot.webp";
-import { HomeNavigation } from "../../components/homeNavigation/homeNavigation";
+import { HomeNavigation } from "../../components/homeNavigation/HomeNavigation";
 
 const Home = () => {
   return (

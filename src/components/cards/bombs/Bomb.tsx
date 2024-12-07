@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { randomWhite } from "../../../features/randomWhite";
 import { v4 } from "uuid";
 import { IBlueLettArr, IFlask, IWhiteLettArr } from "../../../types/types";
+import { useTelegram } from "../../../hooks/telegram/telegram";
 
 interface BombProps {
+  count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   setWhiteLetter: React.Dispatch<React.SetStateAction<IWhiteLettArr[]>>;
   setBlueLetter: React.Dispatch<React.SetStateAction<IBlueLettArr[]>>;
@@ -17,24 +19,32 @@ export default function Bomb({
   setWhiteLetter,
   setBlueLetter,
   setFlask,
+  count,
 }: BombProps) {
   const [bombs, setBomb] = useState<
     { x: number; duration: number; id: string }[]
   >([]);
+  const { tg } = useTelegram();
 
   const handleClickBomb = (id: string) => {
     setBomb((prev) => prev.filter((bomb) => bomb.id !== id));
-    setCount((prev) => prev - 5);
+
     setWhiteLetter([]);
     setBlueLetter([]);
     setFlask([]);
+    if (count <= 10) {
+      setCount(0);
+    } else {
+      setCount((prev) => prev - 10);
+    }
+    tg.HapticFeedback.impactOccurred("heavy");
   };
 
   useEffect(() => {
     const generateBomb = () => {
       const newBomb = {
         x: randomWhite(),
-        duration: Math.random() * 3 + 2,
+        duration: Math.random() + 2,
         id: v4().toString(),
       };
       setBomb((prev) => [...prev, newBomb]);
@@ -48,6 +58,7 @@ export default function Bomb({
     <>
       {bombs.map((bomb) => (
         <button
+          key={bomb.id}
           className="btn_bomb"
           onTouchStart={() => handleClickBomb(bomb.id)}
           id={bomb.id}

@@ -11,6 +11,11 @@ import imgOpenBox from "../../assets/open-box.png";
 import { whiteLettArr } from "../../variables/whiteLettArray";
 import { IBlueLettArr, IFlask, IWhiteLettArr } from "../../types/types";
 import ModalRoute from "../../ui/ModalRoute/ModalRoute";
+import logo from "../../assets/webp/logo.webp";
+import { useTelegram } from "../../hooks/telegram/telegram";
+// import { randomWhite } from "../../features/randomWhite";
+// import imgL from "../../assets/S-white.png";
+// import useCanvas from "../../hooks/canvas/useCanvas";
 
 export default function Game() {
   const [isVision, setIsVision] = useState(true);
@@ -19,6 +24,7 @@ export default function Game() {
   const [whiteLetter, setWhiteLetter] = useState<IWhiteLettArr[]>([]);
   const [blueLetter, setBlueLetter] = useState<IBlueLettArr[]>([]);
   const [flasks, setFlask] = useState<IFlask[]>([]);
+  const { tg } = useTelegram();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,11 +33,11 @@ export default function Game() {
         const newElements = whiteLettArr.map((item) => ({
           ...item,
           id: v4(),
-          duration: Math.random() + 3, // Обновляем продолжительность
+          duration: Math.random() + 1.8, // Обновляем продолжительность
         }));
         return [...prev, ...newElements];
       });
-    }, 1000); // Добавляем новые элементы каждые 2 секунды
+    }, 800); // Добавляем новые элементы каждые 2 секунды
 
     return () => clearInterval(interval); // Очищаем интервал при размонтировании
   }, []);
@@ -39,7 +45,73 @@ export default function Game() {
   const handleClick = (id: string) => {
     setWhiteLetter((prev) => prev.filter((letter) => letter.id !== id));
     setCount((prev) => prev + 1);
+    tg.HapticFeedback.impactOccurred("light");
   };
+
+  // const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  // const [elements, setElements] = useState<IWhiteLettArr[]>(whiteLettArr);
+
+  // const imageSrc = imgL; // Замените на URL вашего изображения
+  // const image = new Image();
+  // image.src = imageSrc;
+
+  // // Функция для создания новых элементов
+  // const createElement = () => {
+  //   // const newElement = { x: Math.random() * 400, y: 0, img: image }; // случайная позиция по X
+  //   setElements((prev) => [...prev]);
+  // };
+
+  // // Функция для обновления позиции элементов
+  // const updateElements = () => {
+  //   setElements(
+  //     (prev) => prev.map((el) => ({ ...el, y: el.y + 2 })) // движение вниз
+  //   );
+  // };
+
+  // Функция для отрисовки элементов на canvas
+  // const draw = (ctx: CanvasRenderingContext2D) => {
+  // ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // очистка canvas
+  // elements.forEach((el) => {
+  //   ctx.drawImage(el.img, el.x, el.y, 50, 50); // рисуем изображение
+  // });
+  // };
+
+  // const draw = (context: CanvasRenderingContext2D, count: number) => {
+  //   context.clearRect(0, 0, context.canvas.width, context.canvas.height); // очистка canvas
+  //   elements.forEach((el) => {
+  //     const d = count % 100;
+
+  //     context.drawImage(el.image, el.x, el.y + d, 10, 10); // рисуем изображение
+  //     // updateElements();
+  //   });
+  // };
+
+  // const ref = useCanvas(draw);
+
+  // // Основная анимационная функция
+  // const animate = () => {
+  //   const canvas = canvasRef.current;
+  //   if (!canvas) return;
+  //   const ctx = canvas.getContext("2d");
+  //   if (!ctx) return;
+
+  //   updateElements();
+  //   draw(ctx);
+  //   requestAnimationFrame(animate); // Запрос следующего кадра
+  // };
+
+  // useEffect(() => {
+  //   const interval = setInterval(createElement, 2000); // создаем новый элемент каждую секунду
+  //   return () => clearInterval(interval);
+  // }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(updateElements, 1000); // создаем новый элемент каждую секунду
+  //   return () => clearInterval(interval);
+  // }, []);
+
+  // useEffect(() => {
+  //   requestAnimationFrame(animate); // Запускаем анимацию
+  // }, []);
 
   // useEffect(() => {
   //   const generateLetter = () => {
@@ -65,11 +137,14 @@ export default function Game() {
   // }, []);
 
   return (
+    // <>
+    //   <canvas className={style.canv} ref={ref}></canvas>
+    // </>
     <ModalRoute>
-      {isVision && (
+      {isVision ? (
         <div className={style.falling_letters_container}>
           <Timer time={timer} setTimer={setTimer} setIsVision={setIsVision} />
-          <p className={style.title_logo}>Skillbox</p>
+          <img src={logo} className={style.logo} />
           <PointCounter count={count} />
           {whiteLetter.map((letter) => (
             <Letter
@@ -87,6 +162,7 @@ export default function Game() {
           />
           <Flask setCount={setTimer} flasks={flasks} setFlask={setFlask} />
           <Bomb
+            count={count}
             setCount={setCount}
             setWhiteLetter={setWhiteLetter}
             setBlueLetter={setBlueLetter}
@@ -94,6 +170,8 @@ export default function Game() {
           />
           <img src={imgOpenBox} className={style.img_open_box} />
         </div>
+      ) : (
+        <h1 style={{ color: "white" }}>{count}</h1>
       )}
     </ModalRoute>
   );

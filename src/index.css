@@ -18,6 +18,11 @@
   font-family: "Graphic", Arial, sans-serif;
   font-weight: 400;
   color-scheme: light dark;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 html {
