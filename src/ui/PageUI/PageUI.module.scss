@@ -10,16 +10,6 @@
   font-size: 32px;
   line-height: 38.4px;
   letter-spacing: 0.02em;
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background: linear-gradient(89.92deg, #3d3bff -12.95%, #ffffff 186.7%);
-  }
 }
 
 .page__label {
@@ -76,23 +66,5 @@
     line-height: 22.9px;
     left: -25px;
     top: 17px;
-  }
-}
-
-.page__list {
-  padding: 15px;
-  height: 100%;
-  border-radius: 36px;
-  background-color: #000;
-  position: relative;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -1px;
-    right: -1px;
-    left: -1px;
-    bottom: -1px;
-    border-radius: inherit;
   }
 }

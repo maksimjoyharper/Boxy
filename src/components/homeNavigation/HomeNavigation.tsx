@@ -41,7 +41,7 @@ const homeArr: IHome[] = [
   {
     id: 4,
     title: "Друзей",
-    path: "leaderboard",
+    path: "friends",
     svg: <HomeFriendsSvg />,
   },
 ];
@@ -54,8 +54,12 @@ export const HomeNavigation = () => {
       {homeArr.map((elem) => (
         <li key={elem.id}>
           <Link className={style.home__link} to={elem.path}>
-            {elem.title === 'Лидерборд' && <p className={style.home__label}>#{user?.rank}</p>}
-            {elem.title === 'Друзей' && <p className={style.home__label}>{user?.id}</p>}
+            {elem.title === "Лидерборд" && (
+              <p className={style.home__label}>#{user?.rank}</p>
+            )}
+            {elem.title === "Друзей" && (
+              <p className={style.home__label}>{user?.id}</p>
+            )}
             <div className={elem.reverse ? style.reverse : undefined}>
               <p className={style.home__title}>{elem.title}</p>
               {elem.svg}

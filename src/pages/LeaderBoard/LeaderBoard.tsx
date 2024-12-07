@@ -1,12 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { PageUI } from "../../ui/PageUI/PageUI";
-import {
-  fetchLeaderboard,
-  fetchLeaderboardProps,
-} from "../../api/fetchLeaderboard/fetchLeaderboard";
+import { fetchLeaderboard } from "../../api/fetchLeaderboard/fetchLeaderboard";
 import { queryClient } from "../../api/queryClient";
 import { useTelegram } from "../../hooks/telegram/telegram";
-import { LeaderboardItem } from "../../components/LeaderboardItem";
+import { LeaderboardItem } from "../../components/leaderboardItem";
+import style from "./Leaderboard.module.scss";
 
 const Leaderboard = () => {
   const { tg_id } = useTelegram();
@@ -21,18 +19,22 @@ const Leaderboard = () => {
 
   return (
     <PageUI
-      place="09"
+      className={style.leader__section}
+      className__title={style.leader__title}
+      place={leader?.player_rank}
       title="Leaderboard"
       time="До конца осталось: 12 дней 8 часов"
     >
-      {leader && leader.map((element: fetchLeaderboardProps) => (
-        <LeaderboardItem
-          id={element.tg_id}
-          name={element.name}
-          points={element.points}
-          rank={element.rank}
-        />
-      ))}
+      <ul className={style.page__list}>
+        {leader?.top_players.map((element) => (
+          <LeaderboardItem
+            key={element.tg_id}
+            id={element.tg_id}
+            name={element.name}
+            points={element.points}
+          />
+        ))}
+      </ul>
     </PageUI>
   );
 };
