@@ -4,7 +4,7 @@ import { fetchLeaderboard } from "../../api/fetchLeaderboard/fetchLeaderboard";
 import { queryClient } from "../../api/queryClient";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import style from "./Leaderboard.module.scss";
-import { LeaderboardItem } from "../../components/LeaderboardItem";
+import { LeaderboardItem } from "../../components/leaderboardItem";
 
 const Leaderboard = () => {
   const { tg_id } = useTelegram();
@@ -28,7 +28,7 @@ const Leaderboard = () => {
       <ul className={style.page__list}>
         {leader?.top_players.map((element, index) => (
           <LeaderboardItem
-            index={index}
+            index={index + 1}
             key={element.tg_id}
             id={element.tg_id}
             name={element.name}

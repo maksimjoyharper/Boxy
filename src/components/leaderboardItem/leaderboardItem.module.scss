@@ -5,6 +5,10 @@
   color: #fff;
   border-radius: 15px;
   background-color: #313439;
+
+  &.back {
+    background-color: #3d3bff;
+  }
 }
 
 .leaderboard__avatar {
@@ -22,5 +26,12 @@
   margin-right: 6px;
   font-size: 14px;
   font-weight: 400;
+  line-height: 21px;
+}
+
+.leaderboard__index {
+  margin-right: 12px;
+  font-size: 14px;
+  font-weight: 700;
   line-height: 21px;
 }
