@@ -18,7 +18,7 @@ export const PageUI: React.FC<IPage> = ({
   className,
 }) => {
   return (
-    <section className={`${style.page__section} ${className}`}>
+    <section className={className}>
       <h1 className={`${style.page__title} ${className__title}`}>{title}</h1>
       {time && <p className={style.page__label}>{time}</p>}
       {place && (

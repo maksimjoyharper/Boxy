@@ -26,8 +26,9 @@ const Leaderboard = () => {
       time="До конца осталось: 12 дней 8 часов"
     >
       <ul className={style.page__list}>
-        {leader?.top_players.map((element) => (
+        {leader?.top_players.map((element, index) => (
           <LeaderboardItem
+            index={index}
             key={element.tg_id}
             id={element.tg_id}
             name={element.name}

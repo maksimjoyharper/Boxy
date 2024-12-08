@@ -10,11 +10,12 @@
 .catalog__item {
   padding: 20px 15px;
   min-height: 185px;
+  min-width: 345px;
   display: flex;
   color: #fff;
   background-image: url("../../assets/webp/catalog__item.webp");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
   background-position: center;
 }
 

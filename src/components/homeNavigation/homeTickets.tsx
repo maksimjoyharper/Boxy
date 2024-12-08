@@ -1,5 +1,6 @@
 import { useState } from "react";
 import style from "./homeNavigation.module.scss";
+import { NavigationTicketSvg } from "../../assets/svg/NavigationTicketSvg";
 
 interface IHome {
     user: any
@@ -22,6 +23,23 @@ export const HomeTickets = ({user}: IHome) => {
         <>
         <label
           className={`${
+            selectedTicket === "premium"
+              ? `${style.label__tickets} ${style.active}`
+              : style.label__tickets
+          }`}
+          htmlFor="premium-tickets"
+        >
+          <span>{user && wordModificator(user?.premium_tickets)}</span>
+          <NavigationTicketSvg />
+          <input
+            checked={selectedTicket === "premium"}
+            onChange={() => setSelectedTicket("premium")}
+            name="tickets"
+            type="radio"
+          />
+        </label>
+        <label
+          className={`${
             selectedTicket === "regular"
               ? `${style.label__tickets} ${style.active}`
               : style.label__tickets
@@ -33,22 +51,6 @@ export const HomeTickets = ({user}: IHome) => {
             checked={selectedTicket === "regular"}
             onChange={() => setSelectedTicket("regular")}
             id="tickets"
-            name="tickets"
-            type="radio"
-          />
-        </label>
-        <label
-          className={`${
-            selectedTicket === "premium"
-              ? `${style.label__tickets} ${style.active}`
-              : style.label__tickets
-          }`}
-          htmlFor="premium-tickets"
-        >
-          <span>{user && wordModificator(user?.premium_tickets)}</span>
-          <input
-            checked={selectedTicket === "premium"}
-            onChange={() => setSelectedTicket("premium")}
             name="tickets"
             type="radio"
           />
