@@ -6,8 +6,9 @@ import { useTelegram } from "./hooks/telegram/telegram";
 const Layout = lazy(() => import("./pages/Layout/Layout"));
 const Game = lazy(() => import("./pages/Game/Game"));
 const Home = lazy(() => import("./pages/Home/Home"));
-// const Leaderboard = lazy(() => import("./pages/Leaderboard/Leaderboard"));
+const Leaderboard = lazy(() => import("./pages/Leaderboard/LeaderBoard"));
 const Catalog = lazy(() => import("./pages/Catalog/Catalog"));
+const Friends = lazy(() => import("./pages/Friends/Friends"));
 
 function App() {
   useTelegram().tg.expand();
@@ -17,10 +18,11 @@ function App() {
       <Suspense fallback={<div>Loading</div>}>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route path="/" element={<Home />} />
+            <Route index path="/" element={<Home />} />
             <Route path="game" element={<Game />} />
-            {/* <Route path="leaderboard" element={<Leaderboard />} /> */}
+            <Route path="leaderboard" element={<Leaderboard />} />
             <Route path="catalog" element={<Catalog />} />
+            <Route path="friends" element={<Friends />} />
           </Route>
         </Routes>
       </Suspense>

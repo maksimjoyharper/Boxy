@@ -1,0 +1,40 @@
+.leader__section {
+  height: calc(100% - 6em);
+  overflow: hidden auto;
+}
+
+.leader__title {
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(89.92deg, #3d3bff -12.95%, #ffffff 186.7%);
+  }
+}
+
+.page__list {
+  padding: 15px;
+  padding-bottom: 50px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  position: relative;
+  overflow: hidden auto;
+  border: 1px solid #fff;
+  border-radius: 36px;
+  background-color: #000;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    left: -2px;
+    bottom: -2px;
+    border-radius: inherit;
+  }
+}

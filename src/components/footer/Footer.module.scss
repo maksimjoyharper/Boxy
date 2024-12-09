@@ -1,11 +1,13 @@
 .footer {
+  position: sticky;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   background-image: url("../../assets/png/footer__bg.png");
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: contain;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
 .footer__list {

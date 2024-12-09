@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom";
 import style from "./Layout.module.scss";
 import { Header } from "../../components/header/Header";
-import { Footer } from "../../components/footer/Footer";
+import Calendar from "../Calendar/Calendar";
+import { Footer } from "../../components/footer/footer";
 
 export default function Layout() {
   return (
@@ -11,6 +12,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <Calendar />
     </>
   );
 }
