@@ -22,7 +22,7 @@ const BlueLetter = ({
   const [letterCount, setLetterCount] = useState(0);
   const handleClick = (id: string) => {
     setBlueLetter((prev) => prev.filter((letter) => letter.id !== id));
-    setCount((prev) => (prev <= 3 ? 0 : prev - 3));
+    setCount((prev) => prev - 3);
     tg.HapticFeedback.impactOccurred("light");
   };
 
@@ -45,38 +45,16 @@ const BlueLetter = ({
     return () => clearInterval(interval); // Очищаем интервал при размонтировании
   }, [letterCount]);
 
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver((entries) => {
-  //     entries.forEach((entry) => {
-  //       if (entry.isIntersecting) {
-  //         setCount((prev) => prev + 3);
-  //       }
-  //     });
-  //   });
-
-  //   letterRefs.current.forEach((letter) => {
-  //     if (letter) {
-  //       observer.observe(letter);
-  //     }
-  //   });
-
-  //   return () => {
-  //     letterRefs.current.forEach((letter) => {
-  //       if (letter) {
-  //         observer.unobserve(letter);
-  //       }
-  //     });
-  //   };
-  // }, [blueLetter, setCount]);
   useEffect(() => {
     const checkPosition = () => {
-      letterRefs.current.forEach((letter, index) => {
+      letterRefs.current.forEach((letter) => {
         if (letter) {
           const rect = letter.getBoundingClientRect();
           if (rect.bottom >= window.innerHeight) {
             setCount((prev) => prev + 3);
-            // Удаляем элемент из состояния
-            setBlueLetter((prev) => prev.filter((_, i) => i !== index));
+            setBlueLetter((prev) =>
+              prev.filter((lett) => lett.id !== letter.id)
+            );
           }
         }
       });

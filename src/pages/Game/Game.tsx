@@ -13,9 +13,6 @@ import { IBlueLettArr, IFlask, IWhiteLettArr } from "../../types/types";
 import ModalRoute from "../../ui/ModalRoute/ModalRoute";
 import logo from "../../assets/webp/logo.webp";
 import { useTelegram } from "../../hooks/telegram/telegram";
-// import { randomWhite } from "../../features/randomWhite";
-// import imgL from "../../assets/S-white.png";
-// import useCanvas from "../../hooks/canvas/useCanvas";
 
 export default function Game() {
   const [isVision, setIsVision] = useState(true);
@@ -48,98 +45,7 @@ export default function Game() {
     tg.HapticFeedback.impactOccurred("light");
   };
 
-  // const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  // const [elements, setElements] = useState<IWhiteLettArr[]>(whiteLettArr);
-
-  // const imageSrc = imgL; // Замените на URL вашего изображения
-  // const image = new Image();
-  // image.src = imageSrc;
-
-  // // Функция для создания новых элементов
-  // const createElement = () => {
-  //   // const newElement = { x: Math.random() * 400, y: 0, img: image }; // случайная позиция по X
-  //   setElements((prev) => [...prev]);
-  // };
-
-  // // Функция для обновления позиции элементов
-  // const updateElements = () => {
-  //   setElements(
-  //     (prev) => prev.map((el) => ({ ...el, y: el.y + 2 })) // движение вниз
-  //   );
-  // };
-
-  // Функция для отрисовки элементов на canvas
-  // const draw = (ctx: CanvasRenderingContext2D) => {
-  // ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // очистка canvas
-  // elements.forEach((el) => {
-  //   ctx.drawImage(el.img, el.x, el.y, 50, 50); // рисуем изображение
-  // });
-  // };
-
-  // const draw = (context: CanvasRenderingContext2D, count: number) => {
-  //   context.clearRect(0, 0, context.canvas.width, context.canvas.height); // очистка canvas
-  //   elements.forEach((el) => {
-  //     const d = count % 100;
-
-  //     context.drawImage(el.image, el.x, el.y + d, 10, 10); // рисуем изображение
-  //     // updateElements();
-  //   });
-  // };
-
-  // const ref = useCanvas(draw);
-
-  // // Основная анимационная функция
-  // const animate = () => {
-  //   const canvas = canvasRef.current;
-  //   if (!canvas) return;
-  //   const ctx = canvas.getContext("2d");
-  //   if (!ctx) return;
-
-  //   updateElements();
-  //   draw(ctx);
-  //   requestAnimationFrame(animate); // Запрос следующего кадра
-  // };
-
-  // useEffect(() => {
-  //   const interval = setInterval(createElement, 2000); // создаем новый элемент каждую секунду
-  //   return () => clearInterval(interval);
-  // }, []);
-  // useEffect(() => {
-  //   const interval = setInterval(updateElements, 1000); // создаем новый элемент каждую секунду
-  //   return () => clearInterval(interval);
-  // }, []);
-
-  // useEffect(() => {
-  //   requestAnimationFrame(animate); // Запускаем анимацию
-  // }, []);
-
-  // useEffect(() => {
-  //   const generateLetter = () => {
-  //     const newLetter = {
-  //       x: randomWhite(),
-  //       duration: Math.random() * 3 + 2,
-  //       id: v4().toString(),
-  //     };
-  //     setWhiteLetter((prev) => [...prev, newLetter]);
-  //   };
-
-  //   const interval = setInterval(generateLetter, 200);
-  //   return () => clearInterval(interval);
-  // }, []);
-
-  // useEffect(() => {
-  //   const generateLetter = () => {
-  //     setWhiteLetter(whiteLettArr);
-  //   };
-
-  //   const interval = setTimeout(generateLetter, 100);
-  //   return () => clearTimeout(interval);
-  // }, []);
-
   return (
-    // <>
-    //   <canvas className={style.canv} ref={ref}></canvas>
-    // </>
     <ModalRoute>
       {isVision ? (
         <div className={style.falling_letters_container}>
@@ -162,7 +68,6 @@ export default function Game() {
           />
           <Flask setCount={setTimer} flasks={flasks} setFlask={setFlask} />
           <Bomb
-            count={count}
             setCount={setCount}
             setWhiteLetter={setWhiteLetter}
             setBlueLetter={setBlueLetter}
