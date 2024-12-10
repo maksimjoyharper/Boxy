@@ -4,6 +4,7 @@ import { FooterGameSvg } from "../../assets/svg/FooterGameSvg";
 import { FooterMenuSvg } from "../../assets/svg/FooterMenuSvg";
 import FooterHome from "../../assets/png/footer__home.png";
 import { Link } from "react-router-dom";
+import { getPathGame } from "../../features/getPathGame";
 
 interface IFooter {
   id: number;
@@ -15,7 +16,7 @@ interface IFooter {
 const footerArr: IFooter[] = [
   {
     id: 1,
-    path: "game",
+    path: getPathGame(1),
     icon: <FooterGameSvg />,
     className: true,
   },

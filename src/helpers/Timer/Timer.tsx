@@ -9,15 +9,20 @@ type TimerProps = {
 };
 
 export default function Timer({ setIsVision, time, setTimer }: TimerProps) {
-  // const [timer, setTimer] = useState(30);
-
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimer((prevTimer) => prevTimer - 1);
+      setTimer((prevTimer) => {
+        if (prevTimer > 0) {
+          return prevTimer - 1;
+        } else {
+          clearInterval(interval);
+          return 0;
+        }
+      });
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [time]);
+  }, [setTimer]);
 
   useEffect(() => {
     if (time === 0) {

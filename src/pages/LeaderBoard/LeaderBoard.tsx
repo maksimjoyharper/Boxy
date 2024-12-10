@@ -4,7 +4,7 @@ import { fetchLeaderboard } from "../../api/fetchLeaderboard/fetchLeaderboard";
 import { queryClient } from "../../api/queryClient";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import style from "./Leaderboard.module.scss";
-import { LeaderboardItem } from "../../components/leaderboardItem";
+import { LeaderboardItem } from "../../components/LeaderboardItem";
 
 const Leaderboard = () => {
   const { tg_id } = useTelegram();

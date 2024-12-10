@@ -34,7 +34,7 @@ const homeArr: IHome[] = [
   {
     id: 3,
     title: "Задания",
-    path: "leaderboard",
+    path: "tasks",
     svg: <HomeTaskSvg />,
     reverse: true,
   },

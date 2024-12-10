@@ -7,15 +7,16 @@ import BlueLetter from "../../components/cards/letters/blueLetter/BlueLetter";
 import PointCounter from "../../helpers/PointCounter/PointCounter";
 import Bomb from "../../components/cards/bombs/Bomb";
 import Flask from "../../components/cards/flask/Flask";
-import imgOpenBox from "../../assets/open-box.png";
+import imgOpenBox from "../../assets/png/skillbox__box.png";
 import { whiteLettArr } from "../../variables/whiteLettArray";
 import { IBlueLettArr, IFlask, IWhiteLettArr } from "../../types/types";
 import ModalRoute from "../../ui/ModalRoute/ModalRoute";
 import logo from "../../assets/webp/logo.webp";
 import { useTelegram } from "../../hooks/telegram/telegram";
+import ModalGameOver from "../../ui/ModalGameOver/ModalGameOver";
 
 export default function Game() {
-  const [isVision, setIsVision] = useState(true);
+  const [startGame, setStartGame] = useState(true);
   const [timer, setTimer] = useState(15);
   const [count, setCount] = useState<number>(0);
   const [whiteLetter, setWhiteLetter] = useState<IWhiteLettArr[]>([]);
@@ -38,7 +39,7 @@ export default function Game() {
 
     return () => clearInterval(interval); // Очищаем интервал при размонтировании
   }, []);
-  
+
   const handleClick = (id: string) => {
     setWhiteLetter((prev) => prev.filter((letter) => letter.id !== id));
     setCount((prev) => prev + 1);
@@ -47,37 +48,40 @@ export default function Game() {
 
   return (
     <ModalRoute>
-      {isVision ? (
-        <div className={style.falling_letters_container}>
-          <Timer time={timer} setTimer={setTimer} setIsVision={setIsVision} />
-          <img src={logo} className={style.logo} />
-          <PointCounter count={count} />
-          {whiteLetter.map((letter) => (
-            <Letter
-              onClick={() => handleClick(letter.id)}
-              key={letter.id}
-              id={letter.id}
-              x={letter.x}
-              duration={letter.duration}
+      <div className={style.falling_letters_container}>
+        <Timer time={timer} setTimer={setTimer} setIsVision={setStartGame} />
+        <img src={logo} className={style.logo} />
+        <PointCounter count={count} />
+        <img src={imgOpenBox} className={style.img_open_box} />
+        {startGame ? (
+          <>
+            {" "}
+            {whiteLetter.map((letter) => (
+              <Letter
+                onClick={() => handleClick(letter.id)}
+                key={letter.id}
+                id={letter.id}
+                x={letter.x}
+                duration={letter.duration}
+              />
+            ))}
+            <BlueLetter
+              setCount={setCount}
+              blueLetter={blueLetter}
+              setBlueLetter={setBlueLetter}
             />
-          ))}
-          <BlueLetter
-            setCount={setCount}
-            blueLetter={blueLetter}
-            setBlueLetter={setBlueLetter}
-          />
-          <Flask setCount={setTimer} flasks={flasks} setFlask={setFlask} />
-          <Bomb
-            setCount={setCount}
-            setWhiteLetter={setWhiteLetter}
-            setBlueLetter={setBlueLetter}
-            setFlask={setFlask}
-          />
-          <img src={imgOpenBox} className={style.img_open_box} />
-        </div>
-      ) : (
-        <h1 style={{ color: "white" }}>{count}</h1>
-      )}
+            <Flask setCount={setTimer} flasks={flasks} setFlask={setFlask} />
+            <Bomb
+              setCount={setCount}
+              setWhiteLetter={setWhiteLetter}
+              setBlueLetter={setBlueLetter}
+              setFlask={setFlask}
+            />
+          </>
+        ) : (
+          <ModalGameOver finalPoints={count} />
+        )}
+      </div>
     </ModalRoute>
   );
 }
