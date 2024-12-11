@@ -15,10 +15,16 @@ export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
   const navigate = useNavigate();
   const { tg, tg_id } = useTelegram();
   //   const ticket = useSelector(()
+  const ticket: boolean = true;
   const dataMutate: fetchGameProps = {
     tg_id: tg_id,
     points: finalPoints,
-    tickets: 2,
+    tickets: 1,
+  };
+  const dataMutatePrem: fetchGameProps = {
+    tg_id: tg_id,
+    points: finalPoints * 2,
+    premium_tickets: 1,
   };
   const useGameOverMutation = useMutation(
     {
@@ -29,14 +35,38 @@ export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
 
   const newGame = () => {
     tg.HapticFeedback.impactOccurred("light");
-    useGameOverMutation.mutate(dataMutate);
-    location.reload();
+    if (ticket) {
+      useGameOverMutation.mutate(dataMutate, {
+        onSuccess: () => {
+          location.reload();
+        },
+      });
+    } else {
+      useGameOverMutation.mutate(dataMutatePrem, {
+        onSuccess: () => {
+          location.reload();
+        },
+      });
+    }
   };
 
   const backHomePage = () => {
     tg.HapticFeedback.impactOccurred("light");
-    useGameOverMutation.mutate(dataMutate);
-    navigate("/");
+    if (ticket) {
+      useGameOverMutation.mutate(dataMutate, {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["user"] });
+          navigate("/");
+        },
+      });
+    } else {
+      useGameOverMutation.mutate(dataMutatePrem, {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["user"] });
+          navigate("/");
+        },
+      });
+    }
   };
   return (
     <div className={style.container}>
@@ -44,16 +74,14 @@ export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
         <p className={style.title_game_prize}>Твоя награда:</p>
         <div className={style.coin_box}>
           <HeaderCoinSvg />
-          <span className={style.text_coin}>{finalPoints}</span>
+          <span className={style.text_coin}>
+            {ticket ? finalPoints : finalPoints * 2}
+          </span>
         </div>
-        <button disabled onClick={newGame} className={style.new_game_button}>
+        <button onClick={newGame} className={style.new_game_button}>
           Новая игра
         </button>
-        <button
-          disabled
-          onClick={backHomePage}
-          className={style.back_home_button}
-        >
+        <button onClick={backHomePage} className={style.back_home_button}>
           На главный экран
         </button>
       </div>

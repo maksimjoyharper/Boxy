@@ -21,33 +21,56 @@ export const Header = () => {
 
   const { data: user } = useQuery(
     {
-      queryFn: () => fetchUser(tg_id, userName),
+      queryFn: () =>
+        paramIdFriend
+          ? getFriend(tg_id, referral_id)
+          : fetchUser(tg_id, userName),
       queryKey: ["user"],
+      enabled: !!tg_id,
     },
     queryClient
   );
-
+  console.log(paramIdFriend);
   useEffect(() => {
     if (user) {
       dispatch(userActions.addUserStore(user));
     }
   }, [dispatch, user]);
 
-  useQuery(
-    {
-      queryKey: ["addFriend"],
-      queryFn: () => getFriend(tg_id, referral_id),
-      enabled: !!tg_id && !!referral_id,
-      retry: 1,
-    },
-    queryClient
-  );
-
   useEffect(() => {
     if (paramIdFriend) {
       setReferral_id(paramIdFriend);
+      console.log(paramIdFriend);
     }
   }, [paramIdFriend]);
+
+  // const { data: user } = useQuery(
+  //   {
+  //     queryFn: () => fetchUser(tg_id, userName),
+  //     queryKey: ["user"],
+  //   },
+  //   queryClient
+  // );
+  // useQuery(
+  //   {
+  //     queryKey: ["addFriend"],
+  //     queryFn: () => getFriend(tg_id, referral_id),
+  //     enabled: !!paramIdFriend,
+  //   },
+  //   queryClient
+  // );
+
+  // useEffect(() => {
+  //   if (user) {
+  //     dispatch(userActions.addUserStore(user));
+  //   }
+  // }, [dispatch, user]);
+
+  // useEffect(() => {
+  //   if (paramIdFriend) {
+  //     setReferral_id(paramIdFriend);
+  //   }
+  // }, [paramIdFriend]);
 
   return (
     <header>
@@ -60,7 +83,7 @@ export const Header = () => {
           <img src={logo} alt="logo" />
         </li>
         <li className={style.reverse}>
-          <span>{user?.points_all}</span>
+          <span>{user?.points}</span>
           <HeaderCoinSvg />
         </li>
       </ul>

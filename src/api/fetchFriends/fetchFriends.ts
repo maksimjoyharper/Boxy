@@ -4,7 +4,7 @@ import { api_url } from "../api_url";
 export interface fetchFriendsProps {
   tg_id: string;
   name: string;
-  referral_bonus: string;
+  referral_bonus: boolean;
   points: string;
 }
 

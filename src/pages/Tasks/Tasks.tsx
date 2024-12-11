@@ -1,20 +1,39 @@
+import { useQuery } from "@tanstack/react-query";
+import { useTelegram } from "../../hooks/telegram/telegram";
 import style from "./Tasks.module.css";
+import {
+  fetchAllTasks,
+  fetchTasksProps,
+} from "../../api/fetchTasks/fetchTasks";
+import { queryClient } from "../../api/queryClient";
+import { useEffect, useState } from "react";
+import CardTask from "../../components/cards/cardTask/CardTask";
 
 export default function Tasks() {
+  const { tg_id } = useTelegram();
+  const [allTasks, setAllTasks] = useState<fetchTasksProps[]>([]);
+
+  const { data } = useQuery(
+    {
+      queryFn: () => fetchAllTasks(tg_id),
+      queryKey: ["tasks"],
+    },
+    queryClient
+  );
+
+  useEffect(() => {
+    if (data) {
+      setAllTasks(data);
+    }
+  }, [data]);
+
   return (
     <section>
-      <h1 className={style.catalog__title}>Задания</h1>
+      <h1 className={style.task_title}>Задания</h1>
       <ul>
-        <li className={style.catalog__item}>
-          <div className={style.catalog__upper}>
-            <p className={style.catalog__price}>Бесплатно</p>
-            <h2 className={style.catalog__info}>Пройдите профтест на ....</h2>
-          </div>
-          <div className={style.catalog__down}>
-            <img className={style.catalog__img} src="" alt="предмет каталога" />
-            <span className={style.catalog__profession}>Профтест</span>
-          </div>
-        </li>
+        {allTasks.map((task) => (
+          <CardTask task={task} key={task.task.id} />
+        ))}
       </ul>
     </section>
   );
