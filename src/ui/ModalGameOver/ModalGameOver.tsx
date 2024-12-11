@@ -13,7 +13,7 @@ type ModalGameOverProps = {
 
 export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
   const navigate = useNavigate();
-  const { tg_id } = useTelegram();
+  const { tg, tg_id } = useTelegram();
   //   const ticket = useSelector(()
   const dataMutate: fetchGameProps = {
     tg_id: tg_id,
@@ -23,15 +23,20 @@ export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
   const useGameOverMutation = useMutation(
     {
       mutationFn: (data: fetchGameProps) => fetchGame(data),
-      onSuccess: () => {
-        navigate("/");
-      },
     },
     queryClient
   );
 
-  const backHomePage = () => {
+  const newGame = () => {
+    tg.HapticFeedback.impactOccurred("light");
     useGameOverMutation.mutate(dataMutate);
+    location.reload();
+  };
+
+  const backHomePage = () => {
+    tg.HapticFeedback.impactOccurred("light");
+    useGameOverMutation.mutate(dataMutate);
+    navigate("/");
   };
   return (
     <div className={style.container}>
@@ -39,10 +44,16 @@ export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
         <p className={style.title_game_prize}>Твоя награда:</p>
         <div className={style.coin_box}>
           <HeaderCoinSvg />
-          <span className={style.text_coin}>100</span>
+          <span className={style.text_coin}>{finalPoints}</span>
         </div>
-
-        <button onClick={backHomePage} className={style.back_home_button}>
+        <button disabled onClick={newGame} className={style.new_game_button}>
+          Новая игра
+        </button>
+        <button
+          disabled
+          onClick={backHomePage}
+          className={style.back_home_button}
+        >
           На главный экран
         </button>
       </div>

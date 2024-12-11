@@ -1,20 +1,54 @@
 import style from "./Friends.module.scss";
 import { PageUI } from "../../ui/PageUI/PageUI";
 import { useQuery } from "@tanstack/react-query";
-import { fetchAllFriends } from "../../api/fetchFriends/fetchFriends";
+import {
+  fetchAllFriends,
+  fetchFriendsProps,
+  getRefLink,
+} from "../../api/fetchFriends/fetchFriends";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import { queryClient } from "../../api/queryClient";
+import { useEffect, useState } from "react";
+import CardFriend from "../../components/cards/cardFriend/CardFriend";
 
 export default function Friends() {
-  const { tg_id } = useTelegram();
+  const { tg, tg_id } = useTelegram();
+  const [friendsArr, setFriendsArr] = useState<fetchFriendsProps[]>([]);
+  const [refLink, setRefLink] = useState("");
 
-  const { data: friends } = useQuery(
+  const handleInviteFriend = () => {
+    const url = `https://t.me/share/url?url=${refLink}`;
+    tg.openTelegramLink(url);
+    tg.HapticFeedback.impactOccurred("light");
+  };
+
+  const gettingRefLink = useQuery(
+    {
+      queryKey: ["refLink"],
+      queryFn: () => getRefLink(tg_id),
+    },
+    queryClient
+  );
+
+  const { data } = useQuery(
     {
       queryKey: ["friends"],
       queryFn: () => fetchAllFriends(tg_id),
     },
     queryClient
   );
+
+  useEffect(() => {
+    if (gettingRefLink.data) {
+      setRefLink(gettingRefLink.data.ref_link);
+    }
+  }, [gettingRefLink]);
+
+  useEffect(() => {
+    if (data) {
+      setFriendsArr(data);
+    }
+  }, [data]);
 
   return (
     <PageUI
@@ -27,10 +61,15 @@ export default function Friends() {
         <p className={style.invite__label}>
           Получай награды за каждого друга, который присоединился
         </p>
-        <button className={style.invite__button}>Пригласить друга</button>
+        <button className={style.invite__button} onClick={handleInviteFriend}>
+          Пригласить друга
+        </button>
       </div>
       <ul className={style.page__list}>
-        <li className={style.friends__item}>
+        {friendsArr.map((friend) => (
+          <CardFriend friends={friend} />
+        ))}
+        {/* <li className={style.friends__item}>
           <span className={style.friends__position}>1</span>
           <img className={style.friends__avatar} src="avatar" alt="avatar" />
           <div className={style.friends__info}>
@@ -38,7 +77,7 @@ export default function Friends() {
             <p className={style.friends__coins}>{friends?.points}</p>
           </div>
           <button className={style.friends__button}>Забрать награду</button>
-        </li>
+        </li> */}
       </ul>
     </PageUI>
   );

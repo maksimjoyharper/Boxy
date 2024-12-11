@@ -6,13 +6,18 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchUser } from "../../api/fetchUser/fetchUser";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import { queryClient } from "../../api/queryClient";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../provider/StoreProvider/slice/userSlice";
+import { useLocation } from "react-router-dom";
+import { getFriend } from "../../api/fetchFriends/fetchFriends";
 
 export const Header = () => {
   const { tg_id, userName } = useTelegram();
   const dispatch = useDispatch();
+  const params = new URLSearchParams(useLocation().search);
+  const paramIdFriend = params.get("id");
+  const [referral_id, setReferral_id] = useState("");
 
   const { data: user } = useQuery(
     {
@@ -27,6 +32,22 @@ export const Header = () => {
       dispatch(userActions.addUserStore(user));
     }
   }, [dispatch, user]);
+
+  useQuery(
+    {
+      queryKey: ["addFriend"],
+      queryFn: () => getFriend(tg_id, referral_id),
+      enabled: !!tg_id && !!referral_id,
+      retry: 1,
+    },
+    queryClient
+  );
+
+  useEffect(() => {
+    if (paramIdFriend) {
+      setReferral_id(paramIdFriend);
+    }
+  }, [paramIdFriend]);
 
   return (
     <header>

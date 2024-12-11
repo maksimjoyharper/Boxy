@@ -1,10 +1,9 @@
 import { useState } from "react";
 import style from "./homeNavigation.module.scss";
 import { NavigationTicketSvg } from "../../assets/svg/NavigationTicketSvg";
-import { fetchUserProps } from "../../types/userType";
 
 interface IHome {
-  user: fetchUserProps;
+  user: any;
 }
 
 function wordModificator(number: number) {
