@@ -37,9 +37,14 @@
   gap: 5px;
 }
 .text_coin {
+  height: 30px;
+  border-radius: 110px;
+  padding: 0px 10px;
   font-weight: 700;
   font-size: 20px;
   text-align: center;
+  display: flex;
+  align-items: center;
   color: #fff;
 }
 

@@ -1,8 +1,16 @@
-export const HeaderCoinSvg = () => {
+type HeaderCoinSvgProps = {
+  width?: string;
+  height?: string;
+};
+
+export const HeaderCoinSvg = ({
+  width = "29",
+  height = "30",
+}: HeaderCoinSvgProps) => {
   return (
     <svg
-      width="29"
-      height="30"
+      width={width}
+      height={height}
       viewBox="0 0 29 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

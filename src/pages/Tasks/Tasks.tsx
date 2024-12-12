@@ -28,9 +28,9 @@ export default function Tasks() {
   }, [data]);
 
   return (
-    <section>
+    <section className={style.container}>
       <h1 className={style.task_title}>Задания</h1>
-      <ul>
+      <ul className={style.tasks_list}>
         {allTasks.map((task) => (
           <CardTask task={task} key={task.task.id} />
         ))}

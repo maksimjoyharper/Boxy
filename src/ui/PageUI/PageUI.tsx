@@ -1,4 +1,5 @@
 import style from "./PageUI.module.scss";
+import avatar from "../../assets/png/avatar.png";
 
 interface IPage {
   title: string;
@@ -23,7 +24,7 @@ export const PageUI: React.FC<IPage> = ({
       {time && <p className={style.page__label}>{time}</p>}
       {place && (
         <div className={style.page__person}>
-          <img className={style.page__avatar} src="" alt="аватарка" />
+          <img className={style.page__avatar} src={avatar} alt="аватарка" />
           <div className={style.page__info}>
             <h2 className={style.page__name}>Name</h2>
             <p className={style.page__coins}>Coins</p>

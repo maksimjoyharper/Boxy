@@ -74,7 +74,10 @@ export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
         <p className={style.title_game_prize}>Твоя награда:</p>
         <div className={style.coin_box}>
           <HeaderCoinSvg />
-          <span className={style.text_coin}>
+          <span
+            className={style.text_coin}
+            style={ticket ? { background: "none" } : { background: "#3D3BFF" }}
+          >
             {ticket ? finalPoints : finalPoints * 2}
           </span>
         </div>
