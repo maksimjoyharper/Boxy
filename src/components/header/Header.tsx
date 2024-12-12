@@ -10,15 +10,19 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../provider/StoreProvider/slice/userSlice";
 import { useLocation } from "react-router-dom";
-import { getFriend } from "../../api/fetchFriends/fetchFriends";
+import {
+  getBlogerFriend,
+  getFriend,
+} from "../../api/fetchFriends/fetchFriends";
 import { fetchUserProps } from "../../types/userType";
 
 export const Header = () => {
   const { tg_id, userName } = useTelegram();
   const dispatch = useDispatch();
   const params = new URLSearchParams(useLocation().search);
-  const paramIdFriend = params.get("id");
+  const paramIdFriend: string | null = params.get("id");
   const [referral_id, setReferral_id] = useState<string>();
+  const [bloger_id, setBloger_id] = useState<string>();
   const [userInfo, setUserInfo] = useState<fetchUserProps>();
 
   const { data: user } = useQuery(
@@ -39,12 +43,28 @@ export const Header = () => {
     queryClient
   );
 
+  const { data: firstBlogerUser } = useQuery(
+    {
+      queryKey: ["addFriendUtm"],
+      queryFn: () => getBlogerFriend(tg_id, userName, bloger_id),
+      enabled: !!bloger_id && !!tg_id,
+    },
+    queryClient
+  );
+
   useEffect(() => {
     if (user) {
       dispatch(userActions.addUserStore(user));
       setUserInfo(user);
     }
   }, [dispatch, user]);
+
+  useEffect(() => {
+    if (firstBlogerUser) {
+      dispatch(userActions.addUserStore(firstBlogerUser));
+      setUserInfo(firstBlogerUser);
+    }
+  }, [dispatch, firstBlogerUser]);
 
   useEffect(() => {
     if (firstUser) {
@@ -54,8 +74,15 @@ export const Header = () => {
   }, [dispatch, firstUser]);
 
   useEffect(() => {
-    if (paramIdFriend) {
-      setReferral_id(paramIdFriend);
+    if (paramIdFriend !== null) {
+      // Check if the string contains any letters
+      const containsLetters = /[a-zA-Z]/.test(paramIdFriend);
+
+      if (containsLetters) {
+        setBloger_id(paramIdFriend);
+      } else {
+        setReferral_id(paramIdFriend);
+      }
     }
   }, [paramIdFriend]);
 

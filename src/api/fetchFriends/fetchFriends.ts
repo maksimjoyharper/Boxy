@@ -44,6 +44,19 @@ export const getRefLink = (tg_id: string) => {
     .catch((error) => error);
 };
 
+export const getBlogerFriend = (
+  tg_id: string,
+  userName: string,
+  utm_nickname: string | undefined
+) => {
+  return axios
+    .get(
+      `${api_url}/api/player-info/utm/${tg_id}/${userName}/${utm_nickname}/ `
+    )
+    .then((response) => response.data)
+    .catch((error) => error);
+};
+
 export const getBonusOfRef = (tg_id: string, new_player_id: string) => {
   return axios
     .post(`${api_url}/api/referral_bonus/${tg_id}/${new_player_id}/`)

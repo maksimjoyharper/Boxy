@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchTasksProps } from "../../../api/fetchTasks/fetchTasks";
-import { HeaderCoinSvg } from "../../../assets/svg/HeaderCoinSvg";
+import iconCoin from "../../../assets/webp/coin.webp";
 import style from "./CardTask.module.css";
 import { getImgTask } from "../../../features/getImgTask";
 
@@ -18,8 +18,14 @@ export default function CardTask({ task }: CardTaskProps) {
   return (
     <li className={style.task_item}>
       <p className={style.task_name}>{task.task.name}</p>
+
+      {/* <button
+        className={task.completed ? style.task_btn : style.task_compl_btn}
+      >
+        {task.completed ? "Забрать награду" : "Награда получена"}
+      </button> */}
       <div className={style.coins_box}>
-        <HeaderCoinSvg width="43" height="43" />
+        <img className={style.coin_img} src={iconCoin} alt="" />
         <span className={style.coins}>{task.task.reward_currency}</span>
       </div>
       <img className={style.icon} src={icon} />
