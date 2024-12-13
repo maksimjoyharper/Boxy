@@ -144,3 +144,13 @@
   background-color: #3d3bff;
   color: #ffffff;
 }
+.imgTicket {
+  width: 42px;
+  height: 42px;
+}
+
+@media (max-width: 375px) {
+  .label__tickets {
+    padding: 8px;
+  }
+}

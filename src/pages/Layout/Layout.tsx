@@ -1,11 +1,11 @@
 import { Outlet, useLocation } from "react-router-dom";
 import style from "./Layout.module.scss";
 import { Header } from "../../components/header/Header";
-import Calendar from "../Calendar/Calendar";
 import { Footer } from "../../components/footer/Footer";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
+import Calendar from "../Calendar/Calendar";
 
 export default function Layout() {
   const location = useLocation();

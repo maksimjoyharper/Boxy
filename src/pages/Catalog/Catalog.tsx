@@ -4,9 +4,14 @@ import { useTelegram } from "../../hooks/telegram/telegram";
 import { fetchCatalog } from "../../api/fetchCatalog/fetchCatalog";
 import { queryClient } from "../../api/queryClient";
 import { CatalogItem } from "../../components/catalogItem";
+import logo from "../../assets/webp/logo.webp";
+import { HeaderCoinSvg } from "../../assets/svg/HeaderCoinSvg";
+import { useSelector } from "react-redux";
+import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 
 const Catalog = () => {
   const { tg_id } = useTelegram();
+  const user = useSelector(getUser);
 
   const { data: catalog } = useQuery(
     {
@@ -30,6 +35,14 @@ const Catalog = () => {
 
   return (
     <section className={style.catalog__section}>
+      <div className={style.catalog__header}>
+        <button className={style.catalog__button}>Информация</button>
+        <img className={style.catalog__image} src={logo} alt="" />
+        <p className={style.reverse}>
+          <span>{user?.points}</span>
+          <HeaderCoinSvg />
+        </p>
+      </div>
       <h1 className={style.catalog__title}>Каталог</h1>
       <ul className={style.catalog__list}>
         {catalog?.shops
