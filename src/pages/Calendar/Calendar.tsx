@@ -4,19 +4,14 @@ import { useState } from "react";
 import skillbox from "../../assets/png/skillbox__box.png";
 
 const Calendar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const handleClose = () => {
     setIsOpen(false);
   };
 
   return (
-    <Modal
-      classNameCont={style.calendar__content}
-      lazy
-      isOpen={isOpen}
-      onClose={handleClose}
-    >
+    <Modal lazy isOpen={isOpen} onClose={handleClose}>
       <h1 className={style.calendar__title}>Ежедневная награда</h1>
       <ul></ul>
       <div className={style.calendar__info}>
@@ -24,7 +19,9 @@ const Calendar = () => {
         <ul className={style.calendar__prize}>
           <li>1 элемент</li>
         </ul>
-        <button className={style.calendar__button}>Забрать награду</button>
+        <button onClick={handleClose} className={style.calendar__button}>
+          Забрать награду
+        </button>
       </div>
       <img src={skillbox} alt="skillbox box" />
     </Modal>

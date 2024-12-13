@@ -1,6 +1,7 @@
 import { useState } from "react";
 import style from "./homeNavigation.module.scss";
-import { NavigationTicketSvg } from "../../assets/svg/NavigationTicketSvg";
+import premium from "../../assets/png/premium.png";
+import ticket from "../../assets/png/ticket.png";
 
 interface IHome {
   user: any;
@@ -30,7 +31,7 @@ export const HomeTickets = ({ user }: IHome) => {
         htmlFor="premium-tickets"
       >
         <span>{user && wordModificator(user?.premium_tickets)}</span>
-        <NavigationTicketSvg />
+        <img src={premium} alt="" />
         <input
           checked={selectedTicket === "premium"}
           onChange={() => setSelectedTicket("premium")}
@@ -47,6 +48,7 @@ export const HomeTickets = ({ user }: IHome) => {
         htmlFor="tickets"
       >
         <span>{user && wordModificator(user?.tickets)}</span>
+        <img src={ticket} alt="" />
         <input
           checked={selectedTicket === "regular"}
           onChange={() => setSelectedTicket("regular")}

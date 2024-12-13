@@ -4,10 +4,16 @@ import { fetchLeaderboard } from "../../api/fetchLeaderboard/fetchLeaderboard";
 import { queryClient } from "../../api/queryClient";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import style from "./Leaderboard.module.scss";
-import { LeaderboardItem } from "../../components/LeaderboardItem";
+import { useSelector } from "react-redux";
+import { getUser } from "../../provider/StoreProvider/selectors/getUser";
+import { LeaderboardItem } from "../../components/leaderboardItem";
+import { SlidingLeaderboard } from "../../components/slidingLeaderboard";
+import { useState } from "react";
 
 const Leaderboard = () => {
+  const user = useSelector(getUser);
   const { tg_id } = useTelegram();
+  const [isOpen, setIsOpen] = useState(false);
 
   const { data: leader } = useQuery(
     {
@@ -22,8 +28,12 @@ const Leaderboard = () => {
       className={style.leader__section}
       className__title={style.leader__title}
       place={leader?.player_rank}
+      name={user?.name}
+      coins={user?.points_all}
+      gift={1}
       title="Leaderboard"
       time="До конца осталось: 12 дней 8 часов"
+      isOpen={() => setIsOpen(true)}
     >
       <ul className={style.page__list}>
         {leader?.top_players.map((element, index) => (
@@ -36,6 +46,12 @@ const Leaderboard = () => {
           />
         ))}
       </ul>
+      <SlidingLeaderboard
+        fullHeight={"70"}
+        initialHeight={"30"}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      />
     </PageUI>
   );
 };

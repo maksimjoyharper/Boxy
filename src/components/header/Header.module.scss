@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 
   li {
     display: flex;
@@ -20,6 +21,16 @@
     letter-spacing: 0.02em;
     color: #fff;
   }
+}
+
+.header__center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.fz {
+  font-size: 10px !important;
 }
 
 .reverse {

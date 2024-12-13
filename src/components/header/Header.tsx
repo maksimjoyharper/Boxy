@@ -91,9 +91,15 @@ export const Header = () => {
       <ul className={style.header__list}>
         <li>
           <img src={avatar} alt="avatar" />
-          <span>{userInfo?.name}</span>
+          <span
+            className={
+              userInfo && userInfo.name.length >= 10 ? style.fz : undefined
+            }
+          >
+            {userInfo?.name}
+          </span>
         </li>
-        <li>
+        <li className={style.header__center}>
           <img src={logo} alt="logo" />
         </li>
         <li className={style.reverse}>

@@ -55,7 +55,6 @@ export default function Game() {
         <img src={imgOpenBox} className={style.img_open_box} />
         {startGame ? (
           <>
-            {" "}
             {whiteLetter.map((letter) => (
               <Letter
                 onClick={() => handleClick(letter.id)}

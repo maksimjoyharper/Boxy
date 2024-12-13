@@ -9,18 +9,10 @@ interface ModalProps {
   onClose?: () => void;
   lazy?: boolean;
   hiddenClose?: boolean;
-  classNameCont?: string;
 }
 
 export function Modal(props: ModalProps) {
-  const {
-    children,
-    isOpen,
-    onClose,
-    lazy,
-    hiddenClose = false,
-    classNameCont,
-  } = props;
+  const { children, isOpen, onClose, lazy, hiddenClose = false } = props;
 
   const [isClosing, setIsClosing] = useState(false);
   const [isMouned, setIsMouned] = useState(false);
@@ -86,10 +78,7 @@ export function Modal(props: ModalProps) {
     <Portal>
       <div className={classNames(style.modal, mods)}>
         <div className={style.overlay} onClick={closeHandler}>
-          <div
-            className={classNames(style.content, { classNameCont })}
-            onClick={onContentClick}
-          >
+          <div className={style.content} onClick={onContentClick}>
             {hiddenClose}
             {children}
           </div>

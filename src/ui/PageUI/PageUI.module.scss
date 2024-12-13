@@ -36,19 +36,29 @@
 
 .page__info {
   margin-right: auto;
+  max-width: 45%;
 }
 
 .page__name {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-size: 20px;
   line-height: 17.21px;
   letter-spacing: 0.02em;
+  word-break: break-all;
 }
 
 .page__coins {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   font-size: 14px;
   font-weight: 700;
   line-height: 21px;
+
+  svg {
+    width: 21px;
+    height: 21px;
+  }
 }
 
 .page__place {
@@ -65,5 +75,24 @@
     line-height: 22.9px;
     left: -25px;
     top: 17px;
+  }
+}
+
+.page__image {
+  position: relative;
+}
+
+.page__gift {
+  padding: 0;
+  position: absolute;
+  top: -10px;
+  right: 5px;
+  border: none;
+  outline: none;
+  background: none;
+
+  svg {
+    width: 24px;
+    height: 24px;
   }
 }
