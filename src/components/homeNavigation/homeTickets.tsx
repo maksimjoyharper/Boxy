@@ -2,6 +2,11 @@ import { useState } from "react";
 import style from "./homeNavigation.module.scss";
 import premium from "../../assets/png/premium.png";
 import ticket from "../../assets/png/ticket.png";
+import { useDispatch } from "react-redux";
+import {
+  selectPremiumTicket,
+  selectRegularTicket,
+} from "../../provider/StoreProvider/slice/currentTicketSlice";
 
 interface IHome {
   user: any;
@@ -19,6 +24,7 @@ function wordModificator(number: number) {
 
 export const HomeTickets = ({ user }: IHome) => {
   const [selectedTicket, setSelectedTicket] = useState("regular");
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -31,10 +37,13 @@ export const HomeTickets = ({ user }: IHome) => {
         htmlFor="premium-tickets"
       >
         <span>{user && wordModificator(user?.premium_tickets)}</span>
-        <img src={premium} alt="" />
+        <img className={style.imgTicket} src={premium} alt="" />
         <input
           checked={selectedTicket === "premium"}
-          onChange={() => setSelectedTicket("premium")}
+          onChange={() => {
+            setSelectedTicket("premium");
+            dispatch(selectPremiumTicket());
+          }}
           name="tickets"
           type="radio"
         />
@@ -48,10 +57,13 @@ export const HomeTickets = ({ user }: IHome) => {
         htmlFor="tickets"
       >
         <span>{user && wordModificator(user?.tickets)}</span>
-        <img src={ticket} alt="" />
+        <img className={style.imgTicket} src={ticket} alt="" />
         <input
           checked={selectedTicket === "regular"}
-          onChange={() => setSelectedTicket("regular")}
+          onChange={() => {
+            setSelectedTicket("regular");
+            dispatch(selectRegularTicket());
+          }}
           id="tickets"
           name="tickets"
           type="radio"

@@ -1,7 +1,8 @@
-import { LeaderboardItemSvg } from "../../assets/svg/LeaderboardItemSvg";
+// import { LeaderboardItemSvg } from "../../assets/svg/LeaderboardItemSvg";
 import style from "./leaderboardItem.module.scss";
 import avatar from "../../assets/png/avatar.png";
 import { LeaderboardGiftSvg } from "../../assets/svg/LeaderboardGiftSvg";
+import iconCoin from "../../assets/webp/coin.webp";
 
 interface ILeaderboardItem {
   id: number;
@@ -30,7 +31,8 @@ export const LeaderboardItem = ({
       {index === 1 && <LeaderboardGiftSvg className={style.leaderboard__svg} />}
       <h2 className={style.leaderboard__name}>{name}</h2>
       <p className={style.leaderboard__coins}>{points}</p>
-      <LeaderboardItemSvg />
+      {/* <LeaderboardItemSvg /> */}
+      <img className={style.iconCoin} src={iconCoin} alt="" />
     </li>
   );
 };

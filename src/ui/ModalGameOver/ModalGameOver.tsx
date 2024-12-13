@@ -5,7 +5,8 @@ import { useMutation } from "@tanstack/react-query";
 import { fetchGame, fetchGameProps } from "../../api/fetchGame/fetchGame";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import { queryClient } from "../../api/queryClient";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { getCurrTickets } from "../../provider/StoreProvider/selectors/getCurrTicket";
 
 type ModalGameOverProps = {
   finalPoints: number;
@@ -14,8 +15,7 @@ type ModalGameOverProps = {
 export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
   const navigate = useNavigate();
   const { tg, tg_id } = useTelegram();
-  //   const ticket = useSelector(()
-  const ticket: boolean = true;
+  const ticket = useSelector(getCurrTickets);
   const dataMutate: fetchGameProps = {
     tg_id: tg_id,
     points: finalPoints,

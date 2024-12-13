@@ -6,9 +6,10 @@ import { useTelegram } from "../../hooks/telegram/telegram";
 import style from "./Leaderboard.module.scss";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
-import { LeaderboardItem } from "../../components/leaderboardItem";
+
 import { SlidingLeaderboard } from "../../components/slidingLeaderboard";
 import { useState } from "react";
+import { LeaderboardItem } from "../../components/LeaderboardItem/LeaderboardItem";
 
 const Leaderboard = () => {
   const user = useSelector(getUser);
