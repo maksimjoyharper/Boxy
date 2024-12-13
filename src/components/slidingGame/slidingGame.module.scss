@@ -1,0 +1,61 @@
+.sliding__block {
+  padding: 60px 80px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../assets/png/back__friends.png");
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+
+.sliding__panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sliding__title {
+  margin-top: 52px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: #ffffff;
+}
+
+.sliding__label {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.8px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: #000000;
+}
+
+.sliding__go {
+  margin-bottom: 11px;
+  padding: 6px 41px;
+  border: 1px solid #ffffff33;
+  border-radius: 15px;
+  background-color: #3d3bff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.sliding__inst {
+  padding: 6px 14px;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  color: #191e26;
+  background-color: #dbe2ff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}

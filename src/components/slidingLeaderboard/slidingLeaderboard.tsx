@@ -23,15 +23,17 @@ export const SlidingLeaderboard = ({
       isOpen={isOpen}
       onClose={onClose}
     >
-      <img className={style.sliding__image} src={slidingPrize} alt="" />
-      <h3 className={style.sliding__title}>Супер-приз ждет тебя!</h3>
-      <p className={style.sliding__label}>
-        15 декабря игрок, который наберет наибольшее количество баллов, получит
-        супер-приз — iPhone 16!
-      </p>
-      <button onClick={onClose} className={style.sliding__button}>
-        Ура!
-      </button>
+      <div className={style.sliding__block}>
+        <img className={style.sliding__image} src={slidingPrize} alt="" />
+        <h3 className={style.sliding__title}>Супер-приз ждет тебя!</h3>
+        <p className={style.sliding__label}>
+          15 декабря игрок, который наберет наибольшее количество баллов,
+          получит супер-приз — iPhone 16!
+        </p>
+        <button onClick={onClose} className={style.sliding__button}>
+          Ура!
+        </button>
+      </div>
     </SlidingPanel>
   );
 };

@@ -18,12 +18,6 @@ export default function CardTask({ task }: CardTaskProps) {
   return (
     <li className={style.task_item}>
       <p className={style.task_name}>{task.task.name}</p>
-
-      {/* <button
-        className={task.completed ? style.task_btn : style.task_compl_btn}
-      >
-        {task.completed ? "Забрать награду" : "Награда получена"}
-      </button> */}
       <div className={style.coins_box}>
         <img className={style.coin_img} src={iconCoin} alt="" />
         <span className={style.coins}>{task.task.reward_currency}</span>

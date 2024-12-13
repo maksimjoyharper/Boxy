@@ -10,8 +10,10 @@
   bottom: -100%;
   right: 50%;
   transform: translateX(50%);
-  background: transparent;
+  background: #000000;
   z-index: -1;
+  border-top-left-radius: 36px;
+  border-top-right-radius: 36px;
 
   .sliding {
     height: 100%;
@@ -28,24 +30,23 @@
 
       .dragHandle {
         cursor: grab;
-        background-color: #ccc;
+        background-color: #ffffff4d;
         border-radius: 30px;
         width: 42px;
         height: 4px;
         position: fixed;
         z-index: 10px;
-        top: 0;
+        top: 30px;
         left: 45%;
         transform: translateX(-50%, -50%);
       }
     }
 
     .overlay {
-      background-color: var(--bg-color);
-      border-top-left-radius: 30px;
-      border-top-right-radius: 30px;
+      background-color: #000000;
+      border-top-left-radius: 36px;
+      border-top-right-radius: 36px;
       padding: 0 16px;
-      padding-top: 16px;
       height: 100%;
       overflow-y: scroll;
 

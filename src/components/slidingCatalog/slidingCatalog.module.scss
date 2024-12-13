@@ -6,7 +6,7 @@
 }
 
 .sliding__block {
-  padding: 60px 30px 30px;
+  padding: 60px 40px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -23,15 +23,14 @@
 
 .sliding__title {
   margin-bottom: 16px;
+  text-align: center;
   font-size: 24px;
   font-weight: 700;
-  line-height: 17.21px;
   letter-spacing: 0.02em;
-  text-align: center;
 }
 
 .sliding__label {
-  margin-bottom: auto;
+  margin-bottom: 30px;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -39,4 +38,39 @@
   font-weight: 400;
   line-height: 18px;
   text-align: center;
+}
+
+.sliding__span {
+  margin-bottom: auto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: center;
+  color: #ffffff99;
+}
+
+.sliding__money {
+  padding-top: 5%;
+  margin-bottom: auto;
+  position: relative;
+}
+
+.sliding__coins {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-80%, -30%);
+  font-size: 37.06px;
+  font-weight: 700;
+  line-height: 45.55px;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 340px) {
+  .sliding__coins {
+    font-size: 25.06px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-80%, -40%);
+  }
 }

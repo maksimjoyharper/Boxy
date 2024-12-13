@@ -50,6 +50,7 @@
 }
 
 .category__caption {
+  margin: 0 auto;
   padding-bottom: 4px;
   font-size: 32px;
   font-weight: 700;
@@ -57,6 +58,7 @@
   letter-spacing: 0.02em;
   text-align: center;
   position: relative;
+  max-width: max-content;
 
   &::before {
     content: "";
@@ -67,6 +69,7 @@
     right: 0;
     bottom: 0;
     height: 2px;
+    width: 100%;
     background: linear-gradient(89.92deg, #3d3bff -12.95%, #ffffff 186.7%);
   }
 }

@@ -58,7 +58,7 @@ export const HomeNavigation = () => {
               <p className={style.home__label}>#{user?.rank}</p>
             )}
             {elem.title === "Друзей" && (
-              <p className={style.home__label}>{user?.id}</p>
+              <p className={style.home__label}>{user?.friends_count}</p>
             )}
             <div className={elem.reverse ? style.reverse : undefined}>
               <p className={style.home__title}>{elem.title}</p>

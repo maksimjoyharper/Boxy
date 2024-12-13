@@ -14,11 +14,11 @@ interface IHome {
 
 function wordModificator(number: number) {
   if (number === 1) {
-    return `${number} билет`;
+    return `билет`;
   } else if (number >= 2 && number < 5) {
-    return `${number} билета`;
+    return `билета`;
   } else {
-    return `${number} билетов`;
+    return `билетов`;
   }
 }
 
@@ -36,7 +36,10 @@ export const HomeTickets = ({ user }: IHome) => {
         }`}
         htmlFor="premium-tickets"
       >
-        <span>{user && wordModificator(user?.premium_tickets)}</span>
+        <span className={style.home__ticket}>{user?.premium_tickets}</span>
+        <span className={style.home__info}>
+          {user && wordModificator(user?.premium_tickets)}
+        </span>
         <img className={style.imgTicket} src={premium} alt="" />
         <input
           checked={selectedTicket === "premium"}
@@ -56,7 +59,10 @@ export const HomeTickets = ({ user }: IHome) => {
         }`}
         htmlFor="tickets"
       >
-        <span>{user && wordModificator(user?.tickets)}</span>
+        <span className={style.home__ticket}>{user?.tickets}</span>
+        <span className={style.home__info}>
+          {user && wordModificator(user?.tickets)}
+        </span>
         <img className={style.imgTicket} src={ticket} alt="" />
         <input
           checked={selectedTicket === "regular"}
