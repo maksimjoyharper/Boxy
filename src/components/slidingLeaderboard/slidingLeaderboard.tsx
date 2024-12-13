@@ -17,6 +17,7 @@ export const SlidingLeaderboard = ({
 }: SlidingProps) => {
   return (
     <SlidingPanel
+      darkened
       initialHeight={initialHeight}
       fullHeight={fullHeight}
       isOpen={isOpen}

@@ -31,7 +31,7 @@ export const HomeTickets = ({ user }: IHome) => {
       <label
         className={`${
           selectedTicket === "premium"
-            ? `${style.label__tickets} ${style.active}`
+            ? `${style.label__tickets} ${style.active_blue}`
             : style.label__tickets
         }`}
         htmlFor="premium-tickets"

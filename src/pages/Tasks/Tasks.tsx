@@ -27,10 +27,6 @@ export default function Tasks() {
     }
   }, [data]);
 
-  const categories = ["Подпишись на соцсети", "Временные задания"];
-  const result = [...allTasks.map((item) => ({ ...item, title: categories }))];
-  console.log(result);
-
   return (
     <section className={style.container}>
       <h1 className={style.task_title}>Задания</h1>

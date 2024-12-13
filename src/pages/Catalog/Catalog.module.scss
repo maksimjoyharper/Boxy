@@ -3,6 +3,48 @@
   height: calc(100% - 5em);
 }
 
+.catalog__header {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.reverse {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  background-image: url("../../assets/webp/coin__bg.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  span {
+    padding: 2px 0 0 10px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17.21px;
+    letter-spacing: 0.02em;
+    color: #fff;
+  }
+}
+
+.catalog__button {
+  padding: 6px 14px;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  color: #191e26;
+  background-color: #dbe2ff;
+}
+
+.catalog__image {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .catalog__list {
   overflow: hidden auto;
 }

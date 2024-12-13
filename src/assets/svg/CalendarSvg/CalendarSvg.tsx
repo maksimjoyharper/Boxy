@@ -1,51 +1,51 @@
-export const LeaderboardItemSvg = () => {
+export const CalendarSvg = () => {
   return (
     <svg
-      width="21"
-      height="21"
-      viewBox="0 0 21 21"
+      width="30"
+      height="29"
+      viewBox="0 0 30 29"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g filter="url(#filter0_i_125_2196)">
+      <g filter="url(#filter0_i_388_247)">
         <circle
-          cx="10.5"
-          cy="10.5"
-          r="10.5"
-          transform="matrix(-1 0 0 1 21 0)"
-          fill="url(#paint0_linear_125_2196)"
+          cx="9.04905"
+          cy="9.04905"
+          r="9.04905"
+          transform="matrix(-1 0 0 1 24.0005 5.35986)"
+          fill="url(#paint0_linear_388_247)"
         />
       </g>
       <circle
-        cx="10.5"
-        cy="10.5"
-        r="10.4024"
-        transform="matrix(-1 0 0 1 21 0)"
-        stroke="url(#paint1_linear_125_2196)"
-        strokeWidth="0.195252"
+        cx="9.04905"
+        cy="9.04905"
+        r="8.96491"
+        transform="matrix(-1 0 0 1 24.0005 5.35986)"
+        stroke="url(#paint1_linear_388_247)"
+        strokeWidth="0.168271"
       />
-      <g filter="url(#filter1_i_125_2196)">
+      <g filter="url(#filter1_i_388_247)">
         <circle
-          cx="8"
-          cy="8"
-          r="8"
-          transform="matrix(-1 0 0 1 18.5 2.5)"
-          fill="url(#paint2_linear_125_2196)"
+          cx="6.89451"
+          cy="6.89451"
+          r="6.89451"
+          transform="matrix(-1 0 0 1 21.8462 7.51416)"
+          fill="url(#paint2_linear_388_247)"
         />
       </g>
-      <g filter="url(#filter2_dd_125_2196)">
+      <g filter="url(#filter2_dd_388_247)">
         <path
-          d="M14.2497 13.1407C14.2497 14.9345 12.8096 16.2353 10.522 16.2353C9.19557 16.1988 7.93855 15.6392 7.02942 14.6805L7.79446 13.8412C8.51052 14.5175 9.35305 15.1748 10.5069 15.1748C11.7885 15.1748 13.1703 14.4618 13.1703 13.1818C13.1703 12.1186 12.3184 11.4251 10.5282 10.8783C8.48826 10.2599 7.45202 9.42062 7.45202 7.84283C7.45202 6.2814 8.78439 5 10.6828 5C12.1006 5 12.9877 5.5994 13.8511 6.36532L13.099 7.19352C12.342 6.52831 11.6206 6.07733 10.7353 6.07733C9.63716 6.07733 8.55327 6.77964 8.55327 7.79071C8.55327 8.70682 9.08409 9.29031 10.958 9.85923C12.6742 10.3835 14.2497 11.1958 14.2497 13.1402L14.2497 13.1407Z"
+          d="M18.183 16.6842C18.183 18.2301 16.9419 19.3512 14.9704 19.3512C13.8273 19.3198 12.744 18.8375 11.9604 18.0112L12.6198 17.288C13.2369 17.8708 13.963 18.4372 14.9574 18.4372C16.0619 18.4372 17.2527 17.8228 17.2527 16.7196C17.2527 15.8033 16.5186 15.2057 14.9758 14.7344C13.2177 14.2015 12.3247 13.4782 12.3247 12.1185C12.3247 10.7728 13.4729 9.66846 15.1089 9.66846C16.3309 9.66846 17.0954 10.185 17.8395 10.8451L17.1913 11.5589C16.5389 10.9856 15.9172 10.5969 15.1542 10.5969C14.2078 10.5969 13.2737 11.2022 13.2737 12.0735C13.2737 12.863 13.7312 13.3659 15.3461 13.8562C16.8252 14.3081 18.183 15.0081 18.183 16.6838L18.183 16.6842Z"
           fill="black"
         />
       </g>
       <defs>
         <filter
-          id="filter0_i_125_2196"
-          x="0"
-          y="-0.390503"
-          width="21"
-          height="21.3905"
+          id="filter0_i_388_247"
+          x="5.90234"
+          y="5.02332"
+          width="18.0981"
+          height="18.4347"
           filterUnits="userSpaceOnUse"
           colorInterpolationFilters="sRGB"
         >
@@ -62,8 +62,8 @@ export const LeaderboardItemSvg = () => {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
-          <feOffset dy="-0.390503" />
-          <feGaussianBlur stdDeviation="0.390503" />
+          <feOffset dy="-0.336541" />
+          <feGaussianBlur stdDeviation="0.336541" />
           <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
           <feColorMatrix
             type="matrix"
@@ -72,15 +72,15 @@ export const LeaderboardItemSvg = () => {
           <feBlend
             mode="color-burn"
             in2="shape"
-            result="effect1_innerShadow_125_2196"
+            result="effect1_innerShadow_388_247"
           />
         </filter>
         <filter
-          id="filter1_i_125_2196"
-          x="2.5"
-          y="2.5"
-          width="16"
-          height="16.3905"
+          id="filter1_i_388_247"
+          x="8.05713"
+          y="7.51416"
+          width="13.7891"
+          height="14.1256"
           filterUnits="userSpaceOnUse"
           colorInterpolationFilters="sRGB"
         >
@@ -97,8 +97,8 @@ export const LeaderboardItemSvg = () => {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
-          <feOffset dy="0.390503" />
-          <feGaussianBlur stdDeviation="0.390503" />
+          <feOffset dy="0.336541" />
+          <feGaussianBlur stdDeviation="0.336541" />
           <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
           <feColorMatrix
             type="matrix"
@@ -107,15 +107,15 @@ export const LeaderboardItemSvg = () => {
           <feBlend
             mode="multiply"
             in2="shape"
-            result="effect1_innerShadow_125_2196"
+            result="effect1_innerShadow_388_247"
           />
         </filter>
         <filter
-          id="filter2_dd_125_2196"
-          x="6.33558"
-          y="5"
-          width="8.60802"
-          height="12.623"
+          id="filter2_dd_388_247"
+          x="11.3625"
+          y="9.66846"
+          width="7.41858"
+          height="10.8785"
           filterUnits="userSpaceOnUse"
           colorInterpolationFilters="sRGB"
         >
@@ -126,8 +126,8 @@ export const LeaderboardItemSvg = () => {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
-          <feOffset dy="0.69384" />
-          <feGaussianBlur stdDeviation="0.34692" />
+          <feOffset dy="0.597961" />
+          <feGaussianBlur stdDeviation="0.29898" />
           <feComposite in2="hardAlpha" operator="out" />
           <feColorMatrix
             type="matrix"
@@ -136,7 +136,7 @@ export const LeaderboardItemSvg = () => {
           <feBlend
             mode="normal"
             in2="BackgroundImageFix"
-            result="effect1_dropShadow_125_2196"
+            result="effect1_dropShadow_388_247"
           />
           <feColorMatrix
             in="SourceAlpha"
@@ -144,8 +144,8 @@ export const LeaderboardItemSvg = () => {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
-          <feOffset dy="0.34692" />
-          <feGaussianBlur stdDeviation="0.08673" />
+          <feOffset dy="0.29898" />
+          <feGaussianBlur stdDeviation="0.0747451" />
           <feComposite in2="hardAlpha" operator="out" />
           <feColorMatrix
             type="matrix"
@@ -153,33 +153,33 @@ export const LeaderboardItemSvg = () => {
           />
           <feBlend
             mode="multiply"
-            in2="effect1_dropShadow_125_2196"
-            result="effect2_dropShadow_125_2196"
+            in2="effect1_dropShadow_388_247"
+            result="effect2_dropShadow_388_247"
           />
           <feBlend
             mode="normal"
             in="SourceGraphic"
-            in2="effect2_dropShadow_125_2196"
+            in2="effect2_dropShadow_388_247"
             result="shape"
           />
         </filter>
         <linearGradient
-          id="paint0_linear_125_2196"
-          x1="10.5"
+          id="paint0_linear_388_247"
+          x1="9.04905"
           y1="0"
-          x2="10.5"
-          y2="21"
+          x2="9.04905"
+          y2="18.0981"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FFEE6F" />
           <stop offset="1" stopColor="#DAA146" />
         </linearGradient>
         <linearGradient
-          id="paint1_linear_125_2196"
-          x1="1.77096"
-          y1="16.8409"
-          x2="19.1649"
-          y2="2.62643"
+          id="paint1_linear_388_247"
+          x1="1.52623"
+          y1="14.5137"
+          x2="16.5166"
+          y2="2.26349"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FFEE6F" stopOpacity="0.2" />
@@ -187,11 +187,11 @@ export const LeaderboardItemSvg = () => {
           <stop offset="1" stopColor="#FFEE6F" stopOpacity="0.2" />
         </linearGradient>
         <linearGradient
-          id="paint2_linear_125_2196"
-          x1="8"
+          id="paint2_linear_388_247"
+          x1="6.89451"
           y1="0"
-          x2="8"
-          y2="16"
+          x2="6.89451"
+          y2="13.789"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="white" />
