@@ -37,6 +37,7 @@ const Catalog = () => {
           .map((item) =>
             item.products.map((product) => (
               <CatalogItem
+                prof={product.description}
                 key={product.id}
                 id={product.id}
                 name={product.name}
@@ -65,6 +66,7 @@ const Catalog = () => {
                       id={product.id}
                       name={product.name}
                       price={product.price}
+                      prof={product.description}
                       description={item.description}
                     />
                   </>

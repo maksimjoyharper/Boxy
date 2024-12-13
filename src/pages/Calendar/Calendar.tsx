@@ -1,28 +1,60 @@
 import style from "./Calendar.module.scss";
 import { Modal } from "../../ui/Modal/Modal";
-import { useState } from "react";
 import skillbox from "../../assets/png/skillbox__box.png";
+import { useSelector } from "react-redux";
+import { getUser } from "../../provider/StoreProvider/selectors/getUser";
+import { CalendarItem } from "../../components/calendarItem/calendarItem";
+import { CalendarSvg } from "../../assets/svg/CalendarSvg";
+import premium from "../../assets/png/premium__calendar.png";
+import regular from "../../assets/png/regular__calendar.png";
 
-const Calendar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+interface ICalendar {
+  isOpen: boolean;
+  onClose: () => void;
+}
 
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+const Calendar = ({ isOpen, onClose }: ICalendar) => {
+  const user = useSelector(getUser);
 
   return (
-    <Modal lazy isOpen={isOpen} onClose={handleClose}>
+    <Modal lazy isOpen={isOpen} onClose={onClose}>
       <h1 className={style.calendar__title}>Ежедневная награда</h1>
-      <ul></ul>
-      <div className={style.calendar__info}>
-        <h2 className={style.calendar__date}>31 день</h2>
-        <ul className={style.calendar__prize}>
-          <li>1 элемент</li>
-        </ul>
-        <button onClick={handleClose} className={style.calendar__button}>
-          Забрать награду
-        </button>
-      </div>
+      <ul className={style.calendar__list}>
+        <CalendarItem
+          conclusive_day={user && user.consecutive_days}
+          bonus_info={user?.bonus_info || []}
+        />
+      </ul>
+      {user?.bonus_info
+        .filter((element) => element.day === user.consecutive_days)
+        .map((item) => (
+          <div className={style.calendar__info}>
+            <ul className={style.calendar__prize}>
+              {item.points && (
+                <li className={style.calendar__bonus}>
+                  <CalendarSvg />
+                  <span>{item.points}</span>
+                </li>
+              )}
+              {item.premium_tickets && (
+                <li className={style.calendar__bonus}>
+                  <img width={51} height={51} src={premium} alt="" />
+                  <span>{item.premium_tickets}</span>
+                </li>
+              )}
+              {item.tickets && (
+                <li className={style.calendar__bonus}>
+                  <img width={51} height={51} src={regular} alt="" />
+                  <span>{item.tickets}</span>
+                </li>
+              )}
+            </ul>
+            <button onClick={onClose} className={style.calendar__button}>
+              Забрать награду
+            </button>
+          </div>
+        ))}
+
       <img src={skillbox} alt="skillbox box" />
     </Modal>
   );

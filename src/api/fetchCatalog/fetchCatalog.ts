@@ -8,6 +8,7 @@ interface fetchCatalogProps {
     description: string;
     price: string;
     products: {
+      description: string;
       id: string;
       name: string;
       is_purchased: string;

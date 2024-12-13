@@ -3,20 +3,34 @@ import style from "./Layout.module.scss";
 import { Header } from "../../components/header/Header";
 import Calendar from "../Calendar/Calendar";
 import { Footer } from "../../components/footer/Footer";
-import { Onboarding } from "../../components/onboarding";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 
 export default function Layout() {
   const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+  const user = useSelector(getUser);
+
+  useEffect(() => {
+    if (user?.login_today) {
+      setIsOpen(false);
+    }
+  }, [isOpen, user?.login_today]);
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   return (
-    <>
+    <div className={location.pathname !== "/" ? "app bg" : "app"}>
       {location.pathname === "/" && <Header />}
       <main className={style.main}>
         <Outlet />
       </main>
       <Footer />
-      <Calendar />
-      <Onboarding />
-    </>
+      <Calendar isOpen={isOpen} onClose={handleClose} />
+      {/* <Onboarding /> */}
+    </div>
   );
 }

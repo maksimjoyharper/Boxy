@@ -1,3 +1,12 @@
+export interface BonusInfo {
+  day: number;
+  points: number;
+  premium_tickets: number;
+  tickets: number;
+}
+
+export type BonusInfoArray = BonusInfo[];
+
 export interface fetchUserProps {
   consecutive_days: number;
   daily_bonus_friends: number;
@@ -17,6 +26,7 @@ export interface fetchUserProps {
   tg_id: number;
   tickets: number;
   tickets_all: number;
+  bonus_info: BonusInfo[];
 }
 
 export interface UserScheme {

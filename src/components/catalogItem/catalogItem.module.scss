@@ -4,11 +4,13 @@
   min-height: 185px;
   min-width: 345px;
   display: flex;
+  justify-content: space-between;
   color: #fff;
   background-image: url("../../assets/webp/catalog__item.webp");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
+  position: relative;
 
   &:first-child,
   &:last-child {
@@ -17,6 +19,7 @@
 }
 
 .catalog__upper {
+  max-width: 202px;
   align-self: flex-end;
 }
 
@@ -28,6 +31,7 @@
 }
 
 .catalog__info {
+  margin-bottom: 4px;
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
@@ -42,11 +46,23 @@
 
 .catalog__img {
   margin-bottom: 2px;
+  width: 147px;
+  height: 147px;
+  position: absolute;
+  top: -5px;
+  right: 0;
 }
 
 .catalog__profession {
   align-self: flex-end;
   font-size: 13.11px;
+  font-weight: 400;
+  line-height: 18.16px;
+  letter-spacing: -0.07868421077728271px;
+}
+
+.catalog__prof {
+  font-size: 12px;
   font-weight: 400;
   line-height: 18.16px;
   letter-spacing: -0.07868421077728271px;

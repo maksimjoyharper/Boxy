@@ -1,4 +1,4 @@
-#root {
+.app {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -9,4 +9,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+}
+
+.bg {
+  background-image: url("./assets/back__main.png");
 }
