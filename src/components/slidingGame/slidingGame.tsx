@@ -50,25 +50,6 @@ export const SlidingGame = ({
             )}
           </div>
         ))}
-
-        <div className={style.navigation}>
-          {page > 1 && (
-            <button
-              className={style.navigation__button}
-              onClick={() => setPage(page - 1)}
-            >
-              Назад
-            </button>
-          )}
-          {page < slidingArr.length && (
-            <button
-              className={style.navigation__button}
-              onClick={() => setPage(page + 1)}
-            >
-              Вперед
-            </button>
-          )}
-        </div>
       </div>
     </SlidingPanel>
   );
