@@ -1,3 +1,12 @@
+.container {
+  height: 100vh;
+  overflow: auto;
+}
+
+.tasks_list {
+  margin-bottom: 200px;
+}
+
 .task_title {
   margin-bottom: 30px;
   font-size: 32px;

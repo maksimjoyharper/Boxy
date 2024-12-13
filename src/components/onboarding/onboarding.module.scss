@@ -1,0 +1,53 @@
+.onboarding__list {
+  flex: 1;
+}
+
+.onboarding__item {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.onboarding__image {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.onboarding__info {
+  padding: 56px 15px 34px;
+  max-height: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: #000000;
+  z-index: -1;
+  border-top-left-radius: 36px;
+  border-top-right-radius: 36px;
+  background-image: url("../../assets/png/onbaording__blur.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  z-index: 5;
+}
+
+.onboarding__title {
+  margin-bottom: 16px;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.onboarding__label {
+  margin-bottom: auto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+}

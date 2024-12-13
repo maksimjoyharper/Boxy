@@ -66,18 +66,9 @@ export default function Friends() {
         </button>
       </div>
       <ul className={style.page__list}>
-        {friendsArr.map((friend) => (
-          <CardFriend friends={friend} />
+        {friendsArr.map((friend, index) => (
+          <CardFriend friends={friend} key={friend.tg_id} index={index} />
         ))}
-        {/* <li className={style.friends__item}>
-          <span className={style.friends__position}>1</span>
-          <img className={style.friends__avatar} src="avatar" alt="avatar" />
-          <div className={style.friends__info}>
-            <p className={style.friends__name}>{friends?.name}</p>
-            <p className={style.friends__coins}>{friends?.points}</p>
-          </div>
-          <button className={style.friends__button}>Забрать награду</button>
-        </li> */}
       </ul>
     </PageUI>
   );

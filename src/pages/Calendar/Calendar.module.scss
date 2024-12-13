@@ -1,12 +1,9 @@
-.calendar__content {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-}
-
 .calendar__title {
+  margin: 0 auto;
   margin-bottom: 30px;
+  padding-top: 15px;
+  width: calc(100% - 3em);
+  text-align: center;
   font-size: 32px;
   font-weight: 700;
   line-height: 38.4px;
@@ -14,17 +11,32 @@
 }
 
 .calendar__info {
+  margin: 0 auto;
+  margin-bottom: auto;
   padding: 22px 18px;
+  width: calc(100% - 9em);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 36px;
+  background-color: #000000;
 }
 
 .calendar__date {
   margin-bottom: 30px;
   padding-bottom: 4px;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(89.92deg, #3d3bff -12.95%, #ffffff 186.7%);
+  }
 }
 
 .calendar__prize {

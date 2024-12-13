@@ -1,4 +1,8 @@
 import style from "./PageUI.module.scss";
+import avatar from "../../assets/png/avatar.png";
+import { ReactNode } from "react";
+import { LeaderboardGiftSvg } from "../../assets/svg/LeaderboardGiftSvg";
+import { LeaderboardItemSvg } from "../../assets/svg/LeaderboardItemSvg";
 
 interface IPage {
   title: string;
@@ -7,6 +11,10 @@ interface IPage {
   place?: string;
   className__title?: string;
   className?: string;
+  gift?: ReactNode;
+  name?: string;
+  coins?: number;
+  isOpen?: () => void;
 }
 
 export const PageUI: React.FC<IPage> = ({
@@ -16,6 +24,10 @@ export const PageUI: React.FC<IPage> = ({
   title,
   time,
   className,
+  gift,
+  name,
+  coins,
+  isOpen,
 }) => {
   return (
     <section className={className}>
@@ -23,10 +35,20 @@ export const PageUI: React.FC<IPage> = ({
       {time && <p className={style.page__label}>{time}</p>}
       {place && (
         <div className={style.page__person}>
-          <img className={style.page__avatar} src="" alt="аватарка" />
+          <div className={style.page__image}>
+            <img className={style.page__avatar} src={avatar} alt="аватарка" />
+            {gift && (
+              <button onClick={isOpen} className={style.page__gift}>
+                <LeaderboardGiftSvg />
+              </button>
+            )}
+          </div>
           <div className={style.page__info}>
-            <h2 className={style.page__name}>Name</h2>
-            <p className={style.page__coins}>Coins</p>
+            <h2 className={style.page__name}>{name}</h2>
+            <p className={style.page__coins}>
+              <LeaderboardItemSvg />
+              <span>{coins}</span>
+            </p>
           </div>
           <p className={style.page__place}>{place}</p>
         </div>

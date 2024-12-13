@@ -6,6 +6,7 @@ export interface fetchFriendsProps {
   name: string;
   referral_bonus: boolean;
   points: string;
+  reg_data: string;
 }
 
 export function fetchAllFriends(tg_id: string): Promise<fetchFriendsProps[]> {
@@ -25,9 +26,13 @@ export function fetchAllFriends(tg_id: string): Promise<fetchFriendsProps[]> {
     });
 }
 
-export const getFriend = (tg_id: string, new_player_id: string) => {
+export const getFriend = (
+  tg_id: string,
+  userName: string,
+  new_player_id: string | undefined
+) => {
   return axios
-    .get(`${api_url}/api/referral_bonus/${tg_id}/${new_player_id}/ `)
+    .get(`${api_url}/api/player-info/${tg_id}/${userName}/${new_player_id}/ `)
     .then((response) => response.data)
     .catch((error) => error);
 };
@@ -35,6 +40,13 @@ export const getFriend = (tg_id: string, new_player_id: string) => {
 export const getRefLink = (tg_id: string) => {
   return axios
     .get(`${api_url}/api/generate_link/${tg_id}/`)
+    .then((response) => response.data)
+    .catch((error) => error);
+};
+
+export const getBonusOfRef = (tg_id: string, new_player_id: string) => {
+  return axios
+    .post(`${api_url}/api/referral_bonus/${tg_id}/${new_player_id}/`)
     .then((response) => response.data)
     .catch((error) => error);
 };

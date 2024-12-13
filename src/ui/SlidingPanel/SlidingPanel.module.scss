@@ -10,8 +10,17 @@
   bottom: -100%;
   right: 50%;
   transform: translateX(50%);
-  background: transparent;
+  background: #000000;
   z-index: -1;
+  border-top-left-radius: 36px;
+  border-top-right-radius: 36px;
+  border-top: 1px solid;
+  border-image-source: linear-gradient(
+    50.74deg,
+    rgba(255, 255, 255, 0.2) 13.55%,
+    rgba(255, 255, 255, 0.8) 51.18%,
+    rgba(255, 255, 255, 0.2) 89.57%
+  );
 
   .sliding {
     height: 100%;
@@ -62,7 +71,6 @@
   background-color: rgba(0, 0, 0, 0.4);
 
   .sliding {
-
     .dragHandle {
       position: absolute;
     }
