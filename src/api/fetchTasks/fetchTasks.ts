@@ -27,3 +27,17 @@ export function fetchAllTasks(tg_id: string): Promise<fetchTasksProps[]> {
       console.log(error);
     });
 }
+
+export const startTask = (tg_id: string, dop_name: string) => {
+  return axios
+    .post(`${api_url}/api/tasks/start/${tg_id}/${dop_name}}/`)
+    .then((response) => response.data)
+    .catch((error) => error);
+};
+
+export const checkTask = (tg_id: string, dop_name: string) => {
+  return axios
+    .post(`${api_url}/api/tasks/${tg_id}/${dop_name}}/`)
+    .then((response) => response.data)
+    .catch((error) => error);
+};
