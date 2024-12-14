@@ -26,7 +26,6 @@ export default function Friends() {
     const url = `https://t.me/share/url?url=${refLink}`;
     tg.openTelegramLink(url);
     tg.HapticFeedback.impactOccurred("light");
-    setIsOpen(true);
   };
 
   const gettingRefLink = useQuery(
@@ -75,8 +74,51 @@ export default function Friends() {
         </div>
         <ul className={style.page__list}>
           {friendsArr.map((friend, index) => (
-            <CardFriend friends={friend} key={friend.tg_id} index={index} />
+            <CardFriend
+              isOpen={setIsOpen}
+              friends={friend}
+              key={friend.tg_id}
+              index={index}
+              isDisabled={false}
+            />
           ))}
+          {friendsArr.length === 0 && (
+            <>
+              <CardFriend
+                friends={{
+                  name: "Name",
+                  points: "1.2kk",
+                  reg_data: "10.10.24",
+                  referral_bonus: true,
+                  tg_id: "654651",
+                }}
+                isDisabled={true}
+                index={0}
+              />{" "}
+              <CardFriend
+                friends={{
+                  name: "Name",
+                  points: "1.2kk",
+                  reg_data: "10.10.24",
+                  referral_bonus: false,
+                  tg_id: "654651",
+                }}
+                isDisabled={true}
+                index={1}
+              />{" "}
+              <CardFriend
+                friends={{
+                  name: "Name",
+                  points: "1.2kk",
+                  reg_data: "10.10.24",
+                  referral_bonus: false,
+                  tg_id: "654651",
+                }}
+                isDisabled={true}
+                index={2}
+              />
+            </>
+          )}
         </ul>
       </PageUI>
       <SlidingFriends

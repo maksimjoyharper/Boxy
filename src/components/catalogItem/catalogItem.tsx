@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import style from "./catalogItem.module.scss";
 import { getImgCatalog } from "../../features/getImgCatalog";
 import coin from "../../assets/png/coin__catalog.png";
+import { formatNumber } from "../../features/formatNumber";
 
 interface ICatalog {
   id: string;
@@ -33,7 +34,7 @@ export const CatalogItem = ({
           className={style.catalog__price}
         >
           {price !== "Бесплатно" ? <img src={coin} alt="" /> : null}
-          {price}
+          {formatNumber(price)}
         </p>
         <h2 className={style.catalog__info}>{name}</h2>
         <p className={style.catalog__prof}>{prof}</p>

@@ -32,6 +32,7 @@ export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
     },
     queryClient
   );
+  console.log(ticket);
 
   const newGame = () => {
     tg.HapticFeedback.impactOccurred("light");

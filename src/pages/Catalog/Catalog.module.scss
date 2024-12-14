@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
+  color: white;
 }
 
 .reverse {
@@ -59,7 +60,7 @@
   text-align: center;
   position: relative;
   max-width: max-content;
-
+  color: white;
   &::before {
     content: "";
     max-width: 100%;

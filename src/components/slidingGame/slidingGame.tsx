@@ -2,6 +2,7 @@ import { useState } from "react";
 import SlidingPanel from "../../ui/SlidingPanel/SlidingPanel";
 import style from "./slidingGame.module.scss";
 import { slidingArr } from "./slidingData";
+import { useNavigate } from "react-router-dom";
 
 interface ISliding {
   isOpen: boolean;
@@ -18,6 +19,7 @@ export const SlidingGame = ({
 }: ISliding) => {
   const [page, setPage] = useState(1);
   const oneStep = 1;
+  const navigate = useNavigate();
 
   return (
     <SlidingPanel
@@ -36,7 +38,12 @@ export const SlidingGame = ({
                 <h2 className={style.sliding__title}>{item.title}</h2>
                 <p className={style.sliding__label}>{item.label}</p>
                 {item.buttonGo && (
-                  <button className={style.sliding__go}>{item.buttonGo}</button>
+                  <button
+                    onClick={() => navigate("game")}
+                    className={style.sliding__go}
+                  >
+                    {item.buttonGo}
+                  </button>
                 )}
                 {item.buttonInst && (
                   <button

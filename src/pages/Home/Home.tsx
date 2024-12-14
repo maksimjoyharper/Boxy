@@ -1,16 +1,23 @@
 import style from "./Home.module.scss";
 import skillbox from "../../assets/png/friends__invite.png";
 import { HomeNavigation } from "../../components/homeNavigation/HomeNavigation";
-import { useNavigate } from "react-router-dom";
+
 import { SlidingGame } from "../../components/slidingGame";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { getUser } from "../../provider/StoreProvider/selectors/getUser";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const user = useSelector(getUser);
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(true);
-
   const handleOpen = () => {
-    setIsOpen(true);
+    // console.log(user?.instruction);
+
+    if (user?.instruction) {
+      setIsOpen(true);
+    } else navigate("game");
   };
 
   const handleClose = () => {
