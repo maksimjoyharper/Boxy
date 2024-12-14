@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import style from "./Footer.module.scss";
 import { FooterGameSvg } from "../../assets/svg/FooterGameSvg";
 import { FooterMenuSvg } from "../../assets/svg/FooterMenuSvg";
-import FooterHome from "../../assets/png/footer__home.png";
+import FooterHome from "../../assets/webp/footer__home.webp";
 import { Link } from "react-router-dom";
 import { getPathGame } from "../../features/getPathGame";
 
@@ -23,7 +23,15 @@ const footerArr: IFooter[] = [
   {
     id: 2,
     path: "/",
-    icon: <img className={style.footer__home} src={FooterHome} alt="домой" />,
+    icon: (
+      <img
+        width={248}
+        height={96}
+        className={style.footer__home}
+        src={FooterHome}
+        alt="домой"
+      />
+    ),
   },
   {
     id: 3,

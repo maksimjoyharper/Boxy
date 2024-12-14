@@ -1,6 +1,6 @@
 import style from "./Header.module.scss";
 import logo from "../../assets/webp/logo.webp";
-import avatar from "../../assets/webp/avatar.png";
+import avatar from "../../assets/webp/avatar.webp";
 import { HeaderCoinSvg } from "../../assets/svg/HeaderCoinSvg";
 import { useQuery } from "@tanstack/react-query";
 import { fetchUser } from "../../api/fetchUser/fetchUser";
@@ -90,7 +90,7 @@ export const Header = () => {
     <header>
       <ul className={style.header__list}>
         <li>
-          <img src={avatar} alt="avatar" />
+          <img width={34} height={34} src={avatar} alt="avatar" />
           <span
             className={
               userInfo && userInfo.name.length >= 10 ? style.fz : undefined
