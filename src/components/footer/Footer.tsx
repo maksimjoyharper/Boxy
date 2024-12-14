@@ -8,7 +8,7 @@ import { getPathGame } from "../../features/getPathGame";
 import classNames from "classnames";
 
 interface IFooterOpen {
-  isOpen: () => void;
+  isOpen?: () => void;
 }
 
 interface IFooter {
