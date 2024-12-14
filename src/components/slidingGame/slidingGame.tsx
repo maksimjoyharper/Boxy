@@ -3,12 +3,14 @@ import SlidingPanel from "../../ui/SlidingPanel/SlidingPanel";
 import style from "./slidingGame.module.scss";
 import { slidingArr } from "./slidingData";
 import { useNavigate } from "react-router-dom";
+import { fetchUserProps } from "../../types/userType";
 
 interface ISliding {
   isOpen: boolean;
   onClose: () => void;
   initialHeight: string;
   fullHeight: string;
+  user: fetchUserProps | undefined;
 }
 
 export const SlidingGame = ({
@@ -16,10 +18,22 @@ export const SlidingGame = ({
   onClose,
   fullHeight,
   initialHeight,
+  user,
 }: ISliding) => {
   const [page, setPage] = useState(1);
+
   const oneStep = 1;
   const navigate = useNavigate();
+
+  const handleStartGame = () => {
+    if (user) {
+      if (user?.tickets > 0) {
+        navigate("game");
+      } else if (user.premium_tickets > 0) {
+        navigate("game");
+      }
+    }
+  };
 
   return (
     <SlidingPanel
@@ -39,7 +53,7 @@ export const SlidingGame = ({
                 <p className={style.sliding__label}>{item.label}</p>
                 {item.buttonGo && (
                   <button
-                    onClick={() => navigate("game")}
+                    onClick={handleStartGame}
                     className={style.sliding__go}
                   >
                     {item.buttonGo}

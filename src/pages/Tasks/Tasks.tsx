@@ -28,19 +28,21 @@ export default function Tasks() {
   }, [data]);
 
   return (
-    <section className={style.container}>
-      <h1 className={style.task_title}>Задания</h1>
-      <ul className={style.tasks_list}>
-        {/* <button
+    <>
+      <section className={style.container}>
+        <h1 className={style.task_title}>Задания</h1>
+        <ul className={style.tasks_list}>
+          {/* <button
   className={task.completed ? style.task_btn : style.task_compl_btn}
 >
   {task.completed ? "Забрать награду" : "Награда получена"}
 </button> */}
 
-        {allTasks.map((task) => (
-          <CardTask task={task} key={task.task.id} />
-        ))}
-      </ul>
-    </section>
+          {allTasks.map((task) => (
+            <CardTask task={task} key={task.task.id} />
+          ))}
+        </ul>
+      </section>
+    </>
   );
 }
