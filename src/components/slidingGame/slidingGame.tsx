@@ -4,6 +4,8 @@ import style from "./slidingGame.module.scss";
 import { slidingArr } from "./slidingData";
 import { useNavigate } from "react-router-dom";
 import { fetchUserProps } from "../../types/userType";
+import { useSelector } from "react-redux";
+import { getCurrTickets } from "../../provider/StoreProvider/selectors/getCurrTicket";
 
 interface ISliding {
   isOpen: boolean;
@@ -21,15 +23,15 @@ export const SlidingGame = ({
   user,
 }: ISliding) => {
   const [page, setPage] = useState(1);
-
+  const ticket = useSelector(getCurrTickets);
   const oneStep = 1;
   const navigate = useNavigate();
 
   const handleStartGame = () => {
     if (user) {
-      if (user?.tickets > 0) {
+      if (user?.tickets > 0 && ticket === true) {
         navigate("game");
-      } else if (user.premium_tickets > 0) {
+      } else if (user.premium_tickets > 0 && ticket === false) {
         navigate("game");
       }
     }

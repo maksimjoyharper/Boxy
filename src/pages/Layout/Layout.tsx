@@ -18,9 +18,9 @@ export default function Layout() {
   //   }
   // }, [isOpen, user?.login_today]);
 
-  // const handleClose = () => {
-  //   setIsOpen(false);
-  // };
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   return (
     <div className={location.pathname !== "/" ? "app bg" : "app"}>
@@ -29,7 +29,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
-      {/* <Calendar isOpen={isOpen} onClose={handleClose} /> */}
+      <Calendar isOpen={isOpen} onClose={handleClose} />
       {/* <Onboarding /> */}
     </div>
   );
