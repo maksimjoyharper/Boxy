@@ -25,19 +25,19 @@ export const CalendarItem = ({ bonus_info, conclusive_day }: ICalendarItem) => {
           <ul className={style.calendar__grid}>
             {element.points && (
               <li className={style.calendar__bonus}>
-                <span>{element.points}</span>
+                <span style={{ color: "#fff" }}>{element.points}</span>
                 <CalendarSvg />
               </li>
             )}
             {element.premium_tickets && (
               <li className={style.calendar__bonus}>
-                <span>{element.premium_tickets}</span>
+                <span style={{ color: "#fff" }}>{element.premium_tickets}</span>
                 <img width={28} height={28} src={premium} alt="" />
               </li>
             )}
             {element.tickets && (
               <li className={style.calendar__bonus}>
-                <span>{element.tickets}</span>
+                <span style={{ color: "#fff" }}>{element.tickets}</span>
                 <img width={28} height={28} src={regular} alt="" />
               </li>
             )}

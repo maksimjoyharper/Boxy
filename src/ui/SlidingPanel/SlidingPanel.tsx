@@ -1,8 +1,8 @@
 import { ReactNode, useState, useRef, useEffect } from "react";
 import "./SlidingPanel.module.scss";
 import style from "./SlidingPanel.module.scss";
-import { classNames } from "../../utils/classNames";
 import Portal from "../Portal/Portal";
+import classNames from "classnames";
 
 interface SlidingPanelProps {
   initialHeight: string;

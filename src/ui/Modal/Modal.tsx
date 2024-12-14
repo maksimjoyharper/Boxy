@@ -1,4 +1,4 @@
-import { classNames } from "../../utils/classNames";
+import classNames from "classnames";
 import Portal from "../Portal/Portal";
 import style from "./Modal.module.scss";
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react";

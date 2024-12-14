@@ -1,13 +1,13 @@
 import style from "./Home.module.scss";
 import skillbox from "../../assets/png/friends__invite.png";
 import { HomeNavigation } from "../../components/homeNavigation/HomeNavigation";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { SlidingGame } from "../../components/slidingGame";
 import { useState } from "react";
 
 const Home = () => {
-  const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(true);
+  // const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
     setIsOpen(true);
