@@ -60,7 +60,8 @@
   text-align: center;
   position: relative;
   max-width: max-content;
-  color: white;
+  color: #fff;
+
   &::before {
     content: "";
     max-width: 100%;
