@@ -20,12 +20,14 @@
 .page__person {
   margin-bottom: 25px;
   padding: 22px 15px;
+  width: 100%;
   min-height: 116px;
   display: flex;
   align-items: center;
   border-radius: 36px;
   color: #fff;
   background-color: #3d3bff;
+  border: none;
 }
 
 .page__avatar {

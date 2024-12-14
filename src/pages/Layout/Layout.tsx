@@ -9,7 +9,7 @@ import Calendar from "../Calendar/Calendar";
 
 export default function Layout() {
   const location = useLocation();
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   // const user = useSelector(getUser);
 
   // useEffect(() => {

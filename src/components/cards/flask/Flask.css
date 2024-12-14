@@ -13,6 +13,7 @@
   animation-name: fall;
   animation-timing-function: linear;
   background: none;
+  z-index: 3;
 }
 
 @keyframes fall {

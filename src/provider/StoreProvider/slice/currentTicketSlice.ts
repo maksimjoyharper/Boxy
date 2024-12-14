@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CurrentTicketState } from "../../../types/ticketType";
 
 const initialState: CurrentTicketState = {
@@ -9,11 +9,11 @@ const currentTicketSlice = createSlice({
   name: "currentTicket",
   initialState,
   reducers: {
-    selectPremiumTicket(state) {
-      state.isPremium = false;
+    selectPremiumTicket(state, action: PayloadAction<boolean>) {
+      state.isPremium = action.payload;
     },
-    selectRegularTicket(state) {
-      state.isPremium = true;
+    selectRegularTicket(state, action: PayloadAction<boolean>) {
+      state.isPremium = action.payload;
     },
   },
 });

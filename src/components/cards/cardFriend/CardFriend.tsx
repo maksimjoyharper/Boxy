@@ -13,9 +13,16 @@ import { HeaderCoinSvg } from "../../../assets/svg/HeaderCoinSvg";
 type CardFriendProps = {
   friends: fetchFriendsProps;
   index: number;
+  isOpen?: React.Dispatch<React.SetStateAction<boolean>> | undefined;
+  isDisabled: boolean;
 };
 
-export default function CardFriend({ friends, index }: CardFriendProps) {
+export default function CardFriend({
+  friends,
+  index,
+  isOpen,
+  isDisabled,
+}: CardFriendProps) {
   const { tg, tg_id } = useTelegram();
   const getPrize = useMutation(
     {
@@ -23,6 +30,9 @@ export default function CardFriend({ friends, index }: CardFriendProps) {
         getBonusOfRef(data.tg_id, data.new_player_id),
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["friends"] });
+        if (isOpen) {
+          isOpen(true);
+        }
       },
       onError: (data) => {
         console.log(data);
@@ -55,7 +65,11 @@ export default function CardFriend({ friends, index }: CardFriendProps) {
         </div>
       </div>
       {friends.referral_bonus ? (
-        <button onClick={onClick} className={style.friends__button}>
+        <button
+          disabled={isDisabled}
+          onClick={onClick}
+          className={style.friends__button}
+        >
           Забрать награду
         </button>
       ) : (

@@ -14,7 +14,7 @@
   bottom: -2%;
   left: 50%;
   transform: translate(-50%, 0%);
-  z-index: 2;
+  z-index: 4;
 }
 .logo {
   position: absolute;

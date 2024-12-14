@@ -28,6 +28,7 @@ export interface fetchUserProps {
   tickets_all: number;
   friends_count: number;
   bonus_info: BonusInfo[];
+  instruction: boolean;
 }
 
 export interface UserScheme {

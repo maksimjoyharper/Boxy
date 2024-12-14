@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./homeNavigation.module.scss";
 import premium from "../../assets/png/premium.png";
 import ticket from "../../assets/png/ticket.png";
@@ -9,6 +9,7 @@ import {
 } from "../../provider/StoreProvider/slice/currentTicketSlice";
 
 interface IHome {
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   user: any;
 }
 
@@ -25,7 +26,9 @@ function wordModificator(number: number) {
 export const HomeTickets = ({ user }: IHome) => {
   const [selectedTicket, setSelectedTicket] = useState("regular");
   const dispatch = useDispatch();
-
+  useEffect(() => {
+    dispatch(selectRegularTicket(true));
+  }, []);
   return (
     <>
       <label
@@ -45,7 +48,9 @@ export const HomeTickets = ({ user }: IHome) => {
           checked={selectedTicket === "premium"}
           onChange={() => {
             setSelectedTicket("premium");
-            dispatch(selectPremiumTicket());
+          }}
+          onClick={() => {
+            dispatch(selectPremiumTicket(false));
           }}
           name="tickets"
           type="radio"
@@ -68,7 +73,9 @@ export const HomeTickets = ({ user }: IHome) => {
           checked={selectedTicket === "regular"}
           onChange={() => {
             setSelectedTicket("regular");
-            dispatch(selectRegularTicket());
+          }}
+          onClick={() => {
+            dispatch(selectRegularTicket(true));
           }}
           id="tickets"
           name="tickets"

@@ -47,6 +47,7 @@ const Leaderboard = () => {
         <ul className={style.page__list}>
           {leader?.top_players.map((element, index) => (
             <LeaderboardItem
+              openModal={handleOpen}
               index={index + 1}
               key={element.tg_id}
               id={element.tg_id}

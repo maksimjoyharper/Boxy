@@ -14,6 +14,7 @@ const Tasks = lazy(() => import("./pages/Tasks/Tasks"));
 function App() {
   useTelegram().tg.expand();
   useTelegram().tg.disableVerticalSwipes();
+
   return (
     <>
       <Suspense fallback={<div>Loading</div>}>

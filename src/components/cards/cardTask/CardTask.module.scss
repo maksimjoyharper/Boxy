@@ -18,6 +18,10 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .task_name {

@@ -1,10 +1,10 @@
-.container {
-  height: 100vh;
+.task__section {
+  height: calc(100% - 5em);
   overflow: auto;
 }
 
 .tasks_list {
-  margin-bottom: 200px;
+  padding-bottom: 20px;
 }
 
 .task_title {

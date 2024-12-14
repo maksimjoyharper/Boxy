@@ -1,6 +1,6 @@
 import style from "./PageUI.module.scss";
 import avatar from "../../assets/png/avatar.png";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { LeaderboardGiftSvg } from "../../assets/svg/LeaderboardGiftSvg";
 import { LeaderboardItemSvg } from "../../assets/svg/LeaderboardItemSvg";
 
@@ -34,11 +34,14 @@ export const PageUI: React.FC<IPage> = ({
       <h1 className={`${style.page__title} ${className__title}`}>{title}</h1>
       {time && <p className={style.page__label}>{time}</p>}
       {place && (
-        <div className={style.page__person}>
+        <button
+          onClick={gift === 1 ? isOpen : undefined}
+          className={style.page__person}
+        >
           <div className={style.page__image}>
             <img className={style.page__avatar} src={avatar} alt="аватарка" />
             {gift && (
-              <button onClick={isOpen} className={style.page__gift}>
+              <button className={style.page__gift}>
                 <LeaderboardGiftSvg />
               </button>
             )}
@@ -51,7 +54,7 @@ export const PageUI: React.FC<IPage> = ({
             </p>
           </div>
           <p className={style.page__place}>{place}</p>
-        </div>
+        </button>
       )}
       {children}
     </section>

@@ -9,6 +9,7 @@ interface ILeaderboardItem {
   name: string;
   points: number;
   index: number;
+  openModal: () => void;
 }
 
 export const LeaderboardItem = ({
@@ -16,6 +17,7 @@ export const LeaderboardItem = ({
   name,
   points,
   index,
+  openModal,
 }: ILeaderboardItem) => {
   return (
     <li
@@ -28,7 +30,11 @@ export const LeaderboardItem = ({
     >
       <span className={style.leaderboard__index}>{index}</span>
       <img className={style.leaderboard__avatar} src={avatar} alt="avatar" />
-      {index === 1 && <LeaderboardGiftSvg className={style.leaderboard__svg} />}
+      {index === 1 && (
+        <button onClick={openModal} className={style.leaderboard__gift}>
+          <LeaderboardGiftSvg className={style.leaderboard__svg} />
+        </button>
+      )}
       <h2 className={style.leaderboard__name}>{name}</h2>
       <p className={style.leaderboard__coins}>{points}</p>
       {/* <LeaderboardItemSvg /> */}

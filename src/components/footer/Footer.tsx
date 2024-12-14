@@ -5,6 +5,11 @@ import { FooterMenuSvg } from "../../assets/svg/FooterMenuSvg";
 import FooterHome from "../../assets/webp/footer__home.webp";
 import { Link } from "react-router-dom";
 import { getPathGame } from "../../features/getPathGame";
+import classNames from "classnames";
+
+interface IFooterOpen {
+  isOpen: () => void;
+}
 
 interface IFooter {
   id: number;
@@ -41,17 +46,19 @@ const footerArr: IFooter[] = [
   },
 ];
 
-export const Footer = () => {
+export const Footer = ({ isOpen }: IFooterOpen) => {
   return (
     <footer className={style.footer}>
       <nav>
         <ul className={style.footer__list}>
           {footerArr.map((elem) => (
             <li
-              className={elem.className ? style.upper : undefined}
+              className={classNames(elem.className && style.upper)}
               key={elem.id}
             >
-              <Link to={elem.path}>{elem.icon}</Link>
+              <Link onClick={isOpen} to={elem.path}>
+                {elem.icon}
+              </Link>
             </li>
           ))}
         </ul>

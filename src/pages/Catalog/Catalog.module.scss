@@ -1,6 +1,6 @@
 .catalog__section {
   overflow: hidden auto;
-  height: calc(100% - 5em);
+  height: calc(100% - 4em);
 }
 
 .catalog__header {
@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
+  color: white;
 }
 
 .reverse {
@@ -46,24 +47,26 @@
 }
 
 .catalog__list {
+  padding-bottom: 20px;
   overflow: hidden auto;
 }
 
 .category__caption {
   margin: 0 auto;
   padding-bottom: 4px;
+  max-width: 70%;
   font-size: 32px;
   font-weight: 700;
   line-height: 38.4px;
   letter-spacing: 0.02em;
   text-align: center;
   position: relative;
-  max-width: max-content;
   color: #fff;
 
   &::before {
     content: "";
-    max-width: 100%;
+    max-width: 202px;
+    width: 100%;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
