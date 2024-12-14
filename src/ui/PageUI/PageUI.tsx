@@ -1,6 +1,6 @@
 import style from "./PageUI.module.scss";
 import avatar from "../../assets/png/avatar.png";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import { LeaderboardGiftSvg } from "../../assets/svg/LeaderboardGiftSvg";
 import { LeaderboardItemSvg } from "../../assets/svg/LeaderboardItemSvg";
 

@@ -100,7 +100,7 @@ export const Header = () => {
           </span>
         </li>
         <li className={style.header__center}>
-          <img src={logo} alt="logo" />
+          <img width={69} height={15} src={logo} alt="logo" />
         </li>
         <li className={style.reverse}>
           <span>{userInfo?.points}</span>
