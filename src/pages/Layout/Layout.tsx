@@ -9,14 +9,14 @@ import Calendar from "../Calendar/Calendar";
 
 export default function Layout() {
   const location = useLocation();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const user = useSelector(getUser);
 
-  useEffect(() => {
-    if (user?.login_today) {
-      setIsOpen(false);
-    }
-  }, [isOpen, user?.login_today]);
+  // useEffect(() => {
+  //   if (user?.login_today) {
+  //     setIsOpen(false);
+  //   }
+  // }, [isOpen, user?.login_today]);
 
   const handleClose = () => {
     setIsOpen(false);

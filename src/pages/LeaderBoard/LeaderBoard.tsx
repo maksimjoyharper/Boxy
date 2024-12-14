@@ -39,7 +39,7 @@ const Leaderboard = () => {
         place={leader?.player_rank}
         name={user?.name}
         coins={user?.points_all}
-        gift={1}
+        gift={Number(leader?.player_rank) === 1}
         title="Leaderboard"
         time="До конца осталось: 12 дней 8 часов"
         isOpen={handleOpen}

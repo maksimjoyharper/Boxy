@@ -26,8 +26,8 @@ export interface fetchUserProps {
   tg_id: number;
   tickets: number;
   tickets_all: number;
-  bonus_info: BonusInfo[];
   friends_count: number;
+  bonus_info: BonusInfo[];
 }
 
 export interface UserScheme {
