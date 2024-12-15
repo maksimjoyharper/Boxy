@@ -3,6 +3,7 @@ import avatar from "../../assets/png/avatar.png";
 import { ReactNode } from "react";
 import { LeaderboardGiftSvg } from "../../assets/svg/LeaderboardGiftSvg";
 import { LeaderboardItemSvg } from "../../assets/svg/LeaderboardItemSvg";
+import classNames from "classnames";
 
 interface IPage {
   title: string;
@@ -47,7 +48,14 @@ export const PageUI: React.FC<IPage> = ({
             )}
           </div>
           <div className={style.page__info}>
-            <h2 className={style.page__name}>{name}</h2>
+            <h2
+              className={classNames(
+                style.page__name,
+                (name?.length || 0) >= 10 && style.fz
+              )}
+            >
+              {name}
+            </h2>
             <p className={style.page__coins}>
               <LeaderboardItemSvg />
               <span>{coins}</span>

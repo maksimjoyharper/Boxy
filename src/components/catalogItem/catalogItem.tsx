@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import style from "./catalogItem.module.scss";
 import { getImgCatalog } from "../../features/getImgCatalog";
-import coin from "../../assets/png/coin__catalog.png";
+import coin from "../../assets/webp/coin.webp";
 import { formatNumber } from "../../features/formatNumber";
 
 interface ICatalog {
@@ -33,7 +33,9 @@ export const CatalogItem = ({
           style={{ display: "flex", alignItems: "center", gap: "8px" }}
           className={style.catalog__price}
         >
-          {price !== "Бесплатно" ? <img src={coin} alt="" /> : null}
+          {price !== "Бесплатно" ? (
+            <img width={43} height={43} src={coin} alt="coin" />
+          ) : null}
           {formatNumber(price)}
         </p>
         <h2 className={style.catalog__info}>{name}</h2>

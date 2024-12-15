@@ -5,7 +5,8 @@ import icon3 from "../../assets/png/icon3.png";
 interface ISliding {
   id: number;
   img: string;
-  buttonGo: string;
+  buttonGo?: string;
+  buttonNext?: string;
   buttonInst?: string;
   title?: string;
   label?: string;
@@ -22,7 +23,7 @@ export const slidingArr: ISliding[] = [
   {
     id: 2,
     img: icon2,
-    buttonGo: "Дальше",
+    buttonNext: "Дальше",
     label:
       "Тапаешь белую S = +1 балл Тапаешь синюю S = -3 балла Синяя S падает в Boxy = +3 балла",
   },

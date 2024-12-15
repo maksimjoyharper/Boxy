@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { fetchUserProps } from "../../types/userType";
 import { useSelector } from "react-redux";
 import { getCurrTickets } from "../../provider/StoreProvider/selectors/getCurrTicket";
+import { SlidingGameFirst } from "./slidingGameFirst";
+import { SlidingGameSecond } from "./slidingGameSecond";
+import { SlidingGameThird } from "./slidingGameThird";
 
 interface ISliding {
   isOpen: boolean;
@@ -38,42 +41,50 @@ export const SlidingGame = ({
   };
 
   return (
-    <SlidingPanel
-      initialHeight={initialHeight}
-      fullHeight={fullHeight}
-      darkened
-      isOpen={isOpen}
-      onClose={onClose}
-    >
-      <div className={style.sliding__block}>
-        {slidingArr.slice((page - 1) * oneStep, page * oneStep).map((item) => (
-          <div className={style.sliding__panel} key={item.id}>
-            {page.valueOf() === 1 && (
-              <>
-                <img src={item.img} alt="" />
-                <h2 className={style.sliding__title}>{item.title}</h2>
-                <p className={style.sliding__label}>{item.label}</p>
-                {item.buttonGo && (
-                  <button
-                    onClick={handleStartGame}
-                    className={style.sliding__go}
-                  >
-                    {item.buttonGo}
-                  </button>
-                )}
-                {item.buttonInst && (
-                  <button
-                    className={style.sliding__inst}
-                    onClick={() => setPage(page + 1)}
-                  >
-                    {item.buttonInst}
-                  </button>
-                )}
-              </>
-            )}
-          </div>
-        ))}
-      </div>
-    </SlidingPanel>
+    <>
+      <SlidingPanel
+        initialHeight={initialHeight}
+        fullHeight={fullHeight}
+        darkened
+        isOpen={isOpen}
+        onClose={onClose}
+      >
+        <div className={style.sliding__block}>
+          {slidingArr
+            .slice((page - 1) * oneStep, page * oneStep)
+            .map((item) => {
+              switch (item.id) {
+                case 1:
+                  return (
+                    <SlidingGameFirst
+                      key={item.id}
+                      item={item}
+                      handleStart={handleStartGame}
+                      handleNext={() => setPage(page + 1)}
+                    />
+                  );
+                case 2:
+                  return (
+                    <SlidingGameSecond
+                      key={item.id}
+                      item={item}
+                      handleNext={() => setPage(page + 1)}
+                    />
+                  );
+                case 3:
+                  return (
+                    <SlidingGameThird
+                      key={item.id}
+                      item={item}
+                      handleGo={handleStartGame}
+                    />
+                  );
+                default:
+                  return null;
+              }
+            })}
+        </div>
+      </SlidingPanel>
+    </>
   );
 };

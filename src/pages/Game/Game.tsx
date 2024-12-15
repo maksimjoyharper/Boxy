@@ -50,7 +50,7 @@ export default function Game() {
     <ModalRoute>
       <div className={style.falling_letters_container}>
         <Timer time={timer} setTimer={setTimer} setIsVision={setStartGame} />
-        <img src={logo} className={style.logo} />
+        <img width={69} height={15} src={logo} className={style.logo} />
         <PointCounter count={count} />
         <img src={imgOpenBox} className={style.img_open_box} />
         {startGame ? (

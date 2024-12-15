@@ -1,3 +1,8 @@
+.calendar__block {
+  display: flex;
+  flex-direction: column;
+}
+
 .calendar__list {
   margin-bottom: 38px;
   padding-left: calc(100% - 25rem);
@@ -7,6 +12,13 @@
   grid-template-rows: auto;
   gap: 5px;
   overflow-x: auto;
+  overscroll-behavior: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+    -webkit-appearance: none;
+    width: 0;
+  }
 }
 
 .calendar__title {

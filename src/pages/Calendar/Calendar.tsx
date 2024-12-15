@@ -18,44 +18,47 @@ const Calendar = ({ isOpen, onClose }: ICalendar) => {
 
   return (
     <Modal lazy isOpen={isOpen} onClose={onClose}>
-      <h1 className={style.calendar__title}>Ежедневная награда</h1>
-      <ul className={style.calendar__list}>
-        <CalendarItem
-          conclusive_day={user && user.consecutive_days}
-          bonus_info={user?.bonus_info || []}
-        />
-      </ul>
-      {user?.bonus_info
-        .filter((element) => element.day === user.consecutive_days)
-        .map((item) => (
-          <div className={style.calendar__info}>
-            <ul className={style.calendar__prize}>
-              {item.points && (
-                <li className={style.calendar__bonus}>
-                  <CalendarSvg />
-                  <span>{item.points}</span>
-                </li>
-              )}
-              {item.premium_tickets && (
-                <li className={style.calendar__bonus}>
-                  <img width={51} height={51} src={premium} alt="" />
-                  <span>{item.premium_tickets}</span>
-                </li>
-              )}
-              {item.tickets && (
-                <li className={style.calendar__bonus}>
-                  <img width={51} height={51} src={regular} alt="" />
-                  <span>{item.tickets}</span>
-                </li>
-              )}
-            </ul>
-            <button onClick={onClose} className={style.calendar__button}>
-              Забрать награду
-            </button>
-          </div>
-        ))}
+      <div className={style.calendar__block}>
+        <h1 className={style.calendar__title}>Ежедневная награда</h1>
+        <ul className={style.calendar__list}>
+          <CalendarItem
+            conclusive_day={user && user.consecutive_days}
+            bonus_info={user?.bonus_info || []}
+          />
+        </ul>
+        {user?.bonus_info
+          .filter((element) => element.day === user.consecutive_days)
+          .map((item) => (
+            <div className={style.calendar__info}>
+              <h2 className={style.calendar__date}>{item.day} день</h2>
+              <ul className={style.calendar__prize}>
+                {item.points && (
+                  <li className={style.calendar__bonus}>
+                    <CalendarSvg />
+                    <span>{item.points}</span>
+                  </li>
+                )}
+                {item.premium_tickets && (
+                  <li className={style.calendar__bonus}>
+                    <img width={51} height={51} src={premium} alt="" />
+                    <span>{item.premium_tickets}</span>
+                  </li>
+                )}
+                {item.tickets && (
+                  <li className={style.calendar__bonus}>
+                    <img width={51} height={51} src={regular} alt="" />
+                    <span>{item.tickets}</span>
+                  </li>
+                )}
+              </ul>
+              <button onClick={onClose} className={style.calendar__button}>
+                Забрать награду
+              </button>
+            </div>
+          ))}
 
-      <img src={skillbox} alt="skillbox box" />
+        <img src={skillbox} alt="skillbox box" />
+      </div>
     </Modal>
   );
 };

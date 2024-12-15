@@ -46,7 +46,7 @@
   font-size: 20px;
   line-height: 17.21px;
   letter-spacing: 0.02em;
-  word-break: break-all;
+  text-align: start;
 }
 
 .page__coins {
@@ -97,4 +97,8 @@
     width: 24px;
     height: 24px;
   }
+}
+
+.fz {
+  font-size: 14px;
 }

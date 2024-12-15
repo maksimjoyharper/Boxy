@@ -1,13 +1,12 @@
 import style from "./Home.module.scss";
 import skillbox from "../../assets/png/friends__invite.png";
 import { HomeNavigation } from "../../components/homeNavigation/HomeNavigation";
-
-import { SlidingGame } from "../../components/slidingGame";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { useNavigate } from "react-router-dom";
 import { getCurrTickets } from "../../provider/StoreProvider/selectors/getCurrTicket";
+import { SlidingGame } from "../../components/slidingGame";
 
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,8 +44,8 @@ const Home = () => {
       </section>
       <SlidingGame
         user={user}
-        fullHeight={"70vh"}
-        initialHeight={"70%"}
+        fullHeight={"75vh"}
+        initialHeight={"75%"}
         onClose={handleClose}
         isOpen={isOpen}
       />

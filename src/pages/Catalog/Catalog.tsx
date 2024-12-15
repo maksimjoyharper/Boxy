@@ -51,7 +51,13 @@ const Catalog = () => {
           <button onClick={handleOpen} className={style.catalog__button}>
             Информация
           </button>
-          <img className={style.catalog__image} src={logo} alt="" />
+          <img
+            width={69}
+            height={15}
+            className={style.catalog__image}
+            src={logo}
+            alt=""
+          />
           <p className={style.reverse}>
             <span>{user?.points}</span>
             <HeaderCoinSvg />
