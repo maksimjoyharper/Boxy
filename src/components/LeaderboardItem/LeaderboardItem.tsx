@@ -1,4 +1,3 @@
-// import { LeaderboardItemSvg } from "../../assets/svg/LeaderboardItemSvg";
 import style from "./leaderboardItem.module.scss";
 import avatar from "../../assets/png/avatar.png";
 import { LeaderboardGiftSvg } from "../../assets/svg/LeaderboardGiftSvg";
@@ -37,7 +36,6 @@ export const LeaderboardItem = ({
       )}
       <h2 className={style.leaderboard__name}>{name}</h2>
       <p className={style.leaderboard__coins}>{points}</p>
-      {/* <LeaderboardItemSvg /> */}
       <img className={style.iconCoin} src={iconCoin} alt="" />
     </li>
   );
