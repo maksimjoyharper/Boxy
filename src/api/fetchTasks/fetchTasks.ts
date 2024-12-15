@@ -11,6 +11,7 @@ export interface fetchTasksProps {
     reward_currency: string;
     reward_tickets: string;
     is_active: boolean;
+    heading: string;
   };
   start_time: string;
   completed: boolean;

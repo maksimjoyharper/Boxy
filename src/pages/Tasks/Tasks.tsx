@@ -52,9 +52,11 @@ export default function Tasks() {
 >
   {task.completed ? "Забрать награду" : "Награда получена"}
 </button> */}
-
+          {allTasks.length > 0 && <h2>{allTasks[1].task.heading}</h2>}
           {allTasks.map((task) => (
-            <CardTask task={task} key={task.task.id} />
+            <>
+              <CardTask task={task} key={task.task.id} />
+            </>
           ))}
         </ul>
       </section>
