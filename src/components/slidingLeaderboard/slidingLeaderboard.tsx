@@ -1,5 +1,5 @@
 import SlidingPanel from "../../ui/SlidingPanel/SlidingPanel";
-import slidingPrize from "../../assets/png/sliding__prize.png";
+import slidingPrize from "../../assets/webp/sliding__prize.webp";
 import style from "./slidingLeaderboard.module.scss";
 
 interface SlidingProps {
@@ -24,7 +24,7 @@ export const SlidingLeaderboard = ({
       onClose={onClose}
     >
       <div className={style.sliding__block}>
-        <img className={style.sliding__image} src={slidingPrize} alt="" />
+        <img width={196} height={196} className={style.sliding__image} src={slidingPrize} alt="" />
         <h3 className={style.sliding__title}>Супер-приз ждет тебя!</h3>
         <p className={style.sliding__label}>
           15 декабря игрок, который наберет наибольшее количество баллов,
