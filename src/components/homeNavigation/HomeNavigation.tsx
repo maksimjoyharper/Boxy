@@ -35,7 +35,7 @@ const homeArr: IHome[] = [
     id: 3,
     title: "Задания",
     path: "tasks",
-    svg: <HomeTaskSvg />,
+    svg: <HomeTaskSvg className={style.home__task_nav} />,
     reverse: true,
   },
   {

@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { HomeLeaderSvg } from "../../assets/svg/HomeLeaderSvg";
 import { HomeCatalogSvg } from "../../assets/svg/HomeCatalogSvg";
 import { HomeTaskSvg } from "../../assets/svg/HomeTaskSvg";
+import style from "./Footer.module.scss";
 
 export interface IFooter {
   id: number;
@@ -26,7 +27,7 @@ export const footerNavArr: IFooter[] = [
   {
     id: 3,
     label: "Задания",
-    icon: <HomeTaskSvg />,
+    icon: <HomeTaskSvg className={style.home__task} />,
     path: "tasks",
   },
 ];
