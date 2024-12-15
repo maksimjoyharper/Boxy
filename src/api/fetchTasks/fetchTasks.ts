@@ -28,6 +28,18 @@ export function fetchAllTasks(tg_id: string): Promise<fetchTasksProps[]> {
     });
 }
 
+export function fetchTgTask(tg_id: string) {
+  return axios
+    .get(`${api_url}/api/tasks_tg/${tg_id}/`)
+    .then((response) => {
+      const data = response.data;
+      return data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
 export const startTask = (tg_id: string, dop_name: string) => {
   return axios
     .post(`${api_url}/api/tasks/start/${tg_id}/${dop_name}}/`)

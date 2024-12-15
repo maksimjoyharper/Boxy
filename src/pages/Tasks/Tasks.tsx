@@ -4,6 +4,7 @@ import style from "./Tasks.module.scss";
 import {
   fetchAllTasks,
   fetchTasksProps,
+  fetchTgTask,
 } from "../../api/fetchTasks/fetchTasks";
 import { queryClient } from "../../api/queryClient";
 import { useEffect, useState } from "react";
@@ -12,6 +13,14 @@ import CardTask from "../../components/cards/cardTask/CardTask";
 export default function Tasks() {
   const { tg_id } = useTelegram();
   const [allTasks, setAllTasks] = useState<fetchTasksProps[]>([]);
+
+  const { data: tgTask } = useQuery(
+    {
+      queryFn: () => fetchTgTask(tg_id),
+      queryKey: ["taskTg"],
+    },
+    queryClient
+  );
 
   const { data } = useQuery(
     {
@@ -22,8 +31,14 @@ export default function Tasks() {
   );
 
   useEffect(() => {
+    if (tgTask) {
+      console.log(tgTask);
+    }
+  }, [tgTask]);
+
+  useEffect(() => {
     if (data) {
-      setAllTasks(data.reverse());
+      setAllTasks(data);
     }
   }, [data]);
 
