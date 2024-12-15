@@ -2,7 +2,6 @@ import style from "./PageUI.module.scss";
 import avatar from "../../assets/png/avatar.png";
 import { ReactNode } from "react";
 import { LeaderboardGiftSvg } from "../../assets/svg/LeaderboardGiftSvg";
-import { LeaderboardItemSvg } from "../../assets/svg/LeaderboardItemSvg";
 import classNames from "classnames";
 import iconCoin from "../../assets/webp/coin.webp";
 
@@ -58,7 +57,13 @@ export const PageUI: React.FC<IPage> = ({
               {name}
             </h2>
             <p className={style.page__coins}>
-              <img width={21} height={21} className={style.iconCoin} src={iconCoin} alt="" />
+              <img
+                width={21}
+                height={21}
+                className={style.iconCoin}
+                src={iconCoin}
+                alt=""
+              />
               <span>{coins}</span>
             </p>
           </div>
