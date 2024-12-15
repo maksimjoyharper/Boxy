@@ -6,6 +6,8 @@ import FooterHome from "../../assets/webp/footer__home.webp";
 import { Link } from "react-router-dom";
 import { getPathGame } from "../../features/getPathGame";
 import classNames from "classnames";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
+import { footerNavArr } from "./footerNavData";
 
 interface IFooterOpen {
   isOpen?: () => void;
@@ -38,12 +40,6 @@ const footerArr: IFooter[] = [
       />
     ),
   },
-  {
-    id: 3,
-    path: "132",
-    icon: <FooterMenuSvg />,
-    className: true,
-  },
 ];
 
 export const Footer = ({ isOpen }: IFooterOpen) => {
@@ -61,6 +57,27 @@ export const Footer = ({ isOpen }: IFooterOpen) => {
               </Link>
             </li>
           ))}
+          <li>
+            <Popover>
+              <PopoverButton
+                className={classNames(style.footer__button, style.upper)}
+              >
+                <FooterMenuSvg />
+              </PopoverButton>
+              <PopoverPanel className={style.footerNav__list} anchor="bottom">
+                {footerNavArr.map((item) => (
+                  <Link
+                    key={item.id}
+                    className={style.footerNav__link}
+                    to={item.path}
+                  >
+                    {item.icon}
+                    {item.label}
+                  </Link>
+                ))}
+              </PopoverPanel>
+            </Popover>
+          </li>
         </ul>
       </nav>
     </footer>
