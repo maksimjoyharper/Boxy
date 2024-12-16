@@ -14,7 +14,9 @@ export default function CardTask({ task }: CardTaskProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
-    setIsOpen(true);
+    if (!task.completed) {
+      setIsOpen(true);
+    }
   };
 
   const handleClose = () => {
@@ -29,10 +31,17 @@ export default function CardTask({ task }: CardTaskProps) {
     <>
       <li onClick={handleOpen} className={style.task_item}>
         <p className={style.task_name}>{task.task.name}</p>
-        <div className={style.coins_box}>
-          <img className={style.coin_img} src={iconCoin} alt="" />
-          <span className={style.coins}>{task.task.reward_currency}</span>
-        </div>
+        {task.completed ? (
+          <button disabled className={style.task_compl_btn}>
+            {task.completed && "Награда получена"}
+          </button>
+        ) : (
+          <div className={style.coins_box}>
+            <img className={style.coin_img} src={iconCoin} alt="" />
+            <span className={style.coins}>{task.task.reward_currency}</span>
+          </div>
+        )}
+
         <img className={style.icon} src={icon} />
       </li>
       <SlidingTasks

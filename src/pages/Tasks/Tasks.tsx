@@ -4,7 +4,7 @@ import style from "./Tasks.module.scss";
 import {
   fetchAllTasks,
   fetchTasksProps,
-  fetchTgTask,
+  // fetchTgTask,
 } from "../../api/fetchTasks/fetchTasks";
 import { queryClient } from "../../api/queryClient";
 import { useEffect, useState } from "react";
@@ -13,14 +13,15 @@ import CardTask from "../../components/cards/cardTask/CardTask";
 export default function Tasks() {
   const { tg_id } = useTelegram();
   const [allTasks, setAllTasks] = useState<fetchTasksProps[]>([]);
+  // const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
-  const { data: tgTask } = useQuery(
-    {
-      queryFn: () => fetchTgTask(tg_id),
-      queryKey: ["taskTg"],
-    },
-    queryClient
-  );
+  // const { data: tgTask } = useQuery(
+  //   {
+  //     queryFn: () => fetchTgTask(tg_id),
+  //     queryKey: ["taskTg"],
+  //   },
+  //   queryClient
+  // );
 
   const { data } = useQuery(
     {
@@ -30,15 +31,18 @@ export default function Tasks() {
     queryClient
   );
 
-  useEffect(() => {
-    if (tgTask) {
-      console.log(tgTask);
-    }
-  }, [tgTask]);
+  // useEffect(() => {
+  //   // if (tgTask) {
+  //   //   console.log(tgTask);
+  //   // }
+  // }, [tgTask]);
 
   useEffect(() => {
     if (data) {
       setAllTasks(data);
+      // if (data[0].completed) {
+      //   setIsDisabled(true);
+      // }
     }
   }, [data]);
 
@@ -52,11 +56,8 @@ export default function Tasks() {
 >
   {task.completed ? "Забрать награду" : "Награда получена"}
 </button> */}
-          {allTasks.length > 0 && <h2>{allTasks[1].task.heading}</h2>}
           {allTasks.map((task) => (
-            <>
-              <CardTask task={task} key={task.task.id} />
-            </>
+            <CardTask task={task} key={task.task.id} />
           ))}
         </ul>
       </section>

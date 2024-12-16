@@ -9,7 +9,7 @@ import { HeaderCoinSvg } from "../../assets/svg/HeaderCoinSvg";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { SlidingCatalog } from "../../components/slidingCatalog";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 const Catalog = () => {
   const { tg_id } = useTelegram();
@@ -85,7 +85,7 @@ const Catalog = () => {
             )}
 
           {filteredCategories.map((category) => (
-            <>
+            <Fragment key={category}>
               <li style={{ margin: "30px 0" }}>
                 <h2 className={style.category__caption}>{category}</h2>
               </li>
@@ -93,19 +93,17 @@ const Catalog = () => {
                 .filter((element) => element.name === category)
                 .map((item) =>
                   item.products.map((product) => (
-                    <>
-                      <CatalogItem
-                        key={product.id}
-                        id={product.id}
-                        name={product.name}
-                        price={product.price}
-                        prof={product.description}
-                        description={item.description}
-                      />
-                    </>
+                    <CatalogItem
+                      key={product.id}
+                      id={product.id}
+                      name={product.name}
+                      price={product.price}
+                      prof={product.description}
+                      description={item.description}
+                    />
                   ))
                 )}
-            </>
+            </Fragment>
           ))}
         </ul>
       </section>

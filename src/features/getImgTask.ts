@@ -5,6 +5,7 @@ import iconS from "../assets/png/task/iconS.png";
 import iconHeartY from "../assets/png/task/iconHeartY.png";
 import iconWebinar from "../assets/png/task/iconWebinar.png";
 import iconYotube from "../assets/png/task/iconYoutube.png";
+import iconFirst from "../assets/png/task/imgFirstTask.png";
 
 export const getImgTask = (name: string, setIcon: (icon: string) => void) => {
   switch (name) {
@@ -22,5 +23,7 @@ export const getImgTask = (name: string, setIcon: (icon: string) => void) => {
       return setIcon(iconWebinar);
     case "Подписка на YouTube":
       return setIcon(iconYotube);
+    case "Заполни анкету":
+      return setIcon(iconFirst);
   }
 };

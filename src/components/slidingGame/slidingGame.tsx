@@ -26,8 +26,8 @@ export const SlidingGame = ({
   user,
 }: ISliding) => {
   const [page, setPage] = useState(1);
-  const ticket = useSelector(getCurrTickets);
   const oneStep = 1;
+  const ticket = useSelector(getCurrTickets);
   const navigate = useNavigate();
 
   const handleStartGame = () => {

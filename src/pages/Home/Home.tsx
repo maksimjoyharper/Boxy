@@ -4,26 +4,14 @@ import { HomeNavigation } from "../../components/homeNavigation/HomeNavigation";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
-import { useNavigate } from "react-router-dom";
-import { getCurrTickets } from "../../provider/StoreProvider/selectors/getCurrTicket";
 import { SlidingGame } from "../../components/slidingGame";
 
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
   const user = useSelector(getUser);
-  const navigate = useNavigate();
-  const ticket = useSelector(getCurrTickets);
   const handleOpen = () => {
     if (user) {
-      if (user?.instruction) {
-        setIsOpen(true);
-      } else {
-        if (user?.tickets > 0 && ticket === true) {
-          navigate("game");
-        } else if (user.premium_tickets > 0 && ticket === false) {
-          navigate("game");
-        }
-      }
+      setIsOpen(true);
     }
   };
 
