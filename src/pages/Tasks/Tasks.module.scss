@@ -41,12 +41,14 @@
   font-weight: 700;
   line-height: 24px;
   letter-spacing: 0.02em;
+  color: #fff;
 }
 
 .coins {
   font-size: 28px;
   font-weight: 700;
   line-height: 42px;
+  color: #fff;
 }
 
 .icon {
@@ -67,6 +69,7 @@
   letter-spacing: 0.02em;
   text-align: center;
   position: relative;
+  color: #fff;
 
   &::before {
     content: "";

@@ -3,6 +3,7 @@ import { HomeLeaderSvg } from "../../assets/svg/HomeLeaderSvg";
 import { HomeCatalogSvg } from "../../assets/svg/HomeCatalogSvg";
 import { HomeTaskSvg } from "../../assets/svg/HomeTaskSvg";
 import style from "./Footer.module.scss";
+import { HomeFriendsSvg } from "../../assets/svg/HomeFriendsSvg";
 
 export interface IFooter {
   id: number;
@@ -29,5 +30,11 @@ export const footerNavArr: IFooter[] = [
     label: "Задания",
     icon: <HomeTaskSvg className={style.home__task} />,
     path: "tasks",
+  },
+  {
+    id: 4,
+    label: "Друзья",
+    icon: <HomeFriendsSvg className={style.home__task} />,
+    path: "friends",
   },
 ];

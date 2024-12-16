@@ -42,7 +42,7 @@ const homeArr: IHome[] = [
     id: 4,
     title: "Друзей",
     path: "friends",
-    svg: <HomeFriendsSvg />,
+    svg: <HomeFriendsSvg className={style.home__task_nav} />,
   },
 ];
 

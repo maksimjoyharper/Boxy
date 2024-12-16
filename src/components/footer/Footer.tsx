@@ -1,16 +1,12 @@
 import { useState } from "react";
 import style from "./Footer.module.scss";
 import { FooterGameSvg } from "../../assets/svg/FooterGameSvg";
-import { FooterMenuSvg } from "../../assets/svg/FooterMenuSvg";
 import FooterHome from "../../assets/webp/footer__home.webp";
 import { Link } from "react-router-dom";
-import classNames from "classnames";
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
-import { footerNavArr } from "./footerNavData";
 import { SlidingGame } from "../slidingGame";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
-import footerArrow from "../../assets/webp/footerArrow__down.webp";
+import { FooterPopover } from "./footerPopover";
 
 export const Footer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,40 +43,7 @@ export const Footer = () => {
                 />
               </Link>
             </li>
-            <li className={style.footer__button_list}>
-              <Popover>
-                {({ open }) => (
-                  <>
-                    <PopoverButton
-                      className={classNames(style.footer__button, style.upper, {
-                        [style.rotate]: open,
-                      })}
-                    >
-                      {open ? (
-                        <img width={20} height={27} src={footerArrow} alt="" />
-                      ) : (
-                        <FooterMenuSvg />
-                      )}
-                    </PopoverButton>
-                    <PopoverPanel
-                      className={style.footerNav__list}
-                      anchor="bottom"
-                    >
-                      {footerNavArr.map((item) => (
-                        <Link
-                          key={item.id}
-                          className={style.footerNav__link}
-                          to={item.path}
-                        >
-                          {item.icon}
-                          {item.label}
-                        </Link>
-                      ))}
-                    </PopoverPanel>
-                  </>
-                )}
-              </Popover>
-            </li>
+            <FooterPopover />
           </ul>
         </nav>
       </footer>

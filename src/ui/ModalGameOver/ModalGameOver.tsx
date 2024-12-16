@@ -7,7 +7,7 @@ import { useTelegram } from "../../hooks/telegram/telegram";
 import { queryClient } from "../../api/queryClient";
 import { useSelector } from "react-redux";
 import { getCurrTickets } from "../../provider/StoreProvider/selectors/getCurrTicket";
-import { getUser } from "../../provider/StoreProvider/selectors/getUser";
+// import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 
 type ModalGameOverProps = {
   finalPoints: number;
@@ -17,7 +17,7 @@ export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
   const navigate = useNavigate();
   const { tg, tg_id } = useTelegram();
   const ticket = useSelector(getCurrTickets);
-  const user = useSelector(getUser);
+  // const user = useSelector(getUser);
 
   const dataMutate: fetchGameProps = {
     tg_id: tg_id,
@@ -37,26 +37,26 @@ export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
   );
   console.log(ticket);
 
-  const newGame = () => {
-    tg.HapticFeedback.impactOccurred("light");
-    if (ticket) {
-      useGameOverMutation.mutate(dataMutate, {
-        onSuccess: () => {
-          if (user?.tickets !== 0) {
-            location.reload();
-          }
-        },
-      });
-    } else {
-      useGameOverMutation.mutate(dataMutatePrem, {
-        onSuccess: () => {
-          if (user?.premium_tickets !== 0) {
-            location.reload();
-          }
-        },
-      });
-    }
-  };
+  // const newGame = () => {
+  //   tg.HapticFeedback.impactOccurred("light");
+  //   if (ticket) {
+  //     useGameOverMutation.mutate(dataMutate, {
+  //       onSuccess: () => {
+  //         if (user?.tickets !== 0) {
+  //           location.reload();
+  //         }
+  //       },
+  //     });
+  //   } else {
+  //     useGameOverMutation.mutate(dataMutatePrem, {
+  //       onSuccess: () => {
+  //         if (user?.premium_tickets !== 0) {
+  //           location.reload();
+  //         }
+  //       },
+  //     });
+  //   }
+  // };
 
   const backHomePage = () => {
     tg.HapticFeedback.impactOccurred("light");
