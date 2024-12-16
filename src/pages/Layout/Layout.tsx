@@ -26,8 +26,6 @@ export default function Layout() {
     }
   }, [user]);
 
-  console.log(Boolean(!!user?.login_today));
-
   const handleClose = () => {
     setIsOpen(false);
   };

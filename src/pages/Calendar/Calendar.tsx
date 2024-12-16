@@ -1,6 +1,6 @@
 import style from "./Calendar.module.scss";
 import { Modal } from "../../ui/Modal/Modal";
-import skillbox from "../../assets/png/skillbox__box.png";
+import skillbox from "../../assets/webp/box__game.webp";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { CalendarItem } from "../../components/calendarItem/calendarItem";

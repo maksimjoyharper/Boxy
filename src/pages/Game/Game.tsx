@@ -7,7 +7,7 @@ import BlueLetter from "../../components/cards/letters/blueLetter/BlueLetter";
 import PointCounter from "../../helpers/PointCounter/PointCounter";
 import Bomb from "../../components/cards/bombs/Bomb";
 import Flask from "../../components/cards/flask/Flask";
-import imgOpenBox from "../../assets/png/skillbox__box.png";
+import imgOpenBox from "../../assets/webp/box__game.webp";
 import { whiteLettArr } from "../../variables/whiteLettArray";
 import { IBlueLettArr, IFlask, IWhiteLettArr } from "../../types/types";
 import ModalRoute from "../../ui/ModalRoute/ModalRoute";
