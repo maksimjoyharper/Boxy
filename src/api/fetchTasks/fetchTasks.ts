@@ -3,7 +3,7 @@ import { api_url } from "../api_url";
 
 export interface fetchTasksProps {
   task: {
-    id: string;
+    id: number;
     name: string;
     dop_name: string;
     description: string;
@@ -15,6 +15,7 @@ export interface fetchTasksProps {
   };
   start_time: string;
   completed: boolean;
+  add_flag: boolean;
 }
 
 export interface fetchFirstTask {
