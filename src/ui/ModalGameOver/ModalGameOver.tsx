@@ -89,11 +89,11 @@ export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
             {ticket ? finalPoints : finalPoints * 2}
           </span>
         </div>
-        <button onClick={newGame} className={style.new_game_button}>
+        {/* <button onClick={newGame} className={style.new_game_button}>
           Новая игра
-        </button>
+        </button> */}
         <button onClick={backHomePage} className={style.back_home_button}>
-          На главный экран
+          Забрать награду
         </button>
       </div>
     </div>
