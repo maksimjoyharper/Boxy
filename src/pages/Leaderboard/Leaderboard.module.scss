@@ -28,3 +28,15 @@
   border-radius: 36px;
   background-color: #000;
 }
+
+@media (min-height: 690px) {
+  .leader__section {
+    overflow: hidden;
+  }
+
+  .page__list {
+    padding: 15px;
+    padding-bottom: 50px;
+    height: calc(100% - 15em);
+  }
+}
