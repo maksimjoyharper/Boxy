@@ -2,24 +2,36 @@ import { Outlet, useLocation } from "react-router-dom";
 import style from "./Layout.module.scss";
 import { Header } from "../../components/header/Header";
 import { Footer } from "../../components/footer/Footer";
-import { useState } from "react";
-// import { useSelector } from "react-redux";
-// import { getUser } from "../../provider/StoreProvider/selectors/getUser";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import Calendar from "../Calendar/Calendar";
+import { Onboarding } from "../../components/onboarding";
 
 export default function Layout() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  // const user = useSelector(getUser);
+  const [isOpenOnb, setIsOpenOnb] = useState(false);
+  const user = useSelector(getUser);
 
-  // useEffect(() => {
-  //   if (user?.login_today) {
-  //     setIsOpen(false);
-  //   }
-  // }, [isOpen, user?.login_today]);
+  useEffect(() => {
+    if (user?.instruction === true) {
+      setIsOpenOnb(true);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user?.login_today) {
+      setIsOpen(false);
+    }
+  }, [user?.login_today]);
 
   const handleClose = () => {
     setIsOpen(false);
+  };
+
+  const handleCloseOnb = () => {
+    setIsOpenOnb(false);
   };
 
   return (
@@ -30,7 +42,7 @@ export default function Layout() {
       </main>
       <Footer />
       <Calendar isOpen={isOpen} onClose={handleClose} />
-      {/* <Onboarding /> */}
+      <Onboarding onClose={handleCloseOnb} isOpen={isOpenOnb} />
     </div>
   );
 }

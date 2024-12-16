@@ -7,6 +7,10 @@ import { CalendarItem } from "../../components/calendarItem/calendarItem";
 import { CalendarSvg } from "../../assets/svg/CalendarSvg";
 import premium from "../../assets/png/premium__calendar.png";
 import regular from "../../assets/png/regular__calendar.png";
+import { useMutation } from "@tanstack/react-query";
+import { fetchCalendar } from "../../api/fetchCalendar/fetchCalendar";
+import { queryClient } from "../../api/queryClient";
+import { useTelegram } from "../../hooks/telegram/telegram";
 
 interface ICalendar {
   isOpen: boolean;
@@ -15,6 +19,20 @@ interface ICalendar {
 
 const Calendar = ({ isOpen, onClose }: ICalendar) => {
   const user = useSelector(getUser);
+  const { tg_id } = useTelegram();
+
+  const calendarMutation = useMutation(
+    {
+      mutationFn: (data: { tg_id: string }) => fetchCalendar(data.tg_id),
+      mutationKey: ["calendar"],
+    },
+    queryClient
+  );
+
+  const handleFetch = (tg_id: string) => {
+    calendarMutation.mutate({ tg_id });
+    onClose();
+  };
 
   return (
     <Modal lazy isOpen={isOpen} onClose={onClose}>
@@ -29,7 +47,7 @@ const Calendar = ({ isOpen, onClose }: ICalendar) => {
         {user?.bonus_info
           .filter((element) => element.day === user.consecutive_days)
           .map((item) => (
-            <div className={style.calendar__info}>
+            <div key={item.day} className={style.calendar__info}>
               <h2 className={style.calendar__date}>{item.day} день</h2>
               <ul className={style.calendar__prize}>
                 {item.points && (
@@ -51,7 +69,10 @@ const Calendar = ({ isOpen, onClose }: ICalendar) => {
                   </li>
                 )}
               </ul>
-              <button onClick={onClose} className={style.calendar__button}>
+              <button
+                onClick={() => handleFetch(tg_id)}
+                className={style.calendar__button}
+              >
                 Забрать награду
               </button>
             </div>

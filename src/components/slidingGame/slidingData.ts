@@ -1,6 +1,6 @@
-import icon from "../../assets/png/friends__invite.png";
-import icon2 from "../../assets/png/icon2.png";
-import icon3 from "../../assets/png/icon3.png";
+import icon from "../../assets/webp/game-rules/one.webp";
+import icon2 from "../../assets/webp/game-rules/two.webp";
+import icon3 from "../../assets/webp/game-rules/three.webp";
 
 interface ISliding {
   id: number;

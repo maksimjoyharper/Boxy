@@ -1,10 +1,10 @@
-import onboarding__one from "../../assets/png/onboarding__one.png";
-import onboarding__two from "../../assets/png/onboarding__two.png";
-import onboarding__three from "../../assets/png/onboarding__three.png";
-import onboarding__four from "../../assets/png/onboarding__four.png";
-import onboarding__five from "../../assets/png/onboarding__five.png";
-import onboarding__six from "../../assets/png/onboarding__six.png";
-import onboarding__seven from "../../assets/png/onboarding__seven.png";
+import onboarding__one from "../../assets/webp/onboarding/onb__one.webp";
+import onboarding__two from "../../assets/webp/onboarding/onb__two.webp";
+import onboarding__three from "../../assets/webp/onboarding/onb__three.webp";
+import onboarding__four from "../../assets/webp/onboarding/onb__four.webp";
+import onboarding__five from "../../assets/webp/onboarding/onb__five.webp";
+import onboarding__six from "../../assets/webp/onboarding/onb__six.webp";
+import onboarding__seven from "../../assets/webp/onboarding/onb__seven.webp";
 
 export interface IOboarding {
   id: number;
