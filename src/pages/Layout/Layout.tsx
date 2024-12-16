@@ -15,16 +15,18 @@ export default function Layout() {
   const user = useSelector(getUser);
 
   useEffect(() => {
-    if (user?.instruction === true) {
+    if (user?.instruction) {
       setIsOpenOnb(true);
     }
   }, [user]);
 
   useEffect(() => {
-    if (user?.login_today) {
-      setIsOpen(false);
+    if (user?.login_today === false) {
+      setIsOpen(true);
     }
-  }, [user?.login_today]);
+  }, [user]);
+
+  console.log(Boolean(!!user?.login_today));
 
   const handleClose = () => {
     setIsOpen(false);

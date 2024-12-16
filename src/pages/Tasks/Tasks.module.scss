@@ -56,3 +56,26 @@
   width: 110px;
   height: 110px;
 }
+
+.task_heading {
+  margin: 30px auto;
+  padding-bottom: 4px;
+  max-width: 212px;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 38.4px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  position: relative;
+
+  &::before {
+    content: "";
+    max-width: 212px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(89.92deg, #3d3bff -12.95%, #ffffff 186.7%);
+  }
+}

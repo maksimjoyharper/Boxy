@@ -8,7 +8,7 @@ import { queryClient } from "../../../api/queryClient";
 import { useTelegram } from "../../../hooks/telegram/telegram";
 import { formatDate } from "../../../features/formateDate";
 import avatar from "../../../assets/png/avatar.png";
-import { HeaderCoinSvg } from "../../../assets/svg/HeaderCoinSvg";
+import iconCoin from "../../../assets/webp/coin.webp";
 
 type CardFriendProps = {
   friends: fetchFriendsProps;
@@ -60,7 +60,13 @@ export default function CardFriend({
       <div className={style.friends__info}>
         <p className={style.friends__name}>{friends?.name}</p>
         <div className={style.icon_coin}>
-          <HeaderCoinSvg width="12" height="12" />
+          <img
+            width={12}
+            height={12}
+            className={style.iconCoin}
+            src={iconCoin}
+            alt=""
+          />
           <p className={style.friends__coins}>{friends?.points}</p>
         </div>
       </div>
