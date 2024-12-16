@@ -10,6 +10,7 @@ import { footerNavArr } from "./footerNavData";
 import { SlidingGame } from "../slidingGame";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
+import footerArrow from "../../assets/webp/footerArrow__down.webp";
 
 export const Footer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,25 +47,38 @@ export const Footer = () => {
                 />
               </Link>
             </li>
-            <li>
+            <li className={style.footer__button_list}>
               <Popover>
-                <PopoverButton
-                  className={classNames(style.footer__button, style.upper)}
-                >
-                  <FooterMenuSvg />
-                </PopoverButton>
-                <PopoverPanel className={style.footerNav__list} anchor="bottom">
-                  {footerNavArr.map((item) => (
-                    <Link
-                      key={item.id}
-                      className={style.footerNav__link}
-                      to={item.path}
+                {({ open }) => (
+                  <>
+                    <PopoverButton
+                      className={classNames(style.footer__button, style.upper, {
+                        [style.rotate]: open,
+                      })}
                     >
-                      {item.icon}
-                      {item.label}
-                    </Link>
-                  ))}
-                </PopoverPanel>
+                      {open ? (
+                        <img width={20} height={27} src={footerArrow} alt="" />
+                      ) : (
+                        <FooterMenuSvg />
+                      )}
+                    </PopoverButton>
+                    <PopoverPanel
+                      className={style.footerNav__list}
+                      anchor="bottom"
+                    >
+                      {footerNavArr.map((item) => (
+                        <Link
+                          key={item.id}
+                          className={style.footerNav__link}
+                          to={item.path}
+                        >
+                          {item.icon}
+                          {item.label}
+                        </Link>
+                      ))}
+                    </PopoverPanel>
+                  </>
+                )}
               </Popover>
             </li>
           </ul>

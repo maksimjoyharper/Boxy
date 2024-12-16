@@ -46,6 +46,15 @@ export default function Tasks() {
     }
   }, [data]);
 
+  const groupedTasks = allTasks.reduce((acc, task) => {
+    const heading = task.task.heading;
+    if (!acc[heading]) {
+      acc[heading] = [];
+    }
+    acc[heading].push(task);
+    return acc;
+  }, {} as Record<string, fetchTasksProps[]>);
+
   return (
     <>
       <section className={style.task__section}>
@@ -56,8 +65,13 @@ export default function Tasks() {
 >
   {task.completed ? "Забрать награду" : "Награда получена"}
 </button> */}
-          {allTasks.map((task) => (
-            <CardTask task={task} key={task.task.id} />
+          {Object.entries(groupedTasks).map(([heading, tasks]) => (
+            <li key={heading}>
+              <h2 className={style.task_heading}>{heading}</h2>
+              {tasks.map((task) => (
+                <CardTask task={task} key={task.task.id} />
+              ))}
+            </li>
           ))}
         </ul>
       </section>

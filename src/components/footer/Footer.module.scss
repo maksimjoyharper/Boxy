@@ -39,6 +39,16 @@
   align-items: center;
   gap: 20px;
   background: #00000059;
+  backdrop-filter: blur(109px);
+  // border-width: 0.21px;
+  // border-style: solid;
+  // border-image-source: linear-gradient(
+  //   50.74deg,
+  //   rgba(255, 255, 255, 0.2) 13.55%,
+  //   rgba(255, 255, 255, 0.8) 51.18%,
+  //   rgba(255, 255, 255, 0.2) 89.57%
+  // );
+  // border-image-slice: 1;
   border-radius: 19.73px;
 }
 
@@ -61,4 +71,51 @@
   background: none;
   outline: none;
   border: none;
+}
+
+@keyframes rotate {
+  0% {
+    opacity: 100%;
+  }
+
+  25% {
+    opacity: 50%;
+  }
+
+  50% {
+    opacity: 0%;
+  }
+
+  75% {
+    opacity: 50%;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 50%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.footer__button {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.rotate {
+  animation: rotate 0.5s ease forwards;
+}
+
+.footer__button_list {
+  width: 55px;
+  height: 69px;
 }

@@ -14,7 +14,7 @@ export interface fetchUserProps {
   id: number;
   last_login_date: string;
   league: number;
-  login_today: true;
+  login_today: boolean;
   name: string;
   points: number;
   points_all: number;

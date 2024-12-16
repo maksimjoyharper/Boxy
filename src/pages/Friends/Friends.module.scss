@@ -57,14 +57,4 @@
   position: relative;
   overflow: hidden auto;
   border: 1px solid #fff;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    left: -2px;
-    bottom: -2px;
-    border-radius: inherit;
-  }
 }
