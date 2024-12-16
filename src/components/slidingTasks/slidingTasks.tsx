@@ -17,7 +17,6 @@ import iconRegion from "../../assets/png/task/icon_geo.png";
 import iconPhone from "../../assets/png/task/icon_phone.png";
 import iconCheckbox from "../../assets/png/task/iconCheckbox.png";
 import { agreementRules } from "../../variables/linkAgreement";
-import { getRefLink } from "../../api/fetchFriends/fetchFriends";
 import { getNameBtn } from "../../features/getNameBtn";
 
 interface ISliding {
@@ -35,27 +34,18 @@ export default function SlidingTasks({
   onClose,
   task,
 }: ISliding) {
-  const { tg, tg_id } = useTelegram();
-  const [refLink, setRefLink] = useState("");
-  const gettingRefLink = useQuery(
-    {
-      queryKey: ["refLink"],
-      queryFn: () => getRefLink(tg_id),
-    },
-    queryClient
-  );
+  const { tg_id } = useTelegram();
 
-  useEffect(() => {
-    if (gettingRefLink.data) {
-      setRefLink(gettingRefLink.data.ref_link);
-    }
-  }, [gettingRefLink]);
   const subscribeOnLink = useMutation(
     {
       mutationFn: (data: { tg_id: string; don_name: string }) =>
         startTask(data.tg_id, data.don_name),
       onSuccess: () => {
-        window.location.href = task.task.link;
+        if (task.task.link) {
+          setTimeout(() => {
+            window.location.href = task.task.link;
+          }, 1500);
+        }
       },
     },
     queryClient
@@ -66,12 +56,8 @@ export default function SlidingTasks({
       mutationFn: (data: { tg_id: string; dop_name: string }) =>
         checkTask(data.tg_id, data.dop_name),
       onSuccess: () => {
+        onClose();
         queryClient.invalidateQueries({ queryKey: ["tasks"] });
-        // if (data.completed === "false") {
-        //   window.location.href = task.task.link;
-        // } else {
-        //   onClose();
-        // }
       },
     },
     queryClient
@@ -81,19 +67,15 @@ export default function SlidingTasks({
     if (task.task.link) {
       subscribeOnLink.mutate({ tg_id: tg_id, don_name: task.task.dop_name });
     }
-
-    if (+task.task.id === 2) {
-      const url = `https://t.me/share/url?url=${refLink}`;
-      tg.openTelegramLink(url);
-    }
   };
 
   const handleCheckSubscribe = () => {
-    checkSubscribe.mutate({ tg_id: tg_id, dop_name: task.task.dop_name });
-    if (task.completed === false) {
-      window.location.href = task.task.link;
+    if (task.start_time) {
+      checkSubscribe.mutate({ tg_id: tg_id, dop_name: task.task.dop_name });
     } else {
-      onClose();
+      if (task.task.link) {
+        window.location.href = task.task.link;
+      }
     }
   };
 

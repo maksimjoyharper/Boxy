@@ -13,15 +13,9 @@ import CardTask from "../../components/cards/cardTask/CardTask";
 export default function Tasks() {
   const { tg_id } = useTelegram();
   const [allTasks, setAllTasks] = useState<fetchTasksProps[]>([]);
-  // const [isDisabled, setIsDisabled] = useState<boolean>(false);
-
-  // const { data: tgTask } = useQuery(
-  //   {
-  //     queryFn: () => fetchTgTask(tg_id),
-  //     queryKey: ["taskTg"],
-  //   },
-  //   queryClient
-  // );
+  const [anketa, setAnketa] = useState<fetchTasksProps[]>([]);
+  const [zadaniya, setZadaniya] = useState<fetchTasksProps[]>([]);
+  const [podpiska, setPodpiska] = useState<fetchTasksProps[]>([]);
 
   const { data } = useQuery(
     {
@@ -40,38 +34,46 @@ export default function Tasks() {
   useEffect(() => {
     if (data) {
       setAllTasks(data);
-      // if (data[0].completed) {
-      //   setIsDisabled(true);
-      // }
+      setAnketa(data.filter((t) => t.task.heading === "Задания"));
+      setZadaniya(
+        data.filter((t) => t.task.heading === "Подпишись на соцсети")
+      );
+      setPodpiska(data.filter((t) => t.task.heading === "Временные задания"));
     }
   }, [data]);
 
-  const groupedTasks = allTasks.reduce((acc, task) => {
-    const heading = task.task.heading;
-    if (!acc[heading]) {
-      acc[heading] = [];
-    }
-    acc[heading].push(task);
-    return acc;
-  }, {} as Record<string, fetchTasksProps[]>);
+  // const groupedTasks = allTasks.reduce((acc, task) => {
+  //   const heading = task.task.heading;
+  //   if (!acc[heading]) {
+  //     acc[heading] = [];
+  //   }
+  //   acc[heading].push(task);
+  //   return acc;
+  // }, {} as Record<string, fetchTasksProps[]>);
 
   return (
     <>
       <section className={style.task__section}>
         <h1 className={style.task_title}>Задания</h1>
         <ul className={style.tasks_list}>
-          {/* <button
-  className={task.completed ? style.task_btn : style.task_compl_btn}
->
-  {task.completed ? "Забрать награду" : "Награда получена"}
-</button> */}
-          {Object.entries(groupedTasks).map(([heading, tasks]) => (
+          {/* {Object.entries(groupedTasks).map(([heading, tasks]) => (
             <li key={heading}>
               <h2 className={style.task_heading}>{heading}</h2>
               {tasks.map((task) => (
-                <CardTask task={task} key={task.task.id} />
+                <CardTask allTasks={allTasks} task={task} key={task.task.id} />
               ))}
             </li>
+          ))} */}
+          {anketa.map((task) => (
+            <CardTask key={task.task.id} allTasks={allTasks} task={task} />
+          ))}
+          <h2 className={style.task_heading}>Подпишись на соцсети</h2>
+          {zadaniya.map((task) => (
+            <CardTask key={task.task.id} allTasks={allTasks} task={task} />
+          ))}
+          <h2 className={style.task_heading}>Временные задания</h2>
+          {podpiska.map((task) => (
+            <CardTask key={task.task.id} allTasks={allTasks} task={task} />
           ))}
         </ul>
       </section>
