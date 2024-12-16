@@ -34,6 +34,9 @@
 }
 
 .reverse {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 11px;
   background-image: url("../../assets/webp/coin__bg.webp");
   background-repeat: no-repeat;
@@ -43,4 +46,11 @@
   span {
     padding: 2px 0 0 10px;
   }
+}
+
+.header__button {
+  padding: 0;
+  background: none;
+  border: none;
+  outline: none;
 }

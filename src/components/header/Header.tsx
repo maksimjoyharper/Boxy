@@ -9,16 +9,18 @@ import { queryClient } from "../../api/queryClient";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../provider/StoreProvider/slice/userSlice";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   getBlogerFriend,
   getFriend,
 } from "../../api/fetchFriends/fetchFriends";
 import { fetchUserProps } from "../../types/userType";
+import classNames from "classnames";
 
 export const Header = () => {
   const { tg_id, userName } = useTelegram();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const params = new URLSearchParams(useLocation().search);
   const paramIdFriend: string | null = params.get("id");
   const [referral_id, setReferral_id] = useState<string>();
@@ -86,6 +88,10 @@ export const Header = () => {
     }
   }, [paramIdFriend]);
 
+  const handleNavigate = () => {
+    navigate("tasks");
+  };
+
   return (
     <header>
       <ul className={style.header__list}>
@@ -103,8 +109,13 @@ export const Header = () => {
           <img width={69} height={15} src={logo} alt="logo" />
         </li>
         <li className={style.reverse}>
-          <span>{userInfo?.points}</span>
-          <HeaderCoinSvg />
+          <button
+            className={classNames(style.header__button, style.reverse)}
+            onClick={handleNavigate}
+          >
+            <span>{userInfo?.points}</span>
+            <HeaderCoinSvg />
+          </button>
         </li>
       </ul>
     </header>
