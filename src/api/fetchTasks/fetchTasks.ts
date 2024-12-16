@@ -3,7 +3,7 @@ import { api_url } from "../api_url";
 
 export interface fetchTasksProps {
   task: {
-    id: string;
+    id: number;
     name: string;
     dop_name: string;
     description: string;

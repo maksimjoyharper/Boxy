@@ -14,7 +14,10 @@ export default function CardTask({ task }: CardTaskProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
-    if (task.add_flag && task.add_flag) {
+    if (task.task.id === 1 && task.add_flag) {
+      setIsOpen(true);
+    }
+    if (!task.completed && task.task.id !== 1 && task.add_flag) {
       setIsOpen(true);
     }
   };
