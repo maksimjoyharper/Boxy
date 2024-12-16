@@ -14,6 +14,7 @@ export interface fetchTasksProps {
   };
   start_time: string;
   completed: boolean;
+  add_flag: boolean;
 }
 
 export interface fetchFirstTask {

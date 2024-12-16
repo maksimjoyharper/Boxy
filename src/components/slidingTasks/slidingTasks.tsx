@@ -65,13 +65,13 @@ export default function SlidingTasks({
     {
       mutationFn: (data: { tg_id: string; dop_name: string }) =>
         checkTask(data.tg_id, data.dop_name),
-      onSuccess: (data) => {
+      onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["tasks"] });
-        if (data.completed === "false") {
-          window.location.href = task.task.link;
-        } else {
-          onClose();
-        }
+        // if (data.completed === "false") {
+        //   window.location.href = task.task.link;
+        // } else {
+        //   onClose();
+        // }
       },
     },
     queryClient
@@ -90,6 +90,11 @@ export default function SlidingTasks({
 
   const handleCheckSubscribe = () => {
     checkSubscribe.mutate({ tg_id: tg_id, dop_name: task.task.dop_name });
+    if (task.completed === false) {
+      window.location.href = task.task.link;
+    } else {
+      onClose();
+    }
   };
 
   const [name_player, setName] = useState<string>("");
