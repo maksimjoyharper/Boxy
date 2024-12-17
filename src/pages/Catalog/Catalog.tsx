@@ -77,11 +77,8 @@ const Catalog = () => {
                   id={product.id}
                   name={product.name}
                   link={product.link}
-                  price={
-                    typeof product.price === "number"
-                      ? "Бесплатно"
-                      : product.price
-                  }
+                  currentCoin={user?.points}
+                  price={product.price}
                   description={item.description}
                 />
               ))
@@ -99,6 +96,7 @@ const Catalog = () => {
                     <CatalogItem
                       key={product.id}
                       id={product.id}
+                      currentCoin={user?.points}
                       name={product.name}
                       price={product.price}
                       prof={product.description}

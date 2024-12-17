@@ -2,7 +2,6 @@ import { BonusInfoArray } from "../../types/userType";
 import style from "./calendarItem.module.scss";
 import premium from "../../assets/png/premium.png";
 import regular from "../../assets/png/ticket.png";
-import { CalendarSvg } from "../../assets/svg/CalendarSvg";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { CalendarCheckSvg } from "../../assets/svg/CalendarCheckSvg";

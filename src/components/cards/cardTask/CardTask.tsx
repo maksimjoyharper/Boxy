@@ -51,9 +51,14 @@ export default function CardTask({ task, allTasks }: CardTaskProps) {
           <img src={iconLock} className={style.iconLock} />
         )}
         <p className={style.task_name}>{task.task.name}</p>
+        {task.task.id >= 2 && !allTasks[0].completed && <></>}
         {task.completed ? (
           <button disabled className={style.task_compl_btn}>
             {task.completed && "Награда получена"}
+          </button>
+        ) : task.task.id >= 2 && !allTasks[0].completed ? (
+          <button disabled className={style.task_compl_btn}>
+            Заполните профиль{" "}
           </button>
         ) : (
           <div className={style.coins_box}>

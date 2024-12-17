@@ -24,6 +24,8 @@
 }
 
 .catalog__price {
+  position: absolute;
+  top: 30%;
   margin-bottom: 19px;
   font-size: 28px;
   font-weight: 700;
@@ -32,12 +34,17 @@
 }
 
 .catalog__info {
+  position: absolute;
+  top: 65%;
+  width: 235px;
   margin-bottom: 4px;
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
   letter-spacing: 0.02em;
   color: #fff;
+  text-align: left;
+  word-wrap: break-word;
 }
 
 .catalog__down {
@@ -51,11 +58,14 @@
   width: 147px;
   height: 147px;
   position: absolute;
-  top: -5px;
+  top: -13px;
   right: 0;
 }
 
 .catalog__profession {
+  position: absolute;
+  bottom: 5%;
+  right: 7%;
   align-self: flex-end;
   font-size: 13.11px;
   font-weight: 400;
@@ -65,6 +75,8 @@
 }
 
 .catalog__prof {
+  position: absolute;
+  bottom: 5%;
   font-size: 12px;
   font-weight: 400;
   line-height: 18.16px;
