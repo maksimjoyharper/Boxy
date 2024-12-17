@@ -64,7 +64,7 @@ export default function CardTask({ task, allTasks }: CardTaskProps) {
         isOpen={isOpen}
         onClose={handleClose}
         initialHeight={"70%"}
-        fullHeight={"70vh"}
+        fullHeight={"100vh"}
         task={task}
       />
     </>

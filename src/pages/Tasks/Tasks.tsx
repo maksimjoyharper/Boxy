@@ -4,7 +4,6 @@ import style from "./Tasks.module.scss";
 import {
   fetchAllTasks,
   fetchTasksProps,
-  // fetchTgTask,
 } from "../../api/fetchTasks/fetchTasks";
 import { queryClient } from "../../api/queryClient";
 import { useEffect, useState } from "react";
@@ -25,12 +24,6 @@ export default function Tasks() {
     queryClient
   );
 
-  // useEffect(() => {
-  //   // if (tgTask) {
-  //   //   console.log(tgTask);
-  //   // }
-  // }, [tgTask]);
-
   useEffect(() => {
     if (data) {
       setAllTasks(data);
@@ -42,28 +35,11 @@ export default function Tasks() {
     }
   }, [data]);
 
-  // const groupedTasks = allTasks.reduce((acc, task) => {
-  //   const heading = task.task.heading;
-  //   if (!acc[heading]) {
-  //     acc[heading] = [];
-  //   }
-  //   acc[heading].push(task);
-  //   return acc;
-  // }, {} as Record<string, fetchTasksProps[]>);
-
   return (
     <>
       <section className={style.task__section}>
         <h1 className={style.task_title}>Задания</h1>
         <ul className={style.tasks_list}>
-          {/* {Object.entries(groupedTasks).map(([heading, tasks]) => (
-            <li key={heading}>
-              <h2 className={style.task_heading}>{heading}</h2>
-              {tasks.map((task) => (
-                <CardTask allTasks={allTasks} task={task} key={task.task.id} />
-              ))}
-            </li>
-          ))} */}
           {anketa.map((task) => (
             <CardTask key={task.task.id} allTasks={allTasks} task={task} />
           ))}

@@ -12,6 +12,7 @@ interface ICatalog {
   prof: string;
   is_accessible?: boolean;
   is_purchased?: boolean;
+  link: string;
 }
 
 export const CatalogItem = ({
@@ -20,14 +21,21 @@ export const CatalogItem = ({
   price,
   description,
   prof,
+  link,
 }: ICatalog) => {
   const [icon, setIcon] = useState<string>();
   useEffect(() => {
     getImgCatalog(name, setIcon);
   }, [name]);
 
+  const handleOpenLink = () => {
+    if (link) {
+      window.location.href = link;
+    }
+  };
+
   return (
-    <li key={id} className={style.catalog__item}>
+    <li onClick={handleOpenLink} key={id} className={style.catalog__item}>
       <div className={style.catalog__upper}>
         <p
           style={{ display: "flex", alignItems: "center", gap: "8px" }}

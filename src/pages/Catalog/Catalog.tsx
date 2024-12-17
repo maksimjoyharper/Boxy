@@ -76,6 +76,7 @@ const Catalog = () => {
                   key={product.id}
                   id={product.id}
                   name={product.name}
+                  link={product.link}
                   price={
                     typeof product.price === "number"
                       ? "Бесплатно"
@@ -102,6 +103,7 @@ const Catalog = () => {
                       price={product.price}
                       prof={product.description}
                       description={item.description}
+                      link={product.link}
                     />
                   ))
                 )}

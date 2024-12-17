@@ -7,7 +7,9 @@ interface fetchCatalogProps {
     name: string;
     description: string;
     price: string;
+
     products: {
+      link: string;
       description: string;
       id: string;
       name: string;

@@ -33,10 +33,10 @@ export const SlidingGame = ({
   const handleStartGame = () => {
     if (user) {
       if (user?.tickets > 0 && ticket === true) {
-        navigate("game");
+        navigate("/game");
         onClose();
       } else if (user.premium_tickets > 0 && ticket === false) {
-        navigate("game");
+        navigate("/game");
         onClose();
       }
     }

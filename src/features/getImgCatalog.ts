@@ -12,9 +12,9 @@ export const getImgCatalog = (
   switch (name) {
     case "Пройдите профтест на ....":
       return setIcon(iconBook);
-    case "Скидка 5% на все курсы":
+    case "Дополнительная скидка 5% на все курсы":
       return setIcon(iconSale5);
-    case "Скидка 10% на все курсы":
+    case "Дополнительная скидка 10% на все курсы":
       return setIcon(iconSale10);
     case "Python-разработчик":
       return setIcon(iconUsefulM);
