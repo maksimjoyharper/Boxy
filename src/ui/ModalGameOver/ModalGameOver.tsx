@@ -37,27 +37,6 @@ export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
   );
   console.log(ticket);
 
-  // const newGame = () => {
-  //   tg.HapticFeedback.impactOccurred("light");
-  //   if (ticket) {
-  //     useGameOverMutation.mutate(dataMutate, {
-  //       onSuccess: () => {
-  //         if (user?.tickets !== 0) {
-  //           location.reload();
-  //         }
-  //       },
-  //     });
-  //   } else {
-  //     useGameOverMutation.mutate(dataMutatePrem, {
-  //       onSuccess: () => {
-  //         if (user?.premium_tickets !== 0) {
-  //           location.reload();
-  //         }
-  //       },
-  //     });
-  //   }
-  // };
-
   const backHomePage = () => {
     tg.HapticFeedback.impactOccurred("light");
     if (ticket) {
@@ -89,9 +68,7 @@ export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
             {ticket ? finalPoints : finalPoints * 2}
           </span>
         </div>
-        {/* <button onClick={newGame} className={style.new_game_button}>
-          Новая игра
-        </button> */}
+
         <button onClick={backHomePage} className={style.back_home_button}>
           Забрать награду
         </button>

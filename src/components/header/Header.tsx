@@ -9,7 +9,7 @@ import { queryClient } from "../../api/queryClient";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../provider/StoreProvider/slice/userSlice";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   getBlogerFriend,
   getFriend,
@@ -19,6 +19,7 @@ import { fetchUserProps } from "../../types/userType";
 export const Header = () => {
   const { tg_id, userName } = useTelegram();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const params = new URLSearchParams(useLocation().search);
   const paramIdFriend: string | null = params.get("id");
   const [referral_id, setReferral_id] = useState<string>();
@@ -102,7 +103,7 @@ export const Header = () => {
         <li className={style.header__center}>
           <img width={69} height={15} src={logo} alt="logo" />
         </li>
-        <li className={style.reverse}>
+        <li onClick={() => navigate("/tasks")} className={style.reverse}>
           <span>{userInfo?.points}</span>
           <HeaderCoinSvg />
         </li>

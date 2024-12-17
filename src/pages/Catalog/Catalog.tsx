@@ -10,11 +10,13 @@ import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { SlidingCatalog } from "../../components/slidingCatalog";
 import { Fragment, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Catalog = () => {
   const { tg_id } = useTelegram();
   const user = useSelector(getUser);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleClose = () => {
     setIsOpen(false);
@@ -58,7 +60,7 @@ const Catalog = () => {
             src={logo}
             alt=""
           />
-          <p className={style.reverse}>
+          <p onClick={() => navigate("/tasks")} className={style.reverse}>
             <span>{user?.points}</span>
             <HeaderCoinSvg />
           </p>

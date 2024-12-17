@@ -44,7 +44,7 @@
   border-radius: 15px;
   padding: 6px 14px;
   width: 139px;
-  height: 30px;
+  height: 35px;
   box-shadow: 5px 4px 10px rgba(0, 0, 0, 0.25),
     inset 1px 1px 0 rgba(255, 255, 255, 0.25);
   background: #3d3bff;
@@ -70,7 +70,7 @@
   border-radius: 30px;
   padding: 6px 14px;
   width: 139px;
-  height: 30px;
+  height: 35px;
 
   box-shadow: 5px 4px 10px rgba(0, 0, 0, 0.25),
     inset 1px 1px 0 rgba(255, 255, 255, 0.25);
@@ -118,13 +118,12 @@
 .select_region {
   border-radius: 100px;
   border: none;
-  // padding: 16px 21px;
   width: 281px;
   height: 60px;
   background: #dbe2ff;
 
-  appearance: none; /* Убираем стандартный стиль */
-  padding-right: 30px; /* Добавляем отступ для стрелки */
+  appearance: none;
+  padding-right: 30px;
 
   padding-left: 50px;
   font-weight: 400;
@@ -140,7 +139,6 @@
 .btn_submit {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 100px;
-  // padding: 6px 14px;
   width: 281px;
   height: 60px;
 

@@ -7,7 +7,7 @@ import {
 import SlidingPanel from "../../ui/SlidingPanel/SlidingPanel";
 import style from "./slidingTasks.module.scss";
 import imgCoin from "../../assets/webp/coin.webp";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../../api/queryClient";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import { useEffect, useState } from "react";
