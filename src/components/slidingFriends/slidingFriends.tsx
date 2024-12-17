@@ -35,7 +35,7 @@ export const SlidingFriends = ({
         <h2 className={style.sliding__title}>Твоя награда:</h2>
         <p className={style.sliding__label}>
           <HeaderCoinSvg />
-          <span>500</span>
+          <span className={style.count_coin}>500</span>
         </p>
         <button onClick={onClose} className={style.sliding__button}>
           Ура!

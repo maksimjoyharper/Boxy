@@ -74,14 +74,20 @@
 }
 
 .calendar__button {
-  padding: 6px 14px;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  color: #fff;
+  width: 124px;
+  height: 35px;
+
   border: 1px solid #ffffff33;
   border-radius: 15px;
-  background-color: #3d3bff;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  text-align: center;
+  color: #fff;
+
+  box-shadow: 5px 4px 10px rgba(0, 0, 0, 0.25),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.25);
+  background: #3d3bff;
 }
 
 @media (max-width: 550px) {

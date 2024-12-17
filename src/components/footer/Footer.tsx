@@ -7,19 +7,32 @@ import { SlidingGame } from "../slidingGame";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { FooterPopover } from "./footerPopover";
+import { getCurrTickets } from "../../provider/StoreProvider/selectors/getCurrTicket";
+import { SlidingNotTickets } from "../slidingNotTickets/slidingNotTickets";
 
 export const Footer = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isNotTicket, setIsNotTicket] = useState(false);
   const user = useSelector(getUser);
+  const ticket = useSelector(getCurrTickets);
 
   const handleOpen = () => {
     if (user) {
-      setIsOpen(true);
+      if (user?.tickets > 0 && ticket === true) {
+        setIsOpen(true);
+      } else if (user.premium_tickets > 0 && ticket === false) {
+        setIsOpen(true);
+      } else if (user?.tickets <= 0 && ticket === true) {
+        setIsNotTicket(true);
+      } else if (user.premium_tickets >= 0 && ticket === false) {
+        setIsNotTicket(true);
+      }
     }
   };
 
   const handleClose = () => {
     setIsOpen(false);
+    setIsNotTicket(false);
   };
 
   return (
@@ -53,6 +66,12 @@ export const Footer = () => {
         initialHeight={"75%"}
         onClose={handleClose}
         isOpen={isOpen}
+      />
+      <SlidingNotTickets
+        fullHeight={"40vh"}
+        initialHeight={"40%"}
+        isOpen={isNotTicket}
+        onClose={handleClose}
       />
     </>
   );
