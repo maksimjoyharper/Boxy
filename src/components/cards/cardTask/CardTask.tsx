@@ -5,6 +5,7 @@ import style from "./CardTask.module.scss";
 import { getImgTask } from "../../../features/getImgTask";
 import SlidingTasks from "../../slidingTasks/slidingTasks";
 import iconLock from "../../../assets/png/task/lock.png";
+import { useMediaQuery } from "react-responsive";
 
 type CardTaskProps = {
   task: fetchTasksProps;
@@ -14,6 +15,9 @@ type CardTaskProps = {
 export default function CardTask({ task, allTasks }: CardTaskProps) {
   const [icon, setIcon] = useState<string>();
   const [isOpen, setIsOpen] = useState(false);
+  const mediaQuery = useMediaQuery({
+    query: "(max-height: 690px)",
+  });
 
   const handleOpen = () => {
     const firstTask = allTasks[0].completed;
@@ -63,7 +67,7 @@ export default function CardTask({ task, allTasks }: CardTaskProps) {
       <SlidingTasks
         isOpen={isOpen}
         onClose={handleClose}
-        initialHeight={"70%"}
+        initialHeight={mediaQuery ? "100%" : "70%"}
         fullHeight={"100vh"}
         task={task}
       />

@@ -1,6 +1,6 @@
 .sliding__not__block {
   height: 100%;
-  padding: 43px 65px 62px;
+  padding: 43px 45px 28px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,7 +11,7 @@
 }
 
 .sliding__not__title {
-  margin-bottom: auto;
+  margin-bottom: 30px;
   font-size: 20px;
   font-weight: 700;
   line-height: 20px;
@@ -27,7 +27,6 @@
   border: 1px solid #ffffff33;
   border-radius: 15px;
   background-color: #3d3bff;
-
   font-weight: 400;
   font-size: 12px;
   line-height: 150%;

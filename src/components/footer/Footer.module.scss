@@ -1,4 +1,8 @@
 .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   background-image: url("../../assets/webp/footer__bg.webp");
   background-repeat: no-repeat;
@@ -79,6 +83,12 @@
   background: #00000059;
   border-radius: 19.73px;
   backdrop-filter: blur(109px);
+
+  &::-webkit-scrollbar {
+    display: none;
+    -webkit-appearance: none;
+    width: 0;
+  }
 }
 
 .popover__link {
@@ -97,11 +107,6 @@
   background: none;
   outline: none;
   border: none;
-}
-
-.footer__button_list {
-  width: 55px;
-  height: 69px;
 }
 
 .popover__btn_block {

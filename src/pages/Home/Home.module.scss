@@ -7,7 +7,11 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, 35%);
+  transform: translate(-50%, 10%);
   width: 215px;
   height: 215px;
+}
+
+.img__mobile {
+  transform: translate(-50%, -10%);
 }

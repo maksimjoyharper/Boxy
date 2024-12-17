@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import footerArrow from "../../assets/webp/footerArrow__down.webp";
 import style from "./Footer.module.scss";
 import { footerNavArr } from "./footerNavData";
