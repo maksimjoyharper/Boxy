@@ -15,6 +15,7 @@ import {
   getFriend,
 } from "../../api/fetchFriends/fetchFriends";
 import { fetchUserProps } from "../../types/userType";
+import classNames from "classnames";
 
 export const Header = () => {
   const { tg_id, userName } = useTelegram();
@@ -87,6 +88,10 @@ export const Header = () => {
     }
   }, [paramIdFriend]);
 
+  const handleNavigate = () => {
+    navigate("tasks");
+  };
+
   return (
     <header>
       <ul className={style.header__list}>
@@ -103,9 +108,14 @@ export const Header = () => {
         <li className={style.header__center}>
           <img width={69} height={15} src={logo} alt="logo" />
         </li>
-        <li onClick={() => navigate("/tasks")} className={style.reverse}>
-          <span>{userInfo?.points}</span>
-          <HeaderCoinSvg />
+        <li className={style.reverse}>
+          <button
+            className={classNames(style.header__button, style.reverse)}
+            onClick={handleNavigate}
+          >
+            <span>{userInfo?.points}</span>
+            <HeaderCoinSvg />
+          </button>
         </li>
       </ul>
     </header>

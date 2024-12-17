@@ -34,8 +34,10 @@ export const SlidingGame = ({
     if (user) {
       if (user?.tickets > 0 && ticket === true) {
         navigate("game");
+        onClose();
       } else if (user.premium_tickets > 0 && ticket === false) {
         navigate("game");
+        onClose();
       }
     }
   };
