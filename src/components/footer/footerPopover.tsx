@@ -14,7 +14,7 @@ export const FooterPopover = () => {
   };
 
   return (
-    <li className={classNames(style.footer__button_list, style.upper)}>
+    <li className={style.upper}>
       <div className={style.popover__block}>
         {isOpenPopover && (
           <>
