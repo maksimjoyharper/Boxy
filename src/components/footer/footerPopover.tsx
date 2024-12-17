@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import footerArrow from "../../assets/webp/footerArrow__down.webp";
 import style from "./Footer.module.scss";
 import { footerNavArr } from "./footerNavData";
@@ -14,7 +13,7 @@ export const FooterPopover = () => {
   };
 
   return (
-    <li className={classNames(style.footer__button_list, style.upper)}>
+    <li className={style.upper}>
       <div className={style.popover__block}>
         {isOpenPopover && (
           <>

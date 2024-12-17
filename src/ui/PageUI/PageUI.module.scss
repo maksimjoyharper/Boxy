@@ -28,6 +28,7 @@
   color: #fff;
   background-color: #3d3bff;
   border: none;
+  position: relative;
 }
 
 .page__avatar {
@@ -66,7 +67,10 @@
 }
 
 .page__place {
-  position: relative;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 64px;
   font-weight: 700;
   line-height: 64px;

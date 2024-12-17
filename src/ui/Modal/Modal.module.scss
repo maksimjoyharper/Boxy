@@ -39,7 +39,7 @@
 .open {
   pointer-events: auto;
   opacity: 1;
-  z-index: var(--modal-z-index);
+  z-index: 999;
 
   .content {
     transform: scale(1);

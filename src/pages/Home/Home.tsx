@@ -7,12 +7,17 @@ import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { SlidingGame } from "../../components/slidingGame";
 import { SlidingNotTickets } from "../../components/slidingNotTickets/slidingNotTickets";
 import { getCurrTickets } from "../../provider/StoreProvider/selectors/getCurrTicket";
+import { useMediaQuery } from "react-responsive";
+import classNames from "classnames";
 
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isNotTicket, setIsNotTicket] = useState(false);
   const user = useSelector(getUser);
   const ticket = useSelector(getCurrTickets);
+  const mediaQuery = useMediaQuery({
+    query: "(max-height: 720px)",
+  });
 
   const handleOpen = () => {
     if (user) {
@@ -39,7 +44,11 @@ const Home = () => {
         <HomeNavigation />
         <img
           onClick={handleOpen}
-          className={style.imgBoxy}
+          className={
+            mediaQuery
+              ? classNames(style.img__mobile, style.imgBoxy)
+              : style.imgBoxy
+          }
           src={skillbox}
           alt="скиллбокс"
         />

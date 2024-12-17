@@ -4,9 +4,9 @@ import skillbox from "../../assets/webp/box__game.webp";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { CalendarItem } from "../../components/calendarItem/calendarItem";
-import { CalendarSvg } from "../../assets/svg/CalendarSvg";
+import coin from "../../assets/webp/coin.webp";
 import premium from "../../assets/png/premium__calendar.png";
-import regular from "../../assets/png/regular__calendar.png";
+import regular from "../../assets/webp/sliding__not__ticket.webp";
 import { useMutation } from "@tanstack/react-query";
 import { fetchCalendar } from "../../api/fetchCalendar/fetchCalendar";
 import { queryClient } from "../../api/queryClient";
@@ -52,7 +52,7 @@ const Calendar = ({ isOpen, onClose }: ICalendar) => {
               <ul className={style.calendar__prize}>
                 {item.points && (
                   <li className={style.calendar__bonus}>
-                    <CalendarSvg />
+                    <img width={32} height={32} src={coin} alt="" />
                     <span>{item.points}</span>
                   </li>
                 )}
