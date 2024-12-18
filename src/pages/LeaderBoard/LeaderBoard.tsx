@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { SlidingLeaderboard } from "../../components/slidingLeaderboard";
 import { useState } from "react";
-import { LeaderboardItem } from "../../components/LeaderboardItem/LeaderboardItem";
+import { LeaderboardItem } from "../../components/leaderboardItem/LeaderboardItem";
 
 const Leaderboard = () => {
   const user = useSelector(getUser);
