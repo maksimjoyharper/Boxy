@@ -5,14 +5,12 @@
   overflow: hidden;
   height: 100svh;
   max-width: 450px;
-  background-image: url("./assets/webp/back.webp");
+  background-image: url("../assets/webp/back.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  overscroll-behavior: none;
-  touch-action: none;
 }
 
 .bg {
-  background-image: url("./assets/back__main.png");
+  background-image: url("../assets/back__main.png");
 }
