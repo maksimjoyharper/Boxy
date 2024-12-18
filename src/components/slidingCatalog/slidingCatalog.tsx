@@ -1,6 +1,6 @@
 import SlidingPanel from "../../ui/SlidingPanel/SlidingPanel";
 import style from "./slidingCatalog.module.scss";
-import slide from "../../assets/png/sliding__catalog.png";
+import slide from "../../assets/webp/sliding__catalog.webp";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 

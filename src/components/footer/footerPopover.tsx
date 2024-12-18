@@ -3,13 +3,38 @@ import style from "./Footer.module.scss";
 import { footerNavArr } from "./footerNavData";
 import { FooterMenuSvg } from "../../assets/svg/FooterMenuSvg";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export const FooterPopover = () => {
   const [isOpenPopover, setIsOpenPopover] = useState(false);
+  const popoverRef = useRef<any>(null);
 
   const handleOpenPopover = () => {
     setIsOpenPopover((state) => !state);
+  };
+
+  const handleNextButtonClick = () => {
+    if (popoverRef.current) {
+      const scrollHeight = popoverRef.current.scrollHeight;
+      const scrollTop = popoverRef.current.scrollTop;
+      const clientHeight = popoverRef.current.clientHeight;
+
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight;
+
+      if (!isAtBottom) {
+        const scrollOffset = clientHeight;
+
+        popoverRef.current.scrollBy({
+          top: scrollOffset,
+          behavior: "smooth",
+        });
+      } else {
+        popoverRef.current.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    }
   };
 
   return (
@@ -18,7 +43,10 @@ export const FooterPopover = () => {
         {isOpenPopover && (
           <>
             <div className={style.popover__button}>
-              <button className={style.popover__next_button}>
+              <button
+                className={style.popover__next_button}
+                onClick={handleNextButtonClick}
+              >
                 <img
                   width={20}
                   height={27}
@@ -27,7 +55,7 @@ export const FooterPopover = () => {
                 />
               </button>
             </div>
-            <ul className={style.popover__list}>
+            <ul className={style.popover__list} ref={popoverRef}>
               {footerNavArr.map((element) => (
                 <li key={element.id}>
                   <Link className={style.popover__link} to={element.path}>
