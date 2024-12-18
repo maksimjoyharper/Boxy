@@ -13,17 +13,19 @@ import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Catalog = () => {
-  const { tg_id } = useTelegram();
+  const { tg, tg_id } = useTelegram();
   const user = useSelector(getUser);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleClose = () => {
     setIsOpen(false);
+    tg.HapticFeedback.impactOccurred("medium");
   };
 
   const handleOpen = () => {
     setIsOpen(true);
+    tg.HapticFeedback.impactOccurred("medium");
   };
 
   const { data: catalog } = useQuery(
@@ -66,6 +68,12 @@ const Catalog = () => {
           </p>
         </div>
         <h1 className={style.catalog__title}>Каталог</h1>
+        <div className={style.catalog__info1}>
+          <h2 className={style.info__title}>Тапай и копи баллы!</h2>
+          <p className={style.info__label}>
+            Чтобы выиграть IPhone или получить мерч
+          </p>
+        </div>
         <ul className={style.catalog__list}>
           {catalog?.shops
             .filter((element) => element.name === "Каталог")
@@ -80,6 +88,8 @@ const Catalog = () => {
                   currentCoin={user?.points}
                   price={product.price}
                   description={item.description}
+                  is_accessible={product.is_accessible}
+                  is_purchased={product.is_purchased}
                 />
               ))
             )}
@@ -102,6 +112,8 @@ const Catalog = () => {
                       prof={product.description}
                       description={item.description}
                       link={product.link}
+                      is_accessible={product.is_accessible}
+                      is_purchased={product.is_purchased}
                     />
                   ))
                 )}

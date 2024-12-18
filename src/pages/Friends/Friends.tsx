@@ -20,6 +20,7 @@ export default function Friends() {
 
   const handleClose = () => {
     setIsOpen(false);
+    tg.HapticFeedback.impactOccurred("light");
   };
 
   const handleInviteFriend = () => {

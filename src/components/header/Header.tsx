@@ -18,7 +18,7 @@ import { fetchUserProps } from "../../types/userType";
 import classNames from "classnames";
 
 export const Header = () => {
-  const { tg_id, userName } = useTelegram();
+  const { tg, tg_id, userName } = useTelegram();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = new URLSearchParams(useLocation().search);
@@ -90,6 +90,7 @@ export const Header = () => {
 
   const handleNavigate = () => {
     navigate("tasks");
+    tg.HapticFeedback.impactOccurred("medium");
   };
 
   return (

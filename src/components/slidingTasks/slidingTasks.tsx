@@ -34,7 +34,7 @@ export default function SlidingTasks({
   onClose,
   task,
 }: ISliding) {
-  const { tg_id } = useTelegram();
+  const { tg, tg_id } = useTelegram();
 
   const subscribeOnLink = useMutation(
     {
@@ -44,6 +44,7 @@ export default function SlidingTasks({
         if (task.task.link) {
           setTimeout(() => {
             window.location.href = task.task.link;
+            tg.HapticFeedback.impactOccurred("medium");
           }, 1500);
         }
       },
@@ -58,6 +59,7 @@ export default function SlidingTasks({
       onSuccess: () => {
         onClose();
         queryClient.invalidateQueries({ queryKey: ["tasks"] });
+        tg.HapticFeedback.impactOccurred("medium");
       },
     },
     queryClient
@@ -65,6 +67,7 @@ export default function SlidingTasks({
 
   const handleSubscribe = () => {
     if (task.task.link) {
+      tg.HapticFeedback.impactOccurred("medium");
       subscribeOnLink.mutate({ tg_id: tg_id, don_name: task.task.dop_name });
     }
   };
@@ -77,6 +80,7 @@ export default function SlidingTasks({
         window.location.href = task.task.link;
       }
     }
+    tg.HapticFeedback.impactOccurred("medium");
   };
 
   const [name_player, setName] = useState<string>("");
@@ -99,6 +103,7 @@ export default function SlidingTasks({
         setRegion("by");
         setPhone("");
         onClose();
+        tg.HapticFeedback.impactOccurred("medium");
       },
     },
     queryClient
@@ -122,7 +127,7 @@ export default function SlidingTasks({
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-
+    tg.HapticFeedback.impactOccurred("medium");
     if (name_player && phone && country) {
       infoDataUser.mutate({ tg_id, name_player, country, phone });
     }

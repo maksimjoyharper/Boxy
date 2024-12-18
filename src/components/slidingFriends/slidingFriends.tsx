@@ -2,6 +2,7 @@ import SlidingPanel from "../../ui/SlidingPanel/SlidingPanel";
 import friendsInvite from "../../assets/png/friends__invite.png";
 import style from "./slidingFriends.module.scss";
 import { HeaderCoinSvg } from "../../assets/svg/HeaderCoinSvg";
+import { useTelegram } from "../../hooks/telegram/telegram";
 
 interface ISliding {
   isOpen: boolean;
@@ -16,6 +17,7 @@ export const SlidingFriends = ({
   fullHeight,
   initialHeight,
 }: ISliding) => {
+  const { tg } = useTelegram();
   return (
     <SlidingPanel
       initialHeight={initialHeight}
@@ -37,7 +39,13 @@ export const SlidingFriends = ({
           <HeaderCoinSvg />
           <span className={style.count_coin}>500</span>
         </p>
-        <button onClick={onClose} className={style.sliding__button}>
+        <button
+          onClick={() => {
+            onClose();
+            tg.HapticFeedback.impactOccurred("light");
+          }}
+          className={style.sliding__button}
+        >
           Ура!
         </button>
       </div>

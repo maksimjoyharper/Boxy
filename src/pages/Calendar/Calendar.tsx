@@ -19,7 +19,7 @@ interface ICalendar {
 
 const Calendar = ({ isOpen, onClose }: ICalendar) => {
   const user = useSelector(getUser);
-  const { tg_id } = useTelegram();
+  const { tg, tg_id } = useTelegram();
 
   const calendarMutation = useMutation(
     {
@@ -32,6 +32,7 @@ const Calendar = ({ isOpen, onClose }: ICalendar) => {
   const handleFetch = (tg_id: string) => {
     calendarMutation.mutate({ tg_id });
     onClose();
+    tg.HapticFeedback.impactOccurred("medium");
   };
 
   return (

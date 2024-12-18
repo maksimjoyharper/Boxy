@@ -8,6 +8,7 @@ import style from "./homeNavigation.module.scss";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { HomeTickets } from "./homeTickets";
+import { useTelegram } from "../../hooks/telegram/telegram";
 
 interface IHome {
   id: number;
@@ -48,12 +49,19 @@ const homeArr: IHome[] = [
 
 export const HomeNavigation = () => {
   const user = useSelector(getUser);
+  const { tg } = useTelegram();
 
   return (
     <ul className={style.home__grid}>
       {homeArr.map((elem) => (
         <li key={elem.id}>
-          <Link className={style.home__link} to={elem.path}>
+          <Link
+            onClick={() => {
+              tg.HapticFeedback.impactOccurred("medium");
+            }}
+            className={style.home__link}
+            to={elem.path}
+          >
             {elem.title === "Лидерборд" && (
               <p className={style.home__label}>#{user?.rank}</p>
             )}

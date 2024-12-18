@@ -2,6 +2,7 @@ import style from "./leaderboardItem.module.scss";
 import avatar from "../../assets/png/avatar.png";
 import { LeaderboardGiftSvg } from "../../assets/svg/LeaderboardGiftSvg";
 import iconCoin from "../../assets/webp/coin.webp";
+import { useTelegram } from "../../hooks/telegram/telegram";
 
 interface ILeaderboardItem {
   id: number;
@@ -18,6 +19,7 @@ export const LeaderboardItem = ({
   index,
   openModal,
 }: ILeaderboardItem) => {
+  const { tg } = useTelegram();
   return (
     <li
       className={
@@ -30,7 +32,13 @@ export const LeaderboardItem = ({
       <span className={style.leaderboard__index}>{index}</span>
       <img className={style.leaderboard__avatar} src={avatar} alt="avatar" />
       {index === 1 && (
-        <button onClick={openModal} className={style.leaderboard__gift}>
+        <button
+          onClick={() => {
+            openModal();
+            tg.HapticFeedback.impactOccurred("light");
+          }}
+          className={style.leaderboard__gift}
+        >
           <LeaderboardGiftSvg className={style.leaderboard__svg} />
         </button>
       )}

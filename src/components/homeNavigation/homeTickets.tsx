@@ -7,6 +7,7 @@ import {
   selectPremiumTicket,
   selectRegularTicket,
 } from "../../provider/StoreProvider/slice/currentTicketSlice";
+import { useTelegram } from "../../hooks/telegram/telegram";
 
 interface IHome {
   /* eslint-disable  @typescript-eslint/no-explicit-any */
@@ -24,6 +25,7 @@ function wordModificator(number: number) {
 }
 
 export const HomeTickets = ({ user }: IHome) => {
+  const { tg } = useTelegram();
   const [selectedTicket, setSelectedTicket] = useState("regular");
   const dispatch = useDispatch();
   useEffect(() => {
@@ -51,6 +53,7 @@ export const HomeTickets = ({ user }: IHome) => {
           }}
           onClick={() => {
             dispatch(selectPremiumTicket(false));
+            tg.HapticFeedback.impactOccurred("medium");
           }}
           name="tickets"
           type="radio"
@@ -76,6 +79,7 @@ export const HomeTickets = ({ user }: IHome) => {
           }}
           onClick={() => {
             dispatch(selectRegularTicket(true));
+            tg.HapticFeedback.impactOccurred("medium");
           }}
           id="tickets"
           name="tickets"

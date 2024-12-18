@@ -7,13 +7,14 @@ import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import Calendar from "../Calendar/Calendar";
 import { Onboarding } from "../../components/onboarding";
+import { useTelegram } from "../../hooks/telegram/telegram";
 
 export default function Layout() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenOnb, setIsOpenOnb] = useState(false);
   const user = useSelector(getUser);
-
+  const { tg } = useTelegram();
   useEffect(() => {
     if (user?.instruction) {
       setIsOpenOnb(true);
@@ -27,10 +28,12 @@ export default function Layout() {
   }, [user]);
 
   const handleClose = () => {
+    tg.HapticFeedback.impactOccurred("light");
     setIsOpen(false);
   };
 
   const handleCloseOnb = () => {
+    tg.HapticFeedback.impactOccurred("light");
     setIsOpenOnb(false);
   };
 

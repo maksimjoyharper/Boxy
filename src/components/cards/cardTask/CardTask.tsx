@@ -6,6 +6,7 @@ import { getImgTask } from "../../../features/getImgTask";
 import SlidingTasks from "../../slidingTasks/slidingTasks";
 import iconLock from "../../../assets/png/task/lock.png";
 import { useMediaQuery } from "react-responsive";
+import { useTelegram } from "../../../hooks/telegram/telegram";
 
 type CardTaskProps = {
   task: fetchTasksProps;
@@ -13,6 +14,7 @@ type CardTaskProps = {
 };
 
 export default function CardTask({ task, allTasks }: CardTaskProps) {
+  const { tg } = useTelegram();
   const [icon, setIcon] = useState<string>();
   const [isOpen, setIsOpen] = useState(false);
   const mediaQuery = useMediaQuery({
@@ -21,6 +23,7 @@ export default function CardTask({ task, allTasks }: CardTaskProps) {
 
   const handleOpen = () => {
     const firstTask = allTasks[0].completed;
+    tg.HapticFeedback.impactOccurred("medium");
 
     if (!firstTask && task.task.id === 1) {
       setIsOpen(true);
@@ -38,6 +41,7 @@ export default function CardTask({ task, allTasks }: CardTaskProps) {
 
   const handleClose = () => {
     setIsOpen(false);
+    tg.HapticFeedback.impactOccurred("medium");
   };
 
   useEffect(() => {
