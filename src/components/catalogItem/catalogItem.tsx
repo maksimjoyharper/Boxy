@@ -77,9 +77,7 @@ export const CatalogItem = memo(
           {price !== 0 && <p className={style.catalog__prof}>{prof}</p>}
           <h2 className={style.catalog__info}>{name}</h2>
         </div>
-
         <span className={style.catalog__profession}>{description}</span>
-
         <img className={style.catalog__img} src={icon} alt="предмет каталога" />
       </li>
     );
