@@ -1,6 +1,6 @@
 import style from "./Header.module.scss";
 import logo from "../../assets/webp/logo.webp";
-import avatar from "../../assets/webp/avatar.webp";
+// import avatar from "../../assets/webp/avatar.webp";
 import { HeaderCoinSvg } from "../../assets/svg/HeaderCoinSvg";
 import { useQuery } from "@tanstack/react-query";
 import { fetchUser } from "../../api/fetchUser/fetchUser";
@@ -18,7 +18,7 @@ import { fetchUserProps } from "../../types/userType";
 import classNames from "classnames";
 
 export const Header = () => {
-  const { tg, tg_id, userName } = useTelegram();
+  const { tg, tg_id, userName, avatar } = useTelegram();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = new URLSearchParams(useLocation().search);
@@ -97,7 +97,7 @@ export const Header = () => {
     <header>
       <ul className={style.header__list}>
         <li>
-          <img width={34} height={34} src={avatar} alt="avatar" />
+          <img className={style.avatar} src={avatar} alt="avatar" />
           <span
             className={
               userInfo && userInfo.name.length >= 10 ? style.fz : undefined
