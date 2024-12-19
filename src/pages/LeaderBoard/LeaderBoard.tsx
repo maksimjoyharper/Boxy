@@ -12,15 +12,17 @@ import { LeaderboardItem } from "../../components/leaderboardItem/LeaderboardIte
 
 const Leaderboard = () => {
   const user = useSelector(getUser);
-  const { tg_id } = useTelegram();
+  const { tg, tg_id } = useTelegram();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClose = () => {
     setIsOpen(false);
+    tg.HapticFeedback.impactOccurred("light");
   };
 
   const handleOpen = () => {
     setIsOpen(true);
+    tg.HapticFeedback.impactOccurred("light");
   };
 
   const { data: leader } = useQuery(

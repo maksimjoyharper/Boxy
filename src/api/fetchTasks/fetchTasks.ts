@@ -49,6 +49,16 @@ export function fetchTgTask(tg_id: string) {
     });
 }
 
+export const taskCheckTg = (tg_id: string, task_dop_name: string) => {
+  return axios
+    .post(`${api_url}/api/tasks_tg/`, {
+      tg_id: tg_id,
+      task_dop_name: task_dop_name,
+    })
+    .then((response) => response.data)
+    .catch((error) => error);
+};
+
 export const startTask = (tg_id: string, dop_name: string) => {
   return axios
     .post(`${api_url}/api/tasks/start/${tg_id}/${dop_name}/`)

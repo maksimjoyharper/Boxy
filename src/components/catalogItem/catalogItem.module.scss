@@ -66,7 +66,9 @@
   position: absolute;
   bottom: 5%;
   right: 7%;
+  max-width: 100px;
   align-self: flex-end;
+  text-align: center;
   font-size: 13.11px;
   font-weight: 400;
   line-height: 18.16px;
@@ -82,6 +84,23 @@
   line-height: 18.16px;
   letter-spacing: -0.07868421077728271px;
   color: #fff;
+}
+
+.catalog_compl_btn {
+  position: absolute;
+  top: 30%;
+  border-radius: 30px;
+  border: 1px solid #dbe2ff;
+
+  width: 145px;
+  height: 30px;
+  background: none;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  text-align: center;
+  color: #dbe2ff;
+  opacity: 0.7;
 }
 
 @media (max-width: 390px) {

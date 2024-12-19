@@ -1,9 +1,11 @@
 import style from "./PageUI.module.scss";
-import avatar from "../../assets/png/avatar.png";
+// import avatar from "../../assets/png/avatar.png";
 import { ReactNode } from "react";
 import { LeaderboardGiftSvg } from "../../assets/svg/LeaderboardGiftSvg";
 import classNames from "classnames";
 import iconCoin from "../../assets/webp/coin.webp";
+import { useTelegram } from "../../hooks/telegram/telegram";
+import { formatCoins } from "../../features/formatNumber";
 
 interface IPage {
   title: string;
@@ -30,6 +32,7 @@ export const PageUI: React.FC<IPage> = ({
   coins,
   isOpen,
 }) => {
+  const { avatar } = useTelegram();
   return (
     <section className={className}>
       <h1 className={`${style.page__title} ${className__title}`}>{title}</h1>
@@ -64,7 +67,7 @@ export const PageUI: React.FC<IPage> = ({
                 src={iconCoin}
                 alt=""
               />
-              <span>{coins}</span>
+              <span>{coins && formatCoins(coins)}</span>
             </p>
           </div>
           <p className={style.page__place}>{place}</p>

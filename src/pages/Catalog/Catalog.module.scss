@@ -47,8 +47,8 @@
 }
 
 .catalog__list {
-  padding-bottom: 20px;
-  overflow: hidden auto;
+  margin-bottom: 30px;
+  // overflow: hidden auto;
 }
 
 .category__caption {
@@ -85,4 +85,33 @@
   letter-spacing: 0.02em;
   text-align: center;
   color: #fff;
+}
+
+.catalog__info1 {
+  margin-bottom: 25px;
+  padding: 22px;
+  min-height: 148px;
+  border-radius: 36px;
+  color: #191e26;
+  background-color: #dbe2ff;
+  background-image: url("../../assets/webp/sliding__prize.webp");
+  background-repeat: no-repeat;
+  background-position: right 12px bottom 10px;
+  background-size: 95px 95px;
+}
+
+.info__title {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 17.21px;
+  letter-spacing: 0.02em;
+}
+
+.info__label {
+  margin-bottom: 20px;
+  max-width: 207px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 13.2px;
 }

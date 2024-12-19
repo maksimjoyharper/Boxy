@@ -2,6 +2,7 @@ import {
   checkTask,
   fetchTasksProps,
   startTask,
+  taskCheckTg,
   taskInfo,
 } from "../../api/fetchTasks/fetchTasks";
 import SlidingPanel from "../../ui/SlidingPanel/SlidingPanel";
@@ -34,17 +35,15 @@ export default function SlidingTasks({
   onClose,
   task,
 }: ISliding) {
-  const { tg_id } = useTelegram();
+  const { tg, tg_id } = useTelegram();
 
   const subscribeOnLink = useMutation(
     {
       mutationFn: (data: { tg_id: string; don_name: string }) =>
         startTask(data.tg_id, data.don_name),
-      onSuccess: () => {
-        if (task.task.link) {
-          setTimeout(() => {
-            window.location.href = task.task.link;
-          }, 1500);
+      onSuccess: (data) => {
+        if (data.start_time) {
+          window.location.href = task.task.link;
         }
       },
     },
@@ -58,14 +57,37 @@ export default function SlidingTasks({
       onSuccess: () => {
         onClose();
         queryClient.invalidateQueries({ queryKey: ["tasks"] });
+        tg.HapticFeedback.impactOccurred("medium");
+      },
+    },
+    queryClient
+  );
+
+  const checkSubscribeTg = useMutation(
+    {
+      mutationFn: (data: { tg_id: string; dop_name: string }) =>
+        taskCheckTg(data.tg_id, data.dop_name),
+      onSuccess: (data) => {
+        if (data.message == "Пользователь не подписан на канал.") {
+          onClose();
+        } else {
+          queryClient.invalidateQueries({ queryKey: ["tasks"] });
+          onClose();
+        }
       },
     },
     queryClient
   );
 
   const handleSubscribe = () => {
-    if (task.task.link) {
+    if (task.task.link && task.task.name !== "Подписка на телеграм") {
+      tg.HapticFeedback.impactOccurred("medium");
       subscribeOnLink.mutate({ tg_id: tg_id, don_name: task.task.dop_name });
+    } else {
+      if (task.task.link) {
+        window.location.href = task.task.link;
+        tg.HapticFeedback.impactOccurred("medium");
+      }
     }
   };
 
@@ -73,10 +95,13 @@ export default function SlidingTasks({
     if (task.start_time) {
       checkSubscribe.mutate({ tg_id: tg_id, dop_name: task.task.dop_name });
     } else {
-      if (task.task.link) {
+      if (task.task.name === "Подписка на телеграм") {
+        checkSubscribeTg.mutate({ tg_id: tg_id, dop_name: task.task.dop_name });
+      } else {
         window.location.href = task.task.link;
       }
     }
+    tg.HapticFeedback.impactOccurred("medium");
   };
 
   const [name_player, setName] = useState<string>("");
@@ -99,6 +124,7 @@ export default function SlidingTasks({
         setRegion("by");
         setPhone("");
         onClose();
+        tg.HapticFeedback.impactOccurred("medium");
       },
     },
     queryClient
@@ -122,7 +148,7 @@ export default function SlidingTasks({
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-
+    tg.HapticFeedback.impactOccurred("medium");
     if (name_player && phone && country) {
       infoDataUser.mutate({ tg_id, name_player, country, phone });
     }

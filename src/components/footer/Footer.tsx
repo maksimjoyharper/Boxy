@@ -9,8 +9,10 @@ import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { FooterPopover } from "./footerPopover";
 import { getCurrTickets } from "../../provider/StoreProvider/selectors/getCurrTicket";
 import { SlidingNotTickets } from "../slidingNotTickets/slidingNotTickets";
+import { useTelegram } from "../../hooks/telegram/telegram";
 
 export const Footer = () => {
+  const { tg } = useTelegram();
   const [isOpen, setIsOpen] = useState(false);
   const [isNotTicket, setIsNotTicket] = useState(false);
   const user = useSelector(getUser);
@@ -27,10 +29,12 @@ export const Footer = () => {
       } else if (user.premium_tickets >= 0 && ticket === false) {
         setIsNotTicket(true);
       }
+      tg.HapticFeedback.impactOccurred("medium");
     }
   };
 
   const handleClose = () => {
+    tg.HapticFeedback.impactOccurred("medium");
     setIsOpen(false);
     setIsNotTicket(false);
   };
@@ -46,7 +50,12 @@ export const Footer = () => {
               </button>
             </li>
             <li>
-              <Link to={"/"}>
+              <Link
+                onClick={() => {
+                  tg.HapticFeedback.impactOccurred("medium");
+                }}
+                to={"/"}
+              >
                 <img
                   width={248}
                   height={96}
@@ -72,6 +81,7 @@ export const Footer = () => {
         initialHeight={"40%"}
         isOpen={isNotTicket}
         onClose={handleClose}
+        currentTicket={ticket}
       />
     </>
   );

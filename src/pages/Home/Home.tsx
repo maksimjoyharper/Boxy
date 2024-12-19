@@ -9,8 +9,10 @@ import { SlidingNotTickets } from "../../components/slidingNotTickets/slidingNot
 import { getCurrTickets } from "../../provider/StoreProvider/selectors/getCurrTicket";
 import { useMediaQuery } from "react-responsive";
 import classNames from "classnames";
+import { useTelegram } from "../../hooks/telegram/telegram";
 
 const Home = () => {
+  const { tg } = useTelegram();
   const [isOpen, setIsOpen] = useState(false);
   const [isNotTicket, setIsNotTicket] = useState(false);
   const user = useSelector(getUser);
@@ -30,12 +32,14 @@ const Home = () => {
       } else if (user.premium_tickets >= 0 && ticket === false) {
         setIsNotTicket(true);
       }
+      tg.HapticFeedback.impactOccurred("medium");
     }
   };
 
   const handleClose = () => {
     setIsOpen(false);
     setIsNotTicket(false);
+    tg.HapticFeedback.impactOccurred("medium");
   };
 
   return (
@@ -65,6 +69,7 @@ const Home = () => {
         initialHeight={"40%"}
         isOpen={isNotTicket}
         onClose={handleClose}
+        currentTicket={ticket}
       />
     </>
   );

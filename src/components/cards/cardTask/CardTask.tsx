@@ -6,6 +6,7 @@ import { getImgTask } from "../../../features/getImgTask";
 import SlidingTasks from "../../slidingTasks/slidingTasks";
 import iconLock from "../../../assets/png/task/lock.png";
 import { useMediaQuery } from "react-responsive";
+import { useTelegram } from "../../../hooks/telegram/telegram";
 
 type CardTaskProps = {
   task: fetchTasksProps;
@@ -13,6 +14,7 @@ type CardTaskProps = {
 };
 
 const CardTask = memo(({ task, allTasks }: CardTaskProps) => {
+  const { tg } = useTelegram();
   const [icon, setIcon] = useState<string>();
   const [isOpen, setIsOpen] = useState(false);
   const mediaQuery = useMediaQuery({
@@ -24,12 +26,14 @@ const CardTask = memo(({ task, allTasks }: CardTaskProps) => {
 
     if (!firstTask && task.task.id === 1) {
       setIsOpen(true);
+      tg.HapticFeedback.impactOccurred("medium");
     } else {
       setIsOpen(false);
     }
 
     if (task.task.id !== 1 && firstTask) {
       setIsOpen(true);
+      tg.HapticFeedback.impactOccurred("medium");
     }
     if (task.task.id === 2) {
       setIsOpen(false);
@@ -38,6 +42,7 @@ const CardTask = memo(({ task, allTasks }: CardTaskProps) => {
 
   const handleClose = () => {
     setIsOpen(false);
+    tg.HapticFeedback.impactOccurred("medium");
   };
 
   useEffect(() => {
@@ -72,7 +77,7 @@ const CardTask = memo(({ task, allTasks }: CardTaskProps) => {
       <SlidingTasks
         isOpen={isOpen}
         onClose={handleClose}
-        initialHeight={mediaQuery ? "100%" : "70%"}
+        initialHeight={mediaQuery ? "100%" : "90%"}
         fullHeight={"100vh"}
         task={task}
       />

@@ -1,6 +1,6 @@
 import style from "./Header.module.scss";
 import logo from "../../assets/webp/logo.webp";
-import avatar from "../../assets/webp/avatar.webp";
+// import avatar from "../../assets/webp/avatar.webp";
 import { HeaderCoinSvg } from "../../assets/svg/HeaderCoinSvg";
 import { useQuery } from "@tanstack/react-query";
 import { fetchUser } from "../../api/fetchUser/fetchUser";
@@ -16,9 +16,10 @@ import {
 } from "../../api/fetchFriends/fetchFriends";
 import { fetchUserProps } from "../../types/userType";
 import classNames from "classnames";
+import { formatCoins } from "../../features/formatNumber";
 
 export const Header = () => {
-  const { tg_id, userName } = useTelegram();
+  const { tg, tg_id, userName, avatar } = useTelegram();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = new URLSearchParams(useLocation().search);
@@ -90,13 +91,14 @@ export const Header = () => {
 
   const handleNavigate = () => {
     navigate("tasks");
+    tg.HapticFeedback.impactOccurred("medium");
   };
 
   return (
     <header>
       <ul className={style.header__list}>
         <li>
-          <img width={34} height={34} src={avatar} alt="avatar" />
+          <img className={style.avatar} src={avatar} alt="avatar" />
           <span
             className={
               userInfo && userInfo.name.length >= 10 ? style.fz : undefined
@@ -113,7 +115,7 @@ export const Header = () => {
             className={classNames(style.header__button, style.reverse)}
             onClick={handleNavigate}
           >
-            <span>{userInfo?.points}</span>
+            <span>{userInfo && formatCoins(userInfo?.points)}</span>
             <HeaderCoinSvg />
           </button>
         </li>

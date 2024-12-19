@@ -4,8 +4,10 @@ import { footerNavArr } from "./footerNavData";
 import { FooterMenuSvg } from "../../assets/svg/FooterMenuSvg";
 import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
+import { useTelegram } from "../../hooks/telegram/telegram";
 
 export const FooterPopover = () => {
+  const { tg } = useTelegram();
   const [isOpenPopover, setIsOpenPopover] = useState(false);
   const popoverRef = useRef<HTMLUListElement>(null);
 
@@ -35,6 +37,7 @@ export const FooterPopover = () => {
         });
       }
     }
+    tg.HapticFeedback.impactOccurred("medium");
   };
 
   return (
@@ -58,7 +61,13 @@ export const FooterPopover = () => {
             <ul className={style.popover__list} ref={popoverRef}>
               {footerNavArr.map((element) => (
                 <li key={element.id}>
-                  <Link className={style.popover__link} to={element.path}>
+                  <Link
+                    onClick={() => {
+                      tg.HapticFeedback.impactOccurred("medium");
+                    }}
+                    className={style.popover__link}
+                    to={element.path}
+                  >
                     {element.icon}
                     <span>{element.label}</span>
                   </Link>

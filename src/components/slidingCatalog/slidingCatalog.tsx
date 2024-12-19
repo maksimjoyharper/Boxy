@@ -3,6 +3,7 @@ import style from "./slidingCatalog.module.scss";
 import slide from "../../assets/webp/sliding__catalog.webp";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
+import { useTelegram } from "../../hooks/telegram/telegram";
 
 interface ISliding {
   isOpen: boolean;
@@ -18,7 +19,7 @@ export const SlidingCatalog = ({
   fullHeight,
 }: ISliding) => {
   const user = useSelector(getUser);
-
+  const { tg } = useTelegram();
   return (
     <SlidingPanel
       darkened
@@ -40,7 +41,13 @@ export const SlidingCatalog = ({
           *Важно: когда ты тратишь баллы в магазине, твой рейтинг в лидерборде
           не меняется!
         </p>
-        <button onClick={onClose} className={style.sliding__button}>
+        <button
+          onClick={() => {
+            onClose();
+            tg.HapticFeedback.impactOccurred("medium");
+          }}
+          className={style.sliding__button}
+        >
           Понятно
         </button>
       </div>

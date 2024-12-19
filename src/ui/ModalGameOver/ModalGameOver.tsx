@@ -17,7 +17,6 @@ export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
   const navigate = useNavigate();
   const { tg, tg_id } = useTelegram();
   const ticket = useSelector(getCurrTickets);
-  // const user = useSelector(getUser);
 
   const dataMutate: fetchGameProps = {
     tg_id: tg_id,
@@ -35,10 +34,8 @@ export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
     },
     queryClient
   );
-  console.log(ticket);
 
   const backHomePage = () => {
-    tg.HapticFeedback.impactOccurred("light");
     if (ticket) {
       useGameOverMutation.mutate(dataMutate, {
         onSuccess: () => {
@@ -54,6 +51,7 @@ export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
         },
       });
     }
+    tg.HapticFeedback.impactOccurred("light");
   };
   return (
     <div className={style.container}>

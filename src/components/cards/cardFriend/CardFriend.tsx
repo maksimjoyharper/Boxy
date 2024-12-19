@@ -32,23 +32,18 @@ export default function CardFriend({
         queryClient.invalidateQueries({ queryKey: ["friends"] });
         if (isOpen) {
           isOpen(true);
+          tg.HapticFeedback.impactOccurred("light");
         }
-      },
-      onError: (data) => {
-        console.log(data);
       },
     },
     queryClient
   );
 
   const onClick = () => {
-    // if (isModalError) {
     getPrize.mutate({
       tg_id: tg_id,
       new_player_id: friends.tg_id,
     });
-    // }
-    // setIsVisionModalPrize(true);
 
     tg.HapticFeedback.impactOccurred("light");
   };
