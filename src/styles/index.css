@@ -1,22 +1,8 @@
-@font-face {
-  font-family: "Graphic";
-  font-style: normal;
-  font-weight: 400;
-  src: local("Graphic"), url("./fonts/Graphik-Regular.woff2") format("woff2"),
-    url("./fonts/Graphik-Regular.woff") format("woff");
-}
-
-@font-face {
-  font-family: "Graphic";
-  font-style: normal;
-  font-weight: 700;
-  src: local("Graphic"), url("./fonts/Graphik-Bold.woff2") format("woff2"),
-    url("./fonts/Graphik-Bold.woff") format("woff");
-}
+@import url("./normalize.css");
+@import url("./fonts.scss");
 
 :root {
   font-family: "Graphic", Arial, sans-serif;
-  font-weight: 400;
   color-scheme: light dark;
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
@@ -27,6 +13,7 @@
 
 html {
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 *,
@@ -39,6 +26,8 @@ body {
   margin: 0;
   width: 100vw;
   min-width: 320px;
+  overflow: hidden;
+  font-weight: 400;
 }
 
 h1,
