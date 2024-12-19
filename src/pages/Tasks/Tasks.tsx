@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import style from "./Tasks.module.scss";
 import {
@@ -16,7 +16,7 @@ export default function Tasks() {
   const [zadaniya, setZadaniya] = useState<fetchTasksProps[]>([]);
   const [podpiska, setPodpiska] = useState<fetchTasksProps[]>([]);
 
-  const { data } = useQuery(
+  const { data } = useSuspenseQuery(
     {
       queryFn: () => fetchAllTasks(tg_id),
       queryKey: ["tasks"],

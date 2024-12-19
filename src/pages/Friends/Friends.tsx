@@ -1,6 +1,6 @@
 import style from "./Friends.module.scss";
 import { PageUI } from "../../ui/PageUI/PageUI";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import {
   fetchAllFriends,
   fetchFriendsProps,
@@ -37,7 +37,7 @@ export default function Friends() {
     queryClient
   );
 
-  const { data } = useQuery(
+  const { data } = useSuspenseQuery(
     {
       queryKey: ["friends"],
       queryFn: () => fetchAllFriends(tg_id),

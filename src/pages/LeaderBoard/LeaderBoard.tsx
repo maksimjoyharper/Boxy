@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { PageUI } from "../../ui/PageUI/PageUI";
 import { fetchLeaderboard } from "../../api/fetchLeaderboard/fetchLeaderboard";
 import { queryClient } from "../../api/queryClient";
@@ -25,7 +25,7 @@ const Leaderboard = () => {
     tg.HapticFeedback.impactOccurred("light");
   };
 
-  const { data: leader } = useQuery(
+  const { data: leader } = useSuspenseQuery(
     {
       queryFn: () => fetchLeaderboard(tg_id),
       queryKey: ["leaderboard"],

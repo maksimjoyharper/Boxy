@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import style from "./Catalog.module.scss";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import { fetchCatalog } from "../../api/fetchCatalog/fetchCatalog";
@@ -28,7 +28,7 @@ const Catalog = () => {
     tg.HapticFeedback.impactOccurred("medium");
   };
 
-  const { data: catalog } = useQuery(
+  const { data: catalog } = useSuspenseQuery(
     {
       queryFn: () => fetchCatalog(tg_id),
       queryKey: ["catalog"],

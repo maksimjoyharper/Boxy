@@ -1,12 +1,12 @@
 .catalog__item {
   margin-bottom: 20px;
   padding: 20px 15px;
-  min-height: calc(185px + 1.2rem);
+  min-height: 185px;
   min-width: 345px;
   display: flex;
   justify-content: space-between;
   color: #fff;
-  background-image: url("../../assets/webp/test.svg");
+  background-image: url("../../assets/webp/catalog__item.webp");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center center;
@@ -101,10 +101,4 @@
   text-align: center;
   color: #dbe2ff;
   opacity: 0.7;
-}
-
-@media (max-width: 390px) {
-  .catalog__item {
-    min-height: 185px;
-  }
 }
