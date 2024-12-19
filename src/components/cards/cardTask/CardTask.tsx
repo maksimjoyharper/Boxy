@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { fetchTasksProps } from "../../../api/fetchTasks/fetchTasks";
 import iconCoin from "../../../assets/webp/coin.webp";
 import style from "./CardTask.module.scss";
@@ -13,7 +13,7 @@ type CardTaskProps = {
   allTasks: fetchTasksProps[];
 };
 
-export default function CardTask({ task, allTasks }: CardTaskProps) {
+const CardTask = memo(({ task, allTasks }: CardTaskProps) => {
   const { tg } = useTelegram();
   const [icon, setIcon] = useState<string>();
   const [isOpen, setIsOpen] = useState(false);
@@ -83,4 +83,6 @@ export default function CardTask({ task, allTasks }: CardTaskProps) {
       />
     </>
   );
-}
+});
+
+export default CardTask;

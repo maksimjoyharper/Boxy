@@ -16,6 +16,7 @@ import {
 } from "../../api/fetchFriends/fetchFriends";
 import { fetchUserProps } from "../../types/userType";
 import classNames from "classnames";
+import { formatCoins } from "../../features/formatNumber";
 
 export const Header = () => {
   const { tg, tg_id, userName, avatar } = useTelegram();
@@ -114,7 +115,7 @@ export const Header = () => {
             className={classNames(style.header__button, style.reverse)}
             onClick={handleNavigate}
           >
-            <span>{userInfo?.points}</span>
+            <span>{userInfo && formatCoins(userInfo?.points)}</span>
             <HeaderCoinSvg />
           </button>
         </li>

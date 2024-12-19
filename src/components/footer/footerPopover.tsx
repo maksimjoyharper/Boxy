@@ -9,7 +9,7 @@ import { useTelegram } from "../../hooks/telegram/telegram";
 export const FooterPopover = () => {
   const { tg } = useTelegram();
   const [isOpenPopover, setIsOpenPopover] = useState(false);
-  const popoverRef = useRef<any>(null);
+  const popoverRef = useRef<HTMLUListElement>(null);
 
   const handleOpenPopover = () => {
     setIsOpenPopover((state) => !state);
