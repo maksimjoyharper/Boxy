@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import "./styles/App.css";
 import { Route, Routes } from "react-router-dom";
 import { useTelegram } from "./hooks/telegram/telegram";
+import { Loader } from "./components/loader/loader";
 
 const Layout = lazy(() => import("./pages/Layout/Layout"));
 const Game = lazy(() => import("./pages/Game/Game"));
@@ -17,7 +18,7 @@ function App() {
 
   return (
     <>
-      <Suspense fallback={<div>Loading</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index path="/" element={<Home />} />
