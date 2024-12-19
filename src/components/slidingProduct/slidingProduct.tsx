@@ -31,7 +31,6 @@ export default function SlidingProduct({
       onSuccess: (data) => {
         if (data.message === "Продукт успешно куплен") {
           window.location.href = product.link;
-          tg.HapticFeedback.impactOccurred("medium");
         }
       },
       onError: () => {

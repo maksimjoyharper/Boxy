@@ -47,13 +47,14 @@ export const CatalogItem = ({
 
   useEffect(() => {
     getImgCatalog(name, setIcon);
+    console.log(is_accessible);
   }, [name]);
 
   const handleOpenLink = () => {
     if (!is_accessible) {
       setIsOpen(true);
       tg.HapticFeedback.impactOccurred("medium");
-    }
+    } else return;
   };
 
   const handleClose = () => {
@@ -65,10 +66,19 @@ export const CatalogItem = ({
     <>
       <li onClick={handleOpenLink} key={id} className={style.catalog__item}>
         <div className={style.catalog__upper}>
-          {is_purchased ? (
-            <button disabled className={style.catalog_compl_btn}>
-              Приобретено
-            </button>
+          {is_accessible === true ? (
+            <>
+              {id == "4" || id == "5" ? (
+                <p className={style.catalog__price}>
+                  {product.id == "4" && "BOXY5"}
+                  {product.id == "5" && "BOXY10"}
+                </p>
+              ) : (
+                <button disabled className={style.catalog_compl_btn}>
+                  Приобретено
+                </button>
+              )}
+            </>
           ) : (
             <p
               style={{ display: "flex", alignItems: "center", gap: "8px" }}

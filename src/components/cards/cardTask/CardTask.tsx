@@ -23,16 +23,17 @@ export default function CardTask({ task, allTasks }: CardTaskProps) {
 
   const handleOpen = () => {
     const firstTask = allTasks[0].completed;
-    tg.HapticFeedback.impactOccurred("medium");
 
     if (!firstTask && task.task.id === 1) {
       setIsOpen(true);
+      tg.HapticFeedback.impactOccurred("medium");
     } else {
       setIsOpen(false);
     }
 
     if (task.task.id !== 1 && firstTask) {
       setIsOpen(true);
+      tg.HapticFeedback.impactOccurred("medium");
     }
     if (task.task.id === 2) {
       setIsOpen(false);
@@ -76,7 +77,7 @@ export default function CardTask({ task, allTasks }: CardTaskProps) {
       <SlidingTasks
         isOpen={isOpen}
         onClose={handleClose}
-        initialHeight={mediaQuery ? "100%" : "70%"}
+        initialHeight={mediaQuery ? "100%" : "90%"}
         fullHeight={"100vh"}
         task={task}
       />
