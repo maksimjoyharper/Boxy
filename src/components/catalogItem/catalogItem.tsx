@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import style from "./catalogItem.module.scss";
 import { getImgCatalog } from "../../features/getImgCatalog";
 import coin from "../../assets/webp/coin.webp";
@@ -20,64 +20,68 @@ interface ICatalog {
   currentCoin: number | undefined;
 }
 
-export const CatalogItem = ({
-  id,
-  name,
-  price,
-  description,
-  prof,
-  link,
-  currentCoin,
-  is_accessible,
-}: ICatalog) => {
-  const { tg_id } = useTelegram();
-  const [icon, setIcon] = useState<string>();
-  useEffect(() => {
-    getImgCatalog(name, setIcon);
-  }, [name]);
+export const CatalogItem = memo(
+  ({
+    id,
+    name,
+    price,
+    description,
+    prof,
+    link,
+    currentCoin,
+    is_accessible,
+  }: ICatalog) => {
+    const { tg_id } = useTelegram();
+    const [icon, setIcon] = useState<string>();
+    useEffect(() => {
+      getImgCatalog(name, setIcon);
+    }, [name]);
 
-  const buyProduct = useMutation(
-    {
-      mutationFn: (data: { tg_id: string; product_id: string }) =>
-        fetchBuyProduct(data.tg_id, data.product_id),
-      onSuccess: (data) => {
-        if (data.message === "Продукт успешно куплен") {
-          window.location.href = link;
-        }
+    const buyProduct = useMutation(
+      {
+        mutationFn: (data: { tg_id: string; product_id: string }) =>
+          fetchBuyProduct(data.tg_id, data.product_id),
+        onSuccess: (data) => {
+          if (data.message === "Продукт успешно куплен") {
+            window.location.href = link;
+          }
+        },
       },
-    },
-    queryClient
-  );
+      queryClient
+    );
 
-  const handleOpenLink = () => {
-    if (!is_accessible) {
-      if (currentCoin) {
-        if (currentCoin >= +price) {
-          buyProduct.mutate({ tg_id: tg_id, product_id: id });
+    const handleOpenLink = () => {
+      if (!is_accessible) {
+        if (currentCoin) {
+          if (currentCoin >= +price) {
+            buyProduct.mutate({ tg_id: tg_id, product_id: id });
+          }
         }
       }
-    }
-  };
+    };
 
-  return (
-    <li onClick={handleOpenLink} key={id} className={style.catalog__item}>
-      <div className={style.catalog__upper}>
-        <p
-          style={{ display: "flex", alignItems: "center", gap: "8px" }}
-          className={style.catalog__price}
-        >
-          {price === 0 && "Бесплатно"}
-          {price !== 0 && <img width={43} height={43} src={coin} alt="coin" />}
+    return (
+      <li onClick={handleOpenLink} key={id} className={style.catalog__item}>
+        <div className={style.catalog__upper}>
+          <p
+            style={{ display: "flex", alignItems: "center", gap: "8px" }}
+            className={style.catalog__price}
+          >
+            {price === 0 && "Бесплатно"}
+            {price !== 0 && (
+              <img width={43} height={43} src={coin} alt="coin" />
+            )}
 
-          {price !== 0 && formatNumber(price)}
-        </p>
-        {price !== 0 && <p className={style.catalog__prof}>{prof}</p>}
-        <h2 className={style.catalog__info}>{name}</h2>
-      </div>
+            {price !== 0 && formatNumber(price)}
+          </p>
+          {price !== 0 && <p className={style.catalog__prof}>{prof}</p>}
+          <h2 className={style.catalog__info}>{name}</h2>
+        </div>
 
-      <span className={style.catalog__profession}>{description}</span>
+        <span className={style.catalog__profession}>{description}</span>
 
-      <img className={style.catalog__img} src={icon} alt="предмет каталога" />
-    </li>
-  );
-};
+        <img className={style.catalog__img} src={icon} alt="предмет каталога" />
+      </li>
+    );
+  }
+);

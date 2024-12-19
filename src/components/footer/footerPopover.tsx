@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 
 export const FooterPopover = () => {
   const [isOpenPopover, setIsOpenPopover] = useState(false);
-  const popoverRef = useRef<any>(null);
+  const popoverRef = useRef<HTMLUListElement>(null);
 
   const handleOpenPopover = () => {
     setIsOpenPopover((state) => !state);
