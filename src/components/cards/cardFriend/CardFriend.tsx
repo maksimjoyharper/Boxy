@@ -64,7 +64,11 @@ export default function CardFriend({
             alt=""
           />
           <p className={style.friends__coins}>
-            {friends && formatCoins(+friends?.points)}
+            {
+              (friends.points = NaN
+                ? friends && formatCoins(+friends?.points)
+                : "1.2kk")
+            }
           </p>
         </div>
       </div>
@@ -78,7 +82,8 @@ export default function CardFriend({
         </button>
       ) : (
         <span className={style.friends_reg_data}>
-          Приглашён {formatDate(friends.reg_data)}
+          Приглашён{" "}
+          {(friends.reg_data = NaN ? formatDate(friends.reg_data) : "10.10.24")}
         </span>
       )}
     </li>

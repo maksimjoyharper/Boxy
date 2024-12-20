@@ -14,6 +14,12 @@ import ModalRoute from "../../ui/ModalRoute/ModalRoute";
 import logo from "../../assets/webp/logo.webp";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import ModalGameOver from "../../ui/ModalGameOver/ModalGameOver";
+import { useMutation } from "@tanstack/react-query";
+import { queryClient } from "../../api/queryClient";
+import { fetchGame, fetchGameProps } from "../../api/fetchGame/fetchGame";
+import { useSelector } from "react-redux";
+import { getCurrTickets } from "../../provider/StoreProvider/selectors/getCurrTicket";
+import { Loader } from "../../components/loader/loader";
 
 export default function Game() {
   const [startGame, setStartGame] = useState(true);
@@ -22,7 +28,33 @@ export default function Game() {
   const [whiteLetter, setWhiteLetter] = useState<IWhiteLettArr[]>([]);
   const [blueLetter, setBlueLetter] = useState<IBlueLettArr[]>([]);
   const [flasks, setFlask] = useState<IFlask[]>([]);
-  const { tg } = useTelegram();
+  const { tg, tg_id } = useTelegram();
+  const ticket = useSelector(getCurrTickets);
+
+  const useGameMutation = useMutation(
+    {
+      mutationFn: (data: fetchGameProps) => fetchGame(data),
+    },
+    queryClient
+  );
+
+  const dataMutate: fetchGameProps = {
+    tg_id: tg_id,
+    tickets: 1,
+  };
+
+  const dataMutatePrem: fetchGameProps = {
+    tg_id: tg_id,
+    premium_tickets: 1,
+  };
+
+  useEffect(() => {
+    if (ticket) {
+      useGameMutation.mutate(dataMutate);
+    } else {
+      useGameMutation.mutate(dataMutatePrem);
+    }
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -35,9 +67,9 @@ export default function Game() {
         }));
         return [...prev, ...newElements];
       });
-    }, 800); // Добавляем новые элементы каждые 2 секунды
+    }, 800); // Добавляем новые  каждые 2 секунды
 
-    return () => clearInterval(interval); // Очищаем интервал при размонтировании
+    return () => clearInterval(interval); // Очищаем интервал
   }, []);
 
   const handleClick = (id: string) => {
@@ -48,39 +80,43 @@ export default function Game() {
 
   return (
     <ModalRoute>
-      <div className={style.falling_letters_container}>
-        <Timer time={timer} setTimer={setTimer} setIsVision={setStartGame} />
-        <img width={69} height={15} src={logo} className={style.logo} />
-        <PointCounter count={count} />
-        <img src={imgOpenBox} className={style.img_open_box} />
-        {startGame ? (
-          <>
-            {whiteLetter.map((letter) => (
-              <Letter
-                onClick={() => handleClick(letter.id)}
-                key={letter.id}
-                id={letter.id}
-                x={letter.x}
-                duration={letter.duration}
+      {useGameMutation.isPending ? (
+        <Loader />
+      ) : (
+        <div className={style.falling_letters_container}>
+          <Timer time={timer} setTimer={setTimer} setIsVision={setStartGame} />
+          <img width={69} height={15} src={logo} className={style.logo} />
+          <PointCounter count={count} />
+          <img src={imgOpenBox} className={style.img_open_box} />
+          {startGame ? (
+            <>
+              {whiteLetter.map((letter) => (
+                <Letter
+                  onClick={() => handleClick(letter.id)}
+                  key={letter.id}
+                  id={letter.id}
+                  x={letter.x}
+                  duration={letter.duration}
+                />
+              ))}
+              <BlueLetter
+                setCount={setCount}
+                blueLetter={blueLetter}
+                setBlueLetter={setBlueLetter}
               />
-            ))}
-            <BlueLetter
-              setCount={setCount}
-              blueLetter={blueLetter}
-              setBlueLetter={setBlueLetter}
-            />
-            <Flask setCount={setTimer} flasks={flasks} setFlask={setFlask} />
-            <Bomb
-              setCount={setCount}
-              setWhiteLetter={setWhiteLetter}
-              setBlueLetter={setBlueLetter}
-              setFlask={setFlask}
-            />
-          </>
-        ) : (
-          <ModalGameOver finalPoints={count} />
-        )}
-      </div>
+              <Flask setCount={setTimer} flasks={flasks} setFlask={setFlask} />
+              <Bomb
+                setCount={setCount}
+                setWhiteLetter={setWhiteLetter}
+                setBlueLetter={setBlueLetter}
+                setFlask={setFlask}
+              />
+            </>
+          ) : (
+            <ModalGameOver finalPoints={count} />
+          )}
+        </div>
+      )}
     </ModalRoute>
   );
 }

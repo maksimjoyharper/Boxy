@@ -37,8 +37,8 @@ export default function SlidingTasks({
 }: ISliding) {
   const { tg, tg_id } = useTelegram();
 
-  const openLink = (link: string) => {
-    tg.openLink(link, { try_instant_vew: true });
+  const openLink = (link: string): string => {
+    return tg.openLink(link, { try_instant_vew: true });
   };
 
   const subscribeOnLink = useMutation(
@@ -113,7 +113,7 @@ export default function SlidingTasks({
   const [country, setRegion] = useState<string>("by");
   const [phone, setPhone] = useState<string>("");
 
-  const [linkAgreem, setLinkAgreem] = useState<string>("");
+  const [linkAgreem, setLinkAgreem] = useState("");
 
   const infoDataUser = useMutation(
     {
@@ -212,7 +212,11 @@ export default function SlidingTasks({
               <img src={iconCheckbox} className={style.iconCheckbox} />
               <span className={style.agreement_text}>
                 Соглашаюсь с{" "}
-                <a className={style.link_agr} href={linkAgreem}>
+                <a
+                  className={style.link_agr}
+                  onClick={() => openLink(linkAgreem)}
+                  // href={openLink(linkAgreem)}
+                >
                   условиями передачи данных
                 </a>
               </span>

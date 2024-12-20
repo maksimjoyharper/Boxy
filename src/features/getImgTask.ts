@@ -9,21 +9,25 @@ import iconFirst from "../assets/png/task/imgFirstTask.png";
 
 export const getImgTask = (name: string, setIcon: (icon: string) => void) => {
   switch (name) {
-    case "Подписка на инстаграм":
+    case "instagram":
       return setIcon(iconInst);
-    case "Пригласи друга по реферальной ссылке":
+    case "friend":
       return setIcon(iconFriend);
-    case "Подписка на телеграм":
+    case "tg_by":
       return setIcon(iconTg);
-    case "Подпишись на бота Skillbox":
+    case "tg_kz":
+      return setIcon(iconTg);
+    case "tg_uz":
+      return setIcon(iconTg);
+    case "telegram_bot":
       return setIcon(iconS);
-    case "Посмотри видео на YouTube":
+    case "youtube_video":
       return setIcon(iconHeartY);
-    case "Посмотри вебинар":
+    case "webinar":
       return setIcon(iconWebinar);
-    case "Подписка на YouTube":
+    case "youtube":
       return setIcon(iconYotube);
-    case "Заполни анкету":
+    case "anketa":
       return setIcon(iconFirst);
   }
 };

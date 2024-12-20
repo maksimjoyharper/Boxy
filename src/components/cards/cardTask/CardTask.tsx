@@ -27,7 +27,7 @@ const CardTask = memo(({ task, allTasks }: CardTaskProps) => {
   const handleOpen = () => {
     const firstTask = allTasks[0].completed;
 
-    if (!firstTask && task.task.id === 1) {
+    if (!firstTask && task.task.dop_name === "anketa") {
       setIsOpen(true);
       tg.HapticFeedback.impactOccurred("medium");
     } else {
@@ -50,22 +50,22 @@ const CardTask = memo(({ task, allTasks }: CardTaskProps) => {
   };
 
   useEffect(() => {
-    getImgTask(task.task.name, setIcon);
+    getImgTask(task.task.dop_name, setIcon);
   }, [task]);
 
   return (
     <>
       <li onClick={handleOpen} className={style.task_item}>
-        {task.task.id >= 2 && !allTasks[0].completed && (
+        {task.task.id > 2 && !allTasks[0].completed && (
           <img src={iconLock} className={style.iconLock} />
         )}
         <p className={style.task_name}>{task.task.name}</p>
-        {task.task.id >= 2 && !allTasks[0].completed && <></>}
+
         {task.completed ? (
           <button disabled className={style.task_compl_btn}>
             {task.completed && "Награда получена"}
           </button>
-        ) : task.task.id >= 2 && !allTasks[0].completed ? (
+        ) : task.task.id > 2 && !allTasks[0].completed ? (
           <button disabled className={style.task_compl_btn}>
             Заполните профиль{" "}
           </button>

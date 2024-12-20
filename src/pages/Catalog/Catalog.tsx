@@ -5,7 +5,7 @@ import { fetchCatalog } from "../../api/fetchCatalog/fetchCatalog";
 import { queryClient } from "../../api/queryClient";
 import { CatalogItem } from "../../components/catalogItem";
 import logo from "../../assets/webp/logo.webp";
-import { HeaderCoinSvg } from "../../assets/svg/HeaderCoinSvg";
+import iconCoin from "../../assets/webp/coin.webp";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { SlidingCatalog } from "../../components/slidingCatalog";
@@ -65,7 +65,7 @@ const Catalog = () => {
           />
           <p onClick={() => navigate("/tasks")} className={style.reverse}>
             <span>{user && formatCoins(user.points)}</span>
-            <HeaderCoinSvg />
+            <img src={iconCoin} width={29} height={29} />
           </p>
         </div>
         <h1 className={style.catalog__title}>Каталог</h1>
