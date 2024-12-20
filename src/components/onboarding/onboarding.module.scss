@@ -82,3 +82,16 @@
   align-items: center;
   justify-content: space-between;
 }
+
+@media (min-height: 680px) {
+  .onboarding__image_top {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -85%);
+  }
+  .onboarding__image_seven {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -65%);
+  }
+}

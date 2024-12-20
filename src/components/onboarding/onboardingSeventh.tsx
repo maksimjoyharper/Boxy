@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import style from "./onboarding.module.scss";
 
 interface IOnboarding {
@@ -18,7 +19,10 @@ export const OnboardingSeventh = ({
   return (
     <li className={style.onboarding__item} key={id}>
       <img
-        className={style.onboarding__image}
+        className={classNames(
+          style.onboarding__image_seven,
+          style.onboarding__image
+        )}
         width={375}
         height={517}
         src={img}
