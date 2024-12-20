@@ -37,13 +37,18 @@ export default function SlidingTasks({
 }: ISliding) {
   const { tg, tg_id } = useTelegram();
 
+  const openLink = (link: string) => {
+    tg.openLink(link, { try_instant_vew: true });
+  };
+
   const subscribeOnLink = useMutation(
     {
       mutationFn: (data: { tg_id: string; don_name: string }) =>
         startTask(data.tg_id, data.don_name),
       onSuccess: (data) => {
         if (data.start_time) {
-          window.location.href = task.task.link;
+          // window.location.href = task.task.link;
+          openLink(task.task.link);
         }
       },
     },
@@ -85,7 +90,7 @@ export default function SlidingTasks({
       subscribeOnLink.mutate({ tg_id: tg_id, don_name: task.task.dop_name });
     } else {
       if (task.task.link) {
-        window.location.href = task.task.link;
+        openLink(task.task.link);
         tg.HapticFeedback.impactOccurred("medium");
       }
     }
@@ -98,7 +103,7 @@ export default function SlidingTasks({
       if (task.task.name === "Подписка на телеграм") {
         checkSubscribeTg.mutate({ tg_id: tg_id, dop_name: task.task.dop_name });
       } else {
-        window.location.href = task.task.link;
+        openLink(task.task.link);
       }
     }
     tg.HapticFeedback.impactOccurred("medium");

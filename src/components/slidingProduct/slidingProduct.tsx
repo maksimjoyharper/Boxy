@@ -23,14 +23,17 @@ export default function SlidingProduct({
   product,
 }: ISliding) {
   const { tg, tg_id } = useTelegram();
-
+  const openLink = (link: string) => {
+    tg.openLink(link, { try_instant_vew: true });
+  };
   const buyProduct = useMutation(
     {
       mutationFn: (data: { tg_id: string; product_id: string }) =>
         fetchBuyProduct(data.tg_id, data.product_id),
       onSuccess: (data) => {
         if (data.message === "Продукт успешно куплен") {
-          window.location.href = product.link;
+          // window.location.href = product.link;
+          openLink(product.link);
         }
       },
       onError: () => {

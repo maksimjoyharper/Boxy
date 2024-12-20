@@ -6,6 +6,7 @@ import classNames from "classnames";
 import iconCoin from "../../assets/webp/coin.webp";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import { formatCoins } from "../../features/formatNumber";
+import { formatNameUser } from "../../features/formatNameUser";
 
 interface IPage {
   title: string;
@@ -57,7 +58,7 @@ export const PageUI: React.FC<IPage> = ({
                 (name?.length || 0) >= 10 && style.fz
               )}
             >
-              {name}
+              {name && formatNameUser(name)}
             </h2>
             <p className={style.page__coins}>
               <img

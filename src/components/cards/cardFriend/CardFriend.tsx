@@ -9,6 +9,7 @@ import { useTelegram } from "../../../hooks/telegram/telegram";
 import { formatDate } from "../../../features/formateDate";
 import avatar from "../../../assets/png/avatar.png";
 import iconCoin from "../../../assets/webp/coin.webp";
+import { formatCoins } from "../../../features/formatNumber";
 
 type CardFriendProps = {
   friends: fetchFriendsProps;
@@ -62,7 +63,9 @@ export default function CardFriend({
             src={iconCoin}
             alt=""
           />
-          <p className={style.friends__coins}>{friends?.points}</p>
+          <p className={style.friends__coins}>
+            {friends && formatCoins(+friends?.points)}
+          </p>
         </div>
       </div>
       {friends.referral_bonus ? (

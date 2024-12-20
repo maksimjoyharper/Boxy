@@ -4,6 +4,7 @@ import slide from "../../assets/webp/sliding__catalog.webp";
 import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { useTelegram } from "../../hooks/telegram/telegram";
+import { formatCoins } from "../../features/formatNumber";
 
 interface ISliding {
   isOpen: boolean;
@@ -31,7 +32,9 @@ export const SlidingCatalog = ({
       <div className={style.sliding__block}>
         <div className={style.sliding__money}>
           <img width={277} height={90} src={slide} alt="" />
-          <span className={style.sliding__coins}>{user?.points_all}</span>
+          <span className={style.sliding__coins}>
+            {user && formatCoins(user?.points)}
+          </span>
         </div>
         <h2 className={style.sliding__title}>У тебя есть баллы!</h2>
         <p className={style.sliding__label}>

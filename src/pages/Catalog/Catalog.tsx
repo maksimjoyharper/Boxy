@@ -11,6 +11,7 @@ import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { SlidingCatalog } from "../../components/slidingCatalog";
 import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { formatCoins } from "../../features/formatNumber";
 
 const Catalog = () => {
   const { tg, tg_id } = useTelegram();
@@ -63,7 +64,7 @@ const Catalog = () => {
             alt=""
           />
           <p onClick={() => navigate("/tasks")} className={style.reverse}>
-            <span>{user?.points}</span>
+            <span>{user && formatCoins(user.points)}</span>
             <HeaderCoinSvg />
           </p>
         </div>

@@ -7,6 +7,7 @@ import SlidingTasks from "../../slidingTasks/slidingTasks";
 import iconLock from "../../../assets/png/task/lock.png";
 import { useMediaQuery } from "react-responsive";
 import { useTelegram } from "../../../hooks/telegram/telegram";
+import { useNavigate } from "react-router-dom";
 
 type CardTaskProps = {
   task: fetchTasksProps;
@@ -20,6 +21,8 @@ const CardTask = memo(({ task, allTasks }: CardTaskProps) => {
   const mediaQuery = useMediaQuery({
     query: "(max-height: 690px)",
   });
+
+  const navigate = useNavigate();
 
   const handleOpen = () => {
     const firstTask = allTasks[0].completed;
@@ -37,6 +40,7 @@ const CardTask = memo(({ task, allTasks }: CardTaskProps) => {
     }
     if (task.task.id === 2) {
       setIsOpen(false);
+      navigate("/friends");
     }
   };
 
