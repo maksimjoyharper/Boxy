@@ -34,7 +34,7 @@ const CardTask = memo(({ task, allTasks }: CardTaskProps) => {
       setIsOpen(false);
     }
 
-    if (task.task.id !== 1 && firstTask) {
+    if (task.task.id !== 1 && firstTask && !task.completed) {
       setIsOpen(true);
       tg.HapticFeedback.impactOccurred("medium");
     }

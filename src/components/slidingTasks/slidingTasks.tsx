@@ -85,28 +85,33 @@ export default function SlidingTasks({
   );
 
   const handleSubscribe = () => {
-    if (task.task.link && task.task.name !== "Подписка на телеграм") {
+    // if (task.task.link && task.task.name !== "Подписка на телеграм") {
+    if (task.task.link !== null) {
       tg.HapticFeedback.impactOccurred("medium");
       subscribeOnLink.mutate({ tg_id: tg_id, don_name: task.task.dop_name });
-    } else {
-      if (task.task.link) {
-        openLink(task.task.link);
-        tg.HapticFeedback.impactOccurred("medium");
-      }
     }
+    //  else {
+    //   if (task.task.link) {
+    //     openLink(task.task.link);
+    //     tg.HapticFeedback.impactOccurred("medium");
+    //   }
+    // }
   };
 
   const handleCheckSubscribe = () => {
-    if (task.start_time) {
-      checkSubscribe.mutate({ tg_id: tg_id, dop_name: task.task.dop_name });
-    } else {
-      if (task.task.name === "Подписка на телеграм") {
-        checkSubscribeTg.mutate({ tg_id: tg_id, dop_name: task.task.dop_name });
+    if (task.task.link) {
+      if (!task.completed) {
+        checkSubscribe.mutate({ tg_id: tg_id, dop_name: task.task.dop_name });
       } else {
-        openLink(task.task.link);
+        if (task.task.name === "Подписка на телеграм") {
+          // checkSubscribeTg.mutate({ tg_id: tg_id, dop_name: task.task.dop_name });
+          checkSubscribe.mutate({ tg_id: tg_id, dop_name: task.task.dop_name });
+        } else {
+          openLink(task.task.link);
+        }
       }
+      tg.HapticFeedback.impactOccurred("medium");
     }
-    tg.HapticFeedback.impactOccurred("medium");
   };
 
   const [name_player, setName] = useState<string>("");
