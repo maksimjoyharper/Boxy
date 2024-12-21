@@ -2,7 +2,6 @@ import {
   checkTask,
   fetchTasksProps,
   startTask,
-  taskCheckTg,
   taskInfo,
 } from "../../api/fetchTasks/fetchTasks";
 import SlidingPanel from "../../ui/SlidingPanel/SlidingPanel";
@@ -68,21 +67,21 @@ export default function SlidingTasks({
     queryClient
   );
 
-  const checkSubscribeTg = useMutation(
-    {
-      mutationFn: (data: { tg_id: string; dop_name: string }) =>
-        taskCheckTg(data.tg_id, data.dop_name),
-      onSuccess: (data) => {
-        if (data.message == "Пользователь не подписан на канал.") {
-          onClose();
-        } else {
-          queryClient.invalidateQueries({ queryKey: ["tasks"] });
-          onClose();
-        }
-      },
-    },
-    queryClient
-  );
+  // const checkSubscribeTg = useMutation(
+  //   {
+  //     mutationFn: (data: { tg_id: string; dop_name: string }) =>
+  //       taskCheckTg(data.tg_id, data.dop_name),
+  //     onSuccess: (data) => {
+  //       if (data.message == "Пользователь не подписан на канал.") {
+  //         onClose();
+  //       } else {
+  //         queryClient.invalidateQueries({ queryKey: ["tasks"] });
+  //         onClose();
+  //       }
+  //     },
+  //   },
+  //   queryClient
+  // );
 
   const handleSubscribe = () => {
     // if (task.task.link && task.task.name !== "Подписка на телеграм") {
