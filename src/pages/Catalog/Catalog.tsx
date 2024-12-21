@@ -12,6 +12,7 @@ import { SlidingCatalog } from "../../components/slidingCatalog";
 import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { formatCoins } from "../../features/formatNumber";
+import { useFetchCatalog } from "../../hooks/useHooks/useCatalog";
 
 const Catalog = () => {
   const { tg, tg_id } = useTelegram();
@@ -29,13 +30,7 @@ const Catalog = () => {
     tg.HapticFeedback.impactOccurred("medium");
   };
 
-  const { data: catalog } = useSuspenseQuery(
-    {
-      queryFn: () => fetchCatalog(tg_id),
-      queryKey: ["catalog"],
-    },
-    queryClient
-  );
+  const { data: catalog } = useFetchCatalog(tg_id);
 
   const categories = [
     "Каталог",

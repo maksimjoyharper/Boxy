@@ -1,13 +1,9 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import style from "./Tasks.module.scss";
-import {
-  fetchAllTasks,
-  fetchTasksProps,
-} from "../../api/fetchTasks/fetchTasks";
-import { queryClient } from "../../api/queryClient";
 import { useEffect, useState } from "react";
 import CardTask from "../../components/cards/cardTask/CardTask";
+import { fetchTasksProps } from "../../types/tasksTypes";
+import { useFetchTasks } from "../../hooks/useHooks/useTasks";
 
 export default function Tasks() {
   const { tg_id } = useTelegram();
@@ -16,13 +12,7 @@ export default function Tasks() {
   const [zadaniya, setZadaniya] = useState<fetchTasksProps[]>([]);
   const [podpiska, setPodpiska] = useState<fetchTasksProps[]>([]);
 
-  const { data } = useSuspenseQuery(
-    {
-      queryFn: () => fetchAllTasks(tg_id),
-      queryKey: ["tasks"],
-    },
-    queryClient
-  );
+  const { data } = useFetchTasks(tg_id);
 
   useEffect(() => {
     if (data) {

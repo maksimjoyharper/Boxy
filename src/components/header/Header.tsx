@@ -1,22 +1,19 @@
 import style from "./Header.module.scss";
 import logo from "../../assets/webp/logo.webp";
-// import avatar from "../../assets/webp/avatar.webp";
 import { HeaderCoinSvg } from "../../assets/svg/HeaderCoinSvg";
-import { useQuery } from "@tanstack/react-query";
-import { fetchUser } from "../../api/fetchUser/fetchUser";
 import { useTelegram } from "../../hooks/telegram/telegram";
-import { queryClient } from "../../api/queryClient";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../provider/StoreProvider/slice/userSlice";
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-  getBlogerFriend,
-  getFriend,
-} from "../../api/fetchFriends/fetchFriends";
 import { fetchUserProps } from "../../types/userType";
 import classNames from "classnames";
 import { formatCoins } from "../../features/formatNumber";
+import {
+  useFetchUser,
+  useFirstBlogerUser,
+  useReferralUser,
+} from "../../hooks/useHooks/useUser";
 
 export const Header = () => {
   const { tg, tg_id, userName, avatar } = useTelegram();
@@ -24,35 +21,18 @@ export const Header = () => {
   const navigate = useNavigate();
   const params = new URLSearchParams(useLocation().search);
   const paramIdFriend: string | null = params.get("id");
-  const [referral_id, setReferral_id] = useState<string>();
-  const [bloger_id, setBloger_id] = useState<string>();
+  const [referral_id, setReferral_id] = useState<string>("");
+  const [bloger_id, setBloger_id] = useState<string>("");
   const [userInfo, setUserInfo] = useState<fetchUserProps>();
 
-  const { data: user } = useQuery(
-    {
-      queryFn: () => fetchUser(tg_id, userName),
-      queryKey: ["user"],
-      enabled: !paramIdFriend && !!tg_id,
-    },
-    queryClient
-  );
+  const { data: user } = useFetchUser(tg_id, userName, paramIdFriend);
 
-  const { data: firstUser } = useQuery(
-    {
-      queryKey: ["addFriend"],
-      queryFn: () => getFriend(tg_id, userName, referral_id),
-      enabled: !!referral_id && !!tg_id,
-    },
-    queryClient
-  );
+  const { data: firstUser } = useReferralUser(tg_id, userName, referral_id);
 
-  const { data: firstBlogerUser } = useQuery(
-    {
-      queryKey: ["addFriendUtm"],
-      queryFn: () => getBlogerFriend(tg_id, userName, bloger_id),
-      enabled: !!bloger_id && !!tg_id,
-    },
-    queryClient
+  const { data: firstBlogerUser } = useFirstBlogerUser(
+    tg_id,
+    userName,
+    bloger_id
   );
 
   useEffect(() => {
@@ -78,7 +58,6 @@ export const Header = () => {
 
   useEffect(() => {
     if (paramIdFriend !== null) {
-      // Check if the string contains any letters
       const containsLetters = /[a-zA-Z]/.test(paramIdFriend);
 
       if (containsLetters) {

@@ -5,14 +5,7 @@ import iconCoin from "../../assets/webp/coin.webp";
 import { memo } from "react";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import { formatCoins } from "../../features/formatNumber";
-
-interface ILeaderboardItem {
-  id: number;
-  name: string;
-  points: number;
-  index: number;
-  openModal: () => void;
-}
+import { ILeaderboardItem } from "../../types/liderBoardTypes";
 
 export const LeaderboardItem = memo(
   ({ id, name, points, index, openModal }: ILeaderboardItem) => {

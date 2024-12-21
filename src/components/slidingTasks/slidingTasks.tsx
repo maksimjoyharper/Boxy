@@ -1,15 +1,6 @@
-import {
-  checkTask,
-  fetchTasksProps,
-  startTask,
-  taskCheckTg,
-  taskInfo,
-} from "../../api/fetchTasks/fetchTasks";
 import SlidingPanel from "../../ui/SlidingPanel/SlidingPanel";
 import style from "./slidingTasks.module.scss";
 import imgCoin from "../../assets/webp/coin.webp";
-import { useMutation } from "@tanstack/react-query";
-import { queryClient } from "../../api/queryClient";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import { useEffect, useState } from "react";
 
@@ -19,14 +10,12 @@ import iconPhone from "../../assets/png/task/icon_phone.png";
 import iconCheckbox from "../../assets/png/task/iconCheckbox.png";
 import { agreementRules } from "../../variables/linkAgreement";
 import { getNameBtn } from "../../features/getNameBtn";
-
-interface ISliding {
-  isOpen: boolean;
-  onClose: () => void;
-  initialHeight: string;
-  fullHeight: string;
-  task: fetchTasksProps;
-}
+import { ISlidingTasks } from "../../types/tasksTypes";
+import {
+  useCheckSubscribe,
+  useInfoDataUser,
+  useSubscribeOnLink,
+} from "../../hooks/useHooks/useTasks";
 
 export default function SlidingTasks({
   fullHeight,
@@ -34,55 +23,16 @@ export default function SlidingTasks({
   isOpen,
   onClose,
   task,
-}: ISliding) {
+}: ISlidingTasks) {
   const { tg, tg_id } = useTelegram();
 
   const openLink = (link: string): string => {
     return tg.openLink(link, { try_instant_vew: true });
   };
 
-  const subscribeOnLink = useMutation(
-    {
-      mutationFn: (data: { tg_id: string; don_name: string }) =>
-        startTask(data.tg_id, data.don_name),
-      onSuccess: (data) => {
-        if (data.start_time) {
-          // window.location.href = task.task.link;
-          openLink(task.task.link);
-        }
-      },
-    },
-    queryClient
-  );
+  const subscribeOnLink = useSubscribeOnLink(openLink, task);
 
-  const checkSubscribe = useMutation(
-    {
-      mutationFn: (data: { tg_id: string; dop_name: string }) =>
-        checkTask(data.tg_id, data.dop_name),
-      onSuccess: () => {
-        onClose();
-        queryClient.invalidateQueries({ queryKey: ["tasks"] });
-        tg.HapticFeedback.impactOccurred("medium");
-      },
-    },
-    queryClient
-  );
-
-  const checkSubscribeTg = useMutation(
-    {
-      mutationFn: (data: { tg_id: string; dop_name: string }) =>
-        taskCheckTg(data.tg_id, data.dop_name),
-      onSuccess: (data) => {
-        if (data.message == "Пользователь не подписан на канал.") {
-          onClose();
-        } else {
-          queryClient.invalidateQueries({ queryKey: ["tasks"] });
-          onClose();
-        }
-      },
-    },
-    queryClient
-  );
+  const checkSubscribe = useCheckSubscribe(onClose, tg);
 
   const handleSubscribe = () => {
     // if (task.task.link && task.task.name !== "Подписка на телеграм") {
@@ -120,24 +70,12 @@ export default function SlidingTasks({
 
   const [linkAgreem, setLinkAgreem] = useState("");
 
-  const infoDataUser = useMutation(
-    {
-      mutationFn: (data: {
-        tg_id: string;
-        country: string;
-        name_player: string;
-        phone: string;
-      }) => taskInfo(data.tg_id, data.country, data.name_player, data.phone),
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["tasks"] });
-        setName("");
-        setRegion("by");
-        setPhone("");
-        onClose();
-        tg.HapticFeedback.impactOccurred("medium");
-      },
-    },
-    queryClient
+  const infoDataUser = useInfoDataUser(
+    setName,
+    setRegion,
+    setPhone,
+    onClose,
+    tg
   );
 
   useEffect(() => {

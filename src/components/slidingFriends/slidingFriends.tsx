@@ -3,20 +3,14 @@ import friendsInvite from "../../assets/png/friends__invite.png";
 import style from "./slidingFriends.module.scss";
 import { HeaderCoinSvg } from "../../assets/svg/HeaderCoinSvg";
 import { useTelegram } from "../../hooks/telegram/telegram";
-
-interface ISliding {
-  isOpen: boolean;
-  onClose: () => void;
-  initialHeight: string;
-  fullHeight: string;
-}
+import { ISlidingFriends } from "../../types/friendsTypes";
 
 export const SlidingFriends = ({
   isOpen,
   onClose,
   fullHeight,
   initialHeight,
-}: ISliding) => {
+}: ISlidingFriends) => {
   const { tg } = useTelegram();
   return (
     <SlidingPanel

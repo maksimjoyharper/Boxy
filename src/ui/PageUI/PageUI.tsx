@@ -1,25 +1,11 @@
 import style from "./PageUI.module.scss";
-// import avatar from "../../assets/png/avatar.png";
-import { ReactNode } from "react";
 import { LeaderboardGiftSvg } from "../../assets/svg/LeaderboardGiftSvg";
 import classNames from "classnames";
 import iconCoin from "../../assets/webp/coin.webp";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import { formatCoins } from "../../features/formatNumber";
 import { formatNameUser } from "../../features/formatNameUser";
-
-interface IPage {
-  title: string;
-  time?: string;
-  children?: React.ReactNode;
-  place?: string;
-  className__title?: string;
-  className?: string;
-  gift?: ReactNode;
-  name?: string;
-  coins?: number;
-  isOpen?: () => void;
-}
+import { IPage } from "../../types/liderBoardTypes";
 
 export const PageUI: React.FC<IPage> = ({
   className__title,

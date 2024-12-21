@@ -1,45 +1,10 @@
 import axios from "axios";
 import { api_url } from "../api_url";
-
-export interface fetchTasksProps {
-  task: {
-    id: number;
-    name: string;
-    dop_name: string;
-    description: string;
-    link: string;
-    reward_currency: string;
-    reward_tickets: string;
-    is_active: boolean;
-    heading: string;
-  };
-  start_time: string;
-  completed: boolean;
-  add_flag: boolean;
-}
-
-export interface fetchFirstTask {
-  tg_id: string;
-  country: string;
-  name_player: string;
-  phone: string;
-}
+import { fetchTasksProps } from "../../types/tasksTypes";
 
 export function fetchAllTasks(tg_id: string): Promise<fetchTasksProps[]> {
   return axios
     .get(`${api_url}/api/tasks/${tg_id}/`)
-    .then((response) => {
-      const data = response.data;
-      return data;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
-export function fetchTgTask(tg_id: string) {
-  return axios
-    .get(`${api_url}/api/tasks_tg/${tg_id}/`)
     .then((response) => {
       const data = response.data;
       return data;

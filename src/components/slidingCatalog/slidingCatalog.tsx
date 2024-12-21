@@ -5,20 +5,14 @@ import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import { formatCoins } from "../../features/formatNumber";
-
-interface ISliding {
-  isOpen: boolean;
-  onClose: () => void;
-  initialHeight: string;
-  fullHeight: string;
-}
+import { ISlidingCatalog } from "../../types/catalogTypes";
 
 export const SlidingCatalog = ({
   isOpen,
   onClose,
   initialHeight,
   fullHeight,
-}: ISliding) => {
+}: ISlidingCatalog) => {
   const user = useSelector(getUser);
   const { tg } = useTelegram();
   return (

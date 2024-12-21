@@ -2,20 +2,14 @@ import SlidingPanel from "../../ui/SlidingPanel/SlidingPanel";
 import slidingPrize from "../../assets/webp/sliding__prize.webp";
 import style from "./slidingLeaderboard.module.scss";
 import { useTelegram } from "../../hooks/telegram/telegram";
-
-interface SlidingProps {
-  initialHeight: string;
-  fullHeight: string;
-  isOpen: boolean;
-  onClose: () => void;
-}
+import { SlidingLeaderboardProps } from "../../types/liderBoardTypes";
 
 export const SlidingLeaderboard = ({
   initialHeight,
   fullHeight,
   isOpen,
   onClose,
-}: SlidingProps) => {
+}: SlidingLeaderboardProps) => {
   const { tg } = useTelegram();
   return (
     <SlidingPanel

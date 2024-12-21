@@ -1,8 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import {
-  fetchFriendsProps,
-  getBonusOfRef,
-} from "../../../api/fetchFriends/fetchFriends";
+import { getBonusOfRef } from "../../../api/fetchFriends/fetchFriends";
 import style from "./CardFriend.module.css";
 import { queryClient } from "../../../api/queryClient";
 import { useTelegram } from "../../../hooks/telegram/telegram";
@@ -10,13 +7,7 @@ import { formatDate } from "../../../features/formateDate";
 import avatar from "../../../assets/png/avatar.png";
 import iconCoin from "../../../assets/webp/coin.webp";
 import { formatCoins } from "../../../features/formatNumber";
-
-type CardFriendProps = {
-  friends: fetchFriendsProps;
-  index: number;
-  isOpen?: React.Dispatch<React.SetStateAction<boolean>> | undefined;
-  isDisabled: boolean;
-};
+import { CardFriendProps } from "../../../types/friendsTypes";
 
 export default function CardFriend({
   friends,

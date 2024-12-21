@@ -1,7 +1,4 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
 import { PageUI } from "../../ui/PageUI/PageUI";
-import { fetchLeaderboard } from "../../api/fetchLeaderboard/fetchLeaderboard";
-import { queryClient } from "../../api/queryClient";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import style from "./Leaderboard.module.scss";
 import { useSelector } from "react-redux";
@@ -9,6 +6,7 @@ import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { SlidingLeaderboard } from "../../components/slidingLeaderboard";
 import { useState } from "react";
 import { LeaderboardItem } from "../../components/leaderboardItem/LeaderboardItem";
+import { useLeaderboard } from "../../hooks/useHooks/useLeaderboard";
 
 const Leaderboard = () => {
   const user = useSelector(getUser);
@@ -25,13 +23,7 @@ const Leaderboard = () => {
     tg.HapticFeedback.impactOccurred("light");
   };
 
-  const { data: leader } = useSuspenseQuery(
-    {
-      queryFn: () => fetchLeaderboard(tg_id),
-      queryKey: ["leaderboard"],
-    },
-    queryClient
-  );
+  const { data: leader } = useLeaderboard(tg_id);
 
   return (
     <>
