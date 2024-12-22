@@ -5,15 +5,21 @@ import { useSelector } from "react-redux";
 import { getUser } from "../../provider/StoreProvider/selectors/getUser";
 import { CalendarCheckSvg } from "../../assets/svg/CalendarCheckSvg";
 import coin from "../../assets/webp/coin.webp";
+
 import { ICalendarItem } from "../../types/calendarTypes";
 
-export const CalendarItem = ({ bonus_info, conclusive_day }: ICalendarItem) => {
+export const CalendarItem = ({
+  ref,
+  bonus_info,
+  conclusive_day,
+}: ICalendarItem) => {
   const user = useSelector(getUser);
 
   return (
     <>
       {bonus_info.map((element, index) => (
         <li
+          ref={ref}
           className={
             conclusive_day === element.day
               ? `${style.blue} ${style.calendar__item}`

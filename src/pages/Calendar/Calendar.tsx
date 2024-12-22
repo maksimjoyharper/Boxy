@@ -8,12 +8,16 @@ import coin from "../../assets/webp/coin.webp";
 import premium from "../../assets/png/premium__calendar.png";
 import regular from "../../assets/webp/sliding__not__ticket.webp";
 import { useTelegram } from "../../hooks/telegram/telegram";
+import { useEffect, useRef } from "react";
+
 import { ICalendar } from "../../types/calendarTypes";
 import { useCalendar } from "../../hooks/useHooks/useCalendar";
 
 const Calendar = ({ isOpen, onClose }: ICalendar) => {
   const user = useSelector(getUser);
   const { tg, tg_id } = useTelegram();
+  const listRef = useRef<HTMLUListElement>(null);
+  const activeItemRef = useRef<HTMLLIElement>(null);
 
   const calendarMutation = useCalendar();
 
@@ -23,12 +27,22 @@ const Calendar = ({ isOpen, onClose }: ICalendar) => {
     tg.HapticFeedback.impactOccurred("medium");
   };
 
+  useEffect(() => {
+    if (activeItemRef.current && listRef.current) {
+      activeItemRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [user?.consecutive_days]);
+
   return (
     <Modal lazy isOpen={isOpen} onClose={onClose}>
       <div className={style.calendar__block}>
         <h1 className={style.calendar__title}>Ежедневная награда</h1>
-        <ul className={style.calendar__list}>
+        <ul className={style.calendar__list} ref={listRef}>
           <CalendarItem
+            ref={activeItemRef}
             conclusive_day={user && user.consecutive_days}
             bonus_info={user?.bonus_info || []}
           />

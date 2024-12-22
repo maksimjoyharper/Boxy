@@ -1,3 +1,4 @@
+import { Ref } from "react";
 import { BonusInfoArray } from "./userType";
 
 export interface ICalendar {
@@ -8,4 +9,5 @@ export interface ICalendar {
 export interface ICalendarItem {
   bonus_info: BonusInfoArray;
   conclusive_day?: number;
+  ref: Ref<HTMLLIElement>;
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "../../ui/Modal/Modal";
 import { onboardingArr } from "./onboardingData";
 import style from "./onboarding.module.scss";
@@ -21,6 +21,20 @@ export const Onboarding = ({ isOpen, onClose }: IOnboarding) => {
   const [page, setPage] = useState(1);
   const oneStep = 1;
   const { tg_id } = useTelegram();
+
+  const preloadImages = (imageUrls: string[]) => {
+    imageUrls.forEach((url: string) => {
+      const img = new Image();
+      img.src = url;
+    });
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      const allImages = onboardingArr.map((item) => item.image);
+      preloadImages(allImages);
+    }
+  }, [isOpen]);
 
   const onbMutate = useOnboarding();
 
@@ -118,6 +132,8 @@ export const Onboarding = ({ isOpen, onClose }: IOnboarding) => {
                     buttonEnd={() => handleFetch(tg_id)}
                   />
                 );
+              default:
+                return null;
             }
           })}
       </ul>
