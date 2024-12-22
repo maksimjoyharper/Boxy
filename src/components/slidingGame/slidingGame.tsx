@@ -3,20 +3,12 @@ import SlidingPanel from "../../ui/SlidingPanel/SlidingPanel";
 import style from "./slidingGame.module.scss";
 import { slidingArr } from "./slidingData";
 import { useNavigate } from "react-router-dom";
-import { fetchUserProps } from "../../types/userType";
 import { useSelector } from "react-redux";
 import { getCurrTickets } from "../../provider/StoreProvider/selectors/getCurrTicket";
 import { SlidingGameFirst } from "./slidingGameFirst";
 import { SlidingGameSecond } from "./slidingGameSecond";
 import { SlidingGameThird } from "./slidingGameThird";
-
-interface ISliding {
-  isOpen: boolean;
-  onClose: () => void;
-  initialHeight: string;
-  fullHeight: string;
-  user: fetchUserProps | undefined;
-}
+import { ISlidingGame } from "../../types/gameTypes";
 
 export const SlidingGame = ({
   isOpen,
@@ -24,7 +16,7 @@ export const SlidingGame = ({
   fullHeight,
   initialHeight,
   user,
-}: ISliding) => {
+}: ISlidingGame) => {
   const [page, setPage] = useState(1);
   const oneStep = 1;
   const ticket = useSelector(getCurrTickets);

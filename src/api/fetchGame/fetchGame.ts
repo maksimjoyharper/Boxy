@@ -1,16 +1,6 @@
 import axios from "axios";
 import { api_url } from "../api_url";
-
-export interface fetchGameOverProps {
-  tg_id: string;
-  points: number;
-}
-
-export interface fetchGameProps {
-  tg_id: string;
-  tickets?: number;
-  premium_tickets?: number;
-}
+import { fetchGameOverProps, fetchGameProps } from "../../types/gameTypes";
 
 export function fetchOverGame({ tg_id, points }: fetchGameOverProps) {
   return axios

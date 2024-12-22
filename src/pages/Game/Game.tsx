@@ -14,12 +14,11 @@ import ModalRoute from "../../ui/ModalRoute/ModalRoute";
 import logo from "../../assets/webp/logo.webp";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import ModalGameOver from "../../ui/ModalGameOver/ModalGameOver";
-import { useMutation } from "@tanstack/react-query";
-import { queryClient } from "../../api/queryClient";
-import { fetchGame, fetchGameProps } from "../../api/fetchGame/fetchGame";
 import { useSelector } from "react-redux";
 import { getCurrTickets } from "../../provider/StoreProvider/selectors/getCurrTicket";
 import { Loader } from "../../components/loader/loader";
+import { fetchGameProps } from "../../types/gameTypes";
+import { useGame } from "../../hooks/useHooks/useGame";
 
 export default function Game() {
   const [startGame, setStartGame] = useState(true);
@@ -31,12 +30,7 @@ export default function Game() {
   const { tg, tg_id } = useTelegram();
   const ticket = useSelector(getCurrTickets);
 
-  const useGameMutation = useMutation(
-    {
-      mutationFn: (data: fetchGameProps) => fetchGame(data),
-    },
-    queryClient
-  );
+  const useGameMutation = useGame();
 
   const dataMutate: fetchGameProps = {
     tg_id: tg_id,

@@ -1,8 +1,5 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
 import style from "./Catalog.module.scss";
 import { useTelegram } from "../../hooks/telegram/telegram";
-import { fetchCatalog } from "../../api/fetchCatalog/fetchCatalog";
-import { queryClient } from "../../api/queryClient";
 import { CatalogItem } from "../../components/catalogItem";
 import logo from "../../assets/webp/logo.webp";
 import iconCoin from "../../assets/webp/coin.webp";

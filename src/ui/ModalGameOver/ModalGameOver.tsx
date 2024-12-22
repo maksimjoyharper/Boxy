@@ -2,18 +2,12 @@ import { useNavigate } from "react-router-dom";
 import iconCoin from "../../assets/webp/coin.webp";
 import style from "./ModalGameOver.module.css";
 import { useMutation } from "@tanstack/react-query";
-import {
-  fetchGameOverProps,
-  fetchOverGame,
-} from "../../api/fetchGame/fetchGame";
+import { fetchOverGame } from "../../api/fetchGame/fetchGame";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import { queryClient } from "../../api/queryClient";
 import { useSelector } from "react-redux";
 import { getCurrTickets } from "../../provider/StoreProvider/selectors/getCurrTicket";
-
-type ModalGameOverProps = {
-  finalPoints: number;
-};
+import { fetchGameOverProps, ModalGameOverProps } from "../../types/gameTypes";
 
 export default function ModalGameOver({ finalPoints }: ModalGameOverProps) {
   const navigate = useNavigate();

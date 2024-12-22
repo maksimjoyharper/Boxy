@@ -7,27 +7,15 @@ import { CalendarItem } from "../../components/calendarItem/calendarItem";
 import coin from "../../assets/webp/coin.webp";
 import premium from "../../assets/png/premium__calendar.png";
 import regular from "../../assets/webp/sliding__not__ticket.webp";
-import { useMutation } from "@tanstack/react-query";
-import { fetchCalendar } from "../../api/fetchCalendar/fetchCalendar";
-import { queryClient } from "../../api/queryClient";
 import { useTelegram } from "../../hooks/telegram/telegram";
-
-interface ICalendar {
-  isOpen: boolean;
-  onClose: () => void;
-}
+import { ICalendar } from "../../types/calendarTypes";
+import { useCalendar } from "../../hooks/useHooks/useCalendar";
 
 const Calendar = ({ isOpen, onClose }: ICalendar) => {
   const user = useSelector(getUser);
   const { tg, tg_id } = useTelegram();
 
-  const calendarMutation = useMutation(
-    {
-      mutationFn: (data: { tg_id: string }) => fetchCalendar(data.tg_id),
-      mutationKey: ["calendar"],
-    },
-    queryClient
-  );
+  const calendarMutation = useCalendar();
 
   const handleFetch = (tg_id: string) => {
     calendarMutation.mutate({ tg_id });

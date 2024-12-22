@@ -13,6 +13,7 @@ import { getNameBtn } from "../../features/getNameBtn";
 import { ISlidingTasks } from "../../types/tasksTypes";
 import {
   useCheckSubscribe,
+  // useCheckSubscribeTg,
   useInfoDataUser,
   useSubscribeOnLink,
 } from "../../hooks/useHooks/useTasks";
@@ -33,6 +34,8 @@ export default function SlidingTasks({
   const subscribeOnLink = useSubscribeOnLink(openLink, task);
 
   const checkSubscribe = useCheckSubscribe(onClose, tg);
+
+  // const checkSubscribeTg = useCheckSubscribeTg(onClose);
 
   const handleSubscribe = () => {
     // if (task.task.link && task.task.name !== "Подписка на телеграм") {

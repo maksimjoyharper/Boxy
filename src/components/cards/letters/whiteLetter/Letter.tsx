@@ -1,11 +1,6 @@
 import "./Letter.css";
 import whiteLetter from "../../../../assets/S-white.png";
-interface LetterProps {
-  x: number;
-  duration: number;
-  id: string;
-  onClick: (id: string) => void;
-}
+import { LetterProps } from "../../../../types/gameTypes";
 
 const Letter: React.FC<LetterProps> = ({ x, duration, id, onClick }) => {
   return (

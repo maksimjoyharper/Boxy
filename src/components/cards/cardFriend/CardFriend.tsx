@@ -45,7 +45,9 @@ export default function CardFriend({
       <span className={style.friends__position}>{index + 1}</span>
       <img className={style.friends__avatar} src={avatar} alt="avatar" />
       <div className={style.friends__info}>
-        <p className={style.friends__name}>{friends?.name}</p>
+        <p className={style.friends__name}>
+          {friends?.name == "undefined" ? "friend" : friends.name}
+        </p>
         <div className={style.icon_coin}>
           <img
             width={12}
@@ -55,11 +57,9 @@ export default function CardFriend({
             alt=""
           />
           <p className={style.friends__coins}>
-            {
-              (friends.points = NaN
-                ? friends && formatCoins(+friends?.points)
-                : "1.2kk")
-            }
+            {friends.points && friends
+              ? formatCoins(+friends?.points)
+              : "1.2kk"}
           </p>
         </div>
       </div>
@@ -74,7 +74,7 @@ export default function CardFriend({
       ) : (
         <span className={style.friends_reg_data}>
           Приглашён{" "}
-          {(friends.reg_data = NaN ? formatDate(friends.reg_data) : "10.10.24")}
+          {friends.reg_data ? formatDate(friends.reg_data) : "10.10.24"}
         </span>
       )}
     </li>

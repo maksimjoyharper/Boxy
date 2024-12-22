@@ -2,10 +2,7 @@ import { useState } from "react";
 import { Modal } from "../../ui/Modal/Modal";
 import { onboardingArr } from "./onboardingData";
 import style from "./onboarding.module.scss";
-import { useMutation } from "@tanstack/react-query";
 import { useTelegram } from "../../hooks/telegram/telegram";
-import { queryClient } from "../../api/queryClient";
-import { fetchOnboarding } from "../../api/fetchOnboarding/fetchOnboarding";
 import { OnboardingFirst } from "./onboardingFirst";
 import { OnboardingSecond } from "./onboardingSecond";
 import { OnboardingThird } from "./onboardingThird";
@@ -13,6 +10,7 @@ import { OnboardingFourth } from "./onboardingFourth";
 import { OnboardingFifth } from "./onboardingFifth";
 import { OnboardingSixth } from "./onboardingSixth";
 import { OnboardingSeventh } from "./onboardingSeventh";
+import { useOnboarding } from "../../hooks/useHooks/useOnboarding";
 
 interface IOnboarding {
   isOpen: boolean;
@@ -24,13 +22,7 @@ export const Onboarding = ({ isOpen, onClose }: IOnboarding) => {
   const oneStep = 1;
   const { tg_id } = useTelegram();
 
-  const onbMutate = useMutation(
-    {
-      mutationFn: (data: { tg_id: string }) => fetchOnboarding(data.tg_id),
-      mutationKey: ["onboarding"],
-    },
-    queryClient
-  );
+  const onbMutate = useOnboarding();
 
   const handleFetch = (tg_id: string) => {
     onbMutate.mutate({ tg_id });

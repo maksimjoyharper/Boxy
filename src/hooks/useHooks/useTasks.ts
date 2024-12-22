@@ -4,6 +4,7 @@ import {
   checkTask,
   fetchAllTasks,
   startTask,
+  taskCheckTg,
   taskInfo,
 } from "../../api/fetchTasks/fetchTasks";
 import { fetchTasksProps } from "../../types/tasksTypes";
@@ -80,17 +81,20 @@ export const useInfoDataUser = (
   );
 };
 
-// export const useCheckSubscribeTg = (onClose: () => void, tg: any) => {
-//     return useMutation(
-//       {
-//         mutationFn: (data: { tg_id: string; dop_name: string }) =>
-//           checkTask(data.tg_id, data.dop_name),
-//         onSuccess: () => {
-//           onClose();
-//           queryClient.invalidateQueries({ queryKey: ["tasks"] });
-//           tg.HapticFeedback.impactOccurred("medium");
-//         },
-//       },
-//       queryClient
-//     );
-//   };
+export const useCheckSubscribeTg = (onClose: () => void) => {
+  return useMutation(
+    {
+      mutationFn: (data: { tg_id: string; dop_name: string }) =>
+        taskCheckTg(data.tg_id, data.dop_name),
+      onSuccess: (data) => {
+        if (data.message == "Пользователь не подписан на канал.") {
+          onClose();
+        } else {
+          queryClient.invalidateQueries({ queryKey: ["tasks"] });
+          onClose();
+        }
+      },
+    },
+    queryClient
+  );
+};
