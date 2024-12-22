@@ -48,7 +48,6 @@ export const CatalogItem = memo(
 
     useEffect(() => {
       getImgCatalog(name, setIcon);
-      console.log(is_accessible);
     }, [name]);
 
     const handleOpenLink = () => {
