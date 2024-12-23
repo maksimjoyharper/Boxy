@@ -32,7 +32,9 @@ export const LeaderboardItem = memo(
             <LeaderboardGiftSvg className={style.leaderboard__svg} />
           </button>
         )}
-        <h2 className={style.leaderboard__name}>{name}</h2>
+        <h2 className={style.leaderboard__name}>
+          {name == "undefined" ? "user" : name}
+        </h2>
         <p className={style.leaderboard__coins}>{formatCoins(points)}</p>
         <img className={style.iconCoin} src={iconCoin} alt="" />
       </li>

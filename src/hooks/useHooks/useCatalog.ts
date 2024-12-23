@@ -30,6 +30,8 @@ export const useBuyProduct = (
         if (data.message === "Продукт успешно куплен") {
           // window.location.href = product.link;
           openLink(link);
+          onClose();
+          queryClient.invalidateQueries({ queryKey: ["catalog"] });
         }
       },
       onError: () => {

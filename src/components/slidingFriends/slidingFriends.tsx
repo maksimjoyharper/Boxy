@@ -1,7 +1,7 @@
 import SlidingPanel from "../../ui/SlidingPanel/SlidingPanel";
 import friendsInvite from "../../assets/png/friends__invite.png";
 import style from "./slidingFriends.module.scss";
-import { HeaderCoinSvg } from "../../assets/svg/HeaderCoinSvg";
+import iconCoin from "../../assets/webp/coin.webp";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import { ISlidingFriends } from "../../types/friendsTypes";
 
@@ -30,7 +30,7 @@ export const SlidingFriends = ({
         />
         <h2 className={style.sliding__title}>Твоя награда:</h2>
         <p className={style.sliding__label}>
-          <HeaderCoinSvg />
+          <img width={32} height={32} src={iconCoin} />
           <span className={style.count_coin}>500</span>
         </p>
         <button
