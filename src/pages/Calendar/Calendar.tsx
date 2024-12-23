@@ -7,27 +7,19 @@ import { CalendarItem } from "../../components/calendarItem/calendarItem";
 import coin from "../../assets/webp/coin.webp";
 import premium from "../../assets/png/premium__calendar.png";
 import regular from "../../assets/webp/sliding__not__ticket.webp";
-import { useMutation } from "@tanstack/react-query";
-import { fetchCalendar } from "../../api/fetchCalendar/fetchCalendar";
-import { queryClient } from "../../api/queryClient";
 import { useTelegram } from "../../hooks/telegram/telegram";
+import { useEffect, useRef } from "react";
 
-interface ICalendar {
-  isOpen: boolean;
-  onClose: () => void;
-}
+import { ICalendar } from "../../types/calendarTypes";
+import { useCalendar } from "../../hooks/useHooks/useCalendar";
 
 const Calendar = ({ isOpen, onClose }: ICalendar) => {
   const user = useSelector(getUser);
   const { tg, tg_id } = useTelegram();
+  const listRef = useRef<HTMLUListElement>(null);
+  const activeItemRef = useRef<HTMLLIElement>(null);
 
-  const calendarMutation = useMutation(
-    {
-      mutationFn: (data: { tg_id: string }) => fetchCalendar(data.tg_id),
-      mutationKey: ["calendar"],
-    },
-    queryClient
-  );
+  const calendarMutation = useCalendar();
 
   const handleFetch = (tg_id: string) => {
     calendarMutation.mutate({ tg_id });
@@ -35,12 +27,22 @@ const Calendar = ({ isOpen, onClose }: ICalendar) => {
     tg.HapticFeedback.impactOccurred("medium");
   };
 
+  useEffect(() => {
+    if (activeItemRef.current && listRef.current) {
+      activeItemRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [user?.consecutive_days]);
+
   return (
     <Modal lazy isOpen={isOpen} onClose={onClose}>
       <div className={style.calendar__block}>
         <h1 className={style.calendar__title}>Ежедневная награда</h1>
-        <ul className={style.calendar__list}>
+        <ul className={style.calendar__list} ref={listRef}>
           <CalendarItem
+            ref={activeItemRef}
             conclusive_day={user && user.consecutive_days}
             bonus_info={user?.bonus_info || []}
           />

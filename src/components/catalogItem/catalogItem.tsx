@@ -5,18 +5,7 @@ import coin from "../../assets/webp/coin.webp";
 import { formatNumber } from "../../features/formatNumber";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import SlidingProduct from "../slidingProduct/slidingProduct";
-
-export interface ICatalog {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  prof: string;
-  is_accessible: boolean | string;
-  is_purchased: boolean | string;
-  link: string;
-  currentCoin: number | undefined;
-}
+import { ICatalog } from "../../types/catalogTypes";
 
 export const CatalogItem = memo(
   ({
@@ -48,7 +37,6 @@ export const CatalogItem = memo(
 
     useEffect(() => {
       getImgCatalog(name, setIcon);
-      console.log(is_accessible);
     }, [name]);
 
     const handleOpenLink = () => {

@@ -2,15 +2,9 @@ import "./BlueLetter.css";
 import imgBlueLetter from "../../../../assets/S-blue.png";
 import { useEffect, useRef, useState } from "react";
 import { v4 } from "uuid";
-import { IBlueLettArr } from "../../../../types/types";
 import { blueLettArr } from "../../../../variables/blueLettArray";
 import { useTelegram } from "../../../../hooks/telegram/telegram";
-
-interface BlueLetterProps {
-  setCount: React.Dispatch<React.SetStateAction<number>>;
-  blueLetter: IBlueLettArr[];
-  setBlueLetter: React.Dispatch<React.SetStateAction<IBlueLettArr[]>>;
-}
+import { BlueLetterProps } from "../../../../types/gameTypes";
 
 const BlueLetter = ({
   setCount,

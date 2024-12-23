@@ -1,11 +1,9 @@
-import { useMutation } from "@tanstack/react-query";
 import SlidingPanel from "../../ui/SlidingPanel/SlidingPanel";
-import { ICatalog } from "../catalogItem";
 import style from "./slidingProduct.module.scss";
-import { fetchBuyProduct } from "../../api/fetchCatalog/fetchCatalog";
-import { queryClient } from "../../api/queryClient";
 import { useTelegram } from "../../hooks/telegram/telegram";
 import iconCoin from "../../assets/webp/coin.webp";
+import { ICatalog } from "../../types/catalogTypes";
+import { useBuyProduct } from "../../hooks/useHooks/useCatalog";
 
 interface ISliding {
   isOpen: boolean;
@@ -26,30 +24,20 @@ export default function SlidingProduct({
   const openLink = (link: string) => {
     tg.openLink(link, { try_instant_vew: true });
   };
-  const buyProduct = useMutation(
-    {
-      mutationFn: (data: { tg_id: string; product_id: string }) =>
-        fetchBuyProduct(data.tg_id, data.product_id),
-      onSuccess: (data) => {
-        if (data.message === "Продукт успешно куплен") {
-          // window.location.href = product.link;
-          openLink(product.link);
-        }
-      },
-      onError: () => {
-        onClose();
-        tg.HapticFeedback.impactOccurred("medium");
-      },
-    },
-    queryClient
+
+  const { mutate: buyProduct } = useBuyProduct(
+    openLink,
+    product.link,
+    onClose,
+    tg
   );
   const handleTest = () => {
-    buyProduct.mutate({ tg_id: tg_id, product_id: product.id });
+    buyProduct({ tg_id: tg_id, product_id: product.id });
     tg.HapticFeedback.impactOccurred("medium");
   };
   const handleBuyProduct = () => {
     if (!product.is_accessible) {
-      buyProduct.mutate({ tg_id: tg_id, product_id: product.id });
+      buyProduct({ tg_id: tg_id, product_id: product.id });
       tg.HapticFeedback.impactOccurred("medium");
     } else return;
   };

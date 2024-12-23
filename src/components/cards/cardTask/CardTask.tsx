@@ -1,5 +1,4 @@
 import { memo, useEffect, useState } from "react";
-import { fetchTasksProps } from "../../../api/fetchTasks/fetchTasks";
 import iconCoin from "../../../assets/webp/coin.webp";
 import style from "./CardTask.module.scss";
 import { getImgTask } from "../../../features/getImgTask";
@@ -8,11 +7,7 @@ import iconLock from "../../../assets/png/task/lock.png";
 import { useMediaQuery } from "react-responsive";
 import { useTelegram } from "../../../hooks/telegram/telegram";
 import { useNavigate } from "react-router-dom";
-
-type CardTaskProps = {
-  task: fetchTasksProps;
-  allTasks: fetchTasksProps[];
-};
+import { CardTaskProps } from "../../../types/tasksTypes";
 
 const CardTask = memo(({ task, allTasks }: CardTaskProps) => {
   const { tg } = useTelegram();

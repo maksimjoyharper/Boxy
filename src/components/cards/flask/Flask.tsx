@@ -3,14 +3,8 @@ import imgFlask from "../../../assets/flask.png";
 import { useEffect, useState } from "react";
 import { randomWhite } from "../../../features/randomWhite";
 import { v4 } from "uuid";
-import { IFlask } from "../../../types/types";
 import { useTelegram } from "../../../hooks/telegram/telegram";
-
-interface FlaskProps {
-  setCount: React.Dispatch<React.SetStateAction<number>>;
-  flasks: IFlask[];
-  setFlask: React.Dispatch<React.SetStateAction<IFlask[]>>;
-}
+import { FlaskProps } from "../../../types/gameTypes";
 
 export default function Flask({ setCount, flasks, setFlask }: FlaskProps) {
   const { tg } = useTelegram();

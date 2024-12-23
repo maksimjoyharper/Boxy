@@ -1,15 +1,6 @@
 import axios from "axios";
 import { api_url } from "../api_url";
-
-export interface fetchLeaderboardProps {
-  top_players: {
-    tg_id: number;
-    name: string;
-    points: number;
-    rank: number;
-  }[];
-  player_rank: string;
-}
+import { fetchLeaderboardProps } from "../../types/liderBoardTypes";
 
 export function fetchLeaderboard(
   tg_id: string

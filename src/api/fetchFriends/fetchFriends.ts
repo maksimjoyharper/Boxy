@@ -1,13 +1,6 @@
 import axios from "axios";
 import { api_url } from "../api_url";
-
-export interface fetchFriendsProps {
-  tg_id: string;
-  name: string;
-  referral_bonus: boolean;
-  points: string;
-  reg_data: string;
-}
+import { fetchFriendsProps } from "../../types/friendsTypes";
 
 export function fetchAllFriends(tg_id: string): Promise<fetchFriendsProps[]> {
   return axios

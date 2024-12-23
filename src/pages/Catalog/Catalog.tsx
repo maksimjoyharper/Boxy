@@ -1,8 +1,5 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
 import style from "./Catalog.module.scss";
 import { useTelegram } from "../../hooks/telegram/telegram";
-import { fetchCatalog } from "../../api/fetchCatalog/fetchCatalog";
-import { queryClient } from "../../api/queryClient";
 import { CatalogItem } from "../../components/catalogItem";
 import logo from "../../assets/webp/logo.webp";
 import iconCoin from "../../assets/webp/coin.webp";
@@ -12,6 +9,7 @@ import { SlidingCatalog } from "../../components/slidingCatalog";
 import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { formatCoins } from "../../features/formatNumber";
+import { useFetchCatalog } from "../../hooks/useHooks/useCatalog";
 
 const Catalog = () => {
   const { tg, tg_id } = useTelegram();
@@ -29,13 +27,7 @@ const Catalog = () => {
     tg.HapticFeedback.impactOccurred("medium");
   };
 
-  const { data: catalog } = useSuspenseQuery(
-    {
-      queryFn: () => fetchCatalog(tg_id),
-      queryKey: ["catalog"],
-    },
-    queryClient
-  );
+  const { data: catalog } = useFetchCatalog(tg_id);
 
   const categories = [
     "Каталог",

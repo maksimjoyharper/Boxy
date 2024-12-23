@@ -1,24 +1,6 @@
 import axios from "axios";
 import { api_url } from "../api_url";
-
-interface fetchCatalogProps {
-  shops: {
-    id: string;
-    name: string;
-    description: string;
-    price: string;
-
-    products: {
-      link: string;
-      description: string;
-      id: string;
-      name: string;
-      is_purchased: string;
-      is_accessible: string;
-      price: number;
-    }[];
-  }[];
-}
+import { fetchCatalogProps } from "../../types/catalogTypes";
 
 export function fetchCatalog(tg_id: string): Promise<fetchCatalogProps> {
   return axios

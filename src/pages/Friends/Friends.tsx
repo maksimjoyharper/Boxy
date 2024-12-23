@@ -1,16 +1,14 @@
 import style from "./Friends.module.scss";
 import { PageUI } from "../../ui/PageUI/PageUI";
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
-import {
-  fetchAllFriends,
-  fetchFriendsProps,
-  getRefLink,
-} from "../../api/fetchFriends/fetchFriends";
 import { useTelegram } from "../../hooks/telegram/telegram";
-import { queryClient } from "../../api/queryClient";
 import { useEffect, useState } from "react";
 import CardFriend from "../../components/cards/cardFriend/CardFriend";
 import { SlidingFriends } from "../../components/slidingFriends";
+import { fetchFriendsProps } from "../../types/friendsTypes";
+import {
+  useFetchFriends,
+  useGetRefLink,
+} from "../../hooks/useHooks/useFriends";
 
 export default function Friends() {
   const { tg, tg_id } = useTelegram();
@@ -29,21 +27,9 @@ export default function Friends() {
     tg.HapticFeedback.impactOccurred("light");
   };
 
-  const gettingRefLink = useQuery(
-    {
-      queryKey: ["refLink"],
-      queryFn: () => getRefLink(tg_id),
-    },
-    queryClient
-  );
+  const gettingRefLink = useGetRefLink(tg_id);
 
-  const { data } = useSuspenseQuery(
-    {
-      queryKey: ["friends"],
-      queryFn: () => fetchAllFriends(tg_id),
-    },
-    queryClient
-  );
+  const { data } = useFetchFriends(tg_id);
 
   useEffect(() => {
     if (gettingRefLink.data) {

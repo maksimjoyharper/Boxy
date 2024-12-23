@@ -2,14 +2,7 @@ import SlidingPanel from "../../ui/SlidingPanel/SlidingPanel";
 import style from "./slidingNotTickets.module.scss";
 import imgTicket from "../../assets/webp/sliding__not__ticket.webp";
 import imgPremTicket from "../../assets/png/premium.png";
-
-interface ISliding {
-  isOpen: boolean;
-  onClose: () => void;
-  initialHeight: string;
-  fullHeight: string;
-  currentTicket: boolean;
-}
+import { ISlidingNotTickets } from "../../types/gameTypes";
 
 export const SlidingNotTickets = ({
   isOpen,
@@ -17,7 +10,7 @@ export const SlidingNotTickets = ({
   fullHeight,
   initialHeight,
   currentTicket,
-}: ISliding) => {
+}: ISlidingNotTickets) => {
   return (
     <SlidingPanel
       initialHeight={initialHeight}
