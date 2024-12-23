@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import style from "./catalogItem.module.scss";
 import { getImgCatalog } from "../../features/getImgCatalog";
 import coin from "../../assets/webp/coin.webp";
@@ -62,6 +62,10 @@ export const CatalogItem = memo(
       tg.HapticFeedback.impactOccurred("medium");
     };
 
+    const formattedNumber = useMemo(() => {
+      return formatNumber(price);
+    }, [price]);
+
     return (
       <>
         <li onClick={handleOpenLink} key={id} className={style.catalog__item}>
@@ -89,7 +93,7 @@ export const CatalogItem = memo(
                   <img width={43} height={43} src={coin} alt="coin" />
                 )}
 
-                {price !== 0 && formatNumber(price)}
+                {price !== 0 && formattedNumber}
               </p>
             )}
             {price !== 0 && <p className={style.catalog__prof}>{prof}</p>}

@@ -11,7 +11,9 @@ import { useMutation } from "@tanstack/react-query";
 import { fetchCalendar } from "../../api/fetchCalendar/fetchCalendar";
 import { queryClient } from "../../api/queryClient";
 import { useTelegram } from "../../hooks/telegram/telegram";
-import { useEffect, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/scss";
+import { useRef } from "react";
 
 interface ICalendar {
   isOpen: boolean;
@@ -21,8 +23,7 @@ interface ICalendar {
 const Calendar = ({ isOpen, onClose }: ICalendar) => {
   const user = useSelector(getUser);
   const { tg, tg_id } = useTelegram();
-  const listRef = useRef<HTMLUListElement>(null);
-  const activeItemRef = useRef<HTMLLIElement>(null);
+  const swiperRef = useRef<any>(null);
 
   const calendarMutation = useMutation(
     {
@@ -38,26 +39,47 @@ const Calendar = ({ isOpen, onClose }: ICalendar) => {
     tg.HapticFeedback.impactOccurred("medium");
   };
 
-  useEffect(() => {
-    if (activeItemRef.current && listRef.current) {
-      activeItemRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
+  const handleSlideChange = (swiper: any) => {
+    const activeIndex = swiper.activeIndex;
+    const activeSlide = swiper.slides[activeIndex];
+
+    if (activeSlide.classList.contains(style.blue)) {
+      swiper.slideTo(activeIndex, 300);
     }
-  }, [user?.consecutive_days]);
+  };
 
   return (
     <Modal lazy isOpen={isOpen} onClose={onClose}>
       <div className={style.calendar__block}>
         <h1 className={style.calendar__title}>Ежедневная награда</h1>
-        <ul className={style.calendar__list} ref={listRef}>
-          <CalendarItem
-            ref={activeItemRef}
-            conclusive_day={user && user.consecutive_days}
-            bonus_info={user?.bonus_info || []}
-          />
-        </ul>
+        <Swiper
+          centeredSlides={true}
+          ref={swiperRef}
+          className={style.calendar__list}
+          spaceBetween={5}
+          slidesPerView={4}
+          onSlideChange={handleSlideChange}
+        >
+          {user?.bonus_info.map((element, index) => (
+            <SwiperSlide
+              className={
+                user.consecutive_days === element.day
+                  ? `${style.blue} ${style.calendar__item}`
+                  : style.calendar__item
+              }
+              key={index}
+            >
+              <CalendarItem
+                index={index}
+                day={element.day}
+                points={element.points}
+                premium_tickets={element.premium_tickets}
+                tickets={element.tickets}
+                consecutive_days={user.consecutive_days}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
         {user?.bonus_info
           .filter((element) => element.day === user.consecutive_days)
           .map((item) => (

@@ -11,7 +11,7 @@ import { useTelegram } from "../../hooks/telegram/telegram";
 
 export default function Layout() {
   const location = useLocation();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [isOpenOnb, setIsOpenOnb] = useState(false);
   const user = useSelector(getUser);
   const { tg } = useTelegram();
