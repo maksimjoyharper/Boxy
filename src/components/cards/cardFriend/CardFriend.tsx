@@ -6,8 +6,16 @@ import { useTelegram } from "../../../hooks/telegram/telegram";
 import { formatDate } from "../../../features/formateDate";
 import avatar from "../../../assets/png/avatar.png";
 import iconCoin from "../../../assets/webp/coin.webp";
+import { useMemo } from "react";
+import { fetchFriendsProps } from "../../../types/friendsTypes";
 import { formatCoins } from "../../../features/formatNumber";
-import { CardFriendProps } from "../../../types/friendsTypes";
+
+type CardFriendProps = {
+  friends: fetchFriendsProps;
+  index: number;
+  isOpen?: React.Dispatch<React.SetStateAction<boolean>> | undefined;
+  isDisabled: boolean;
+};
 
 export default function CardFriend({
   friends,
@@ -39,6 +47,10 @@ export default function CardFriend({
 
     tg.HapticFeedback.impactOccurred("light");
   };
+
+  const formattedDate = useMemo(() => {
+    return formatDate(friends.reg_data);
+  }, [friends.reg_data]);
 
   return (
     <li className={style.friends__item}>
@@ -73,8 +85,7 @@ export default function CardFriend({
         </button>
       ) : (
         <span className={style.friends_reg_data}>
-          Приглашён{" "}
-          {friends.reg_data ? formatDate(friends.reg_data) : "10.10.24"}
+          Приглашён {formattedDate}
         </span>
       )}
     </li>

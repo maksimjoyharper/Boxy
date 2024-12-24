@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400;
   src: local("Graphic"), url("../fonts/Graphik-Regular.woff2") format("woff2"),
-    url("./fonts/Graphik-Regular.woff") format("woff");
+    url("../fonts/Graphik-Regular.woff") format("woff");
 }
 
 @font-face {
@@ -11,5 +11,5 @@
   font-style: normal;
   font-weight: 700;
   src: local("Graphic"), url("../fonts/Graphik-Bold.woff2") format("woff2"),
-    url("./fonts/Graphik-Bold.woff") format("woff");
+    url("../fonts/Graphik-Bold.woff") format("woff");
 }
